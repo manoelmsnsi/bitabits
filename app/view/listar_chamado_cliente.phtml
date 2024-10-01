@@ -1,0 +1,126 @@
+
+<?php
+require_once 'inicio.phtml';
+?>
+<div class='content'>
+    <div class=''>
+        <div class='row'>
+            <div class='col-md-7'>
+                <div class='card'>
+                    <div class='card-header card-header-rose card-header-icon'>
+                        <div class='card-icon'>
+                            <i class='material-icons'>account_balance_wallet</i>
+                        </div>
+                        <h4 class='card-title'>Meus Chamados</h4>
+                        <a href='/Chamado/form/' type='submit' class='btn btn-md btn-rose pull-right  '><i class='material-icons '>add_circle_outline</i></a>
+                    </div>
+                    <div class='card-body'>
+                        <div class='toolbar'> </div>
+                        <div class='material-datatables'>
+                            <table id='tabela1' class='table table-striped table-no-bordered table-hover  table-responsive' cellspacing='0' width='100%' style='width:100%'>
+                               <thead>                                
+                                    <tr> 
+                                        <th style="font-size:0.9rem;  font-weight: bold;"scope='col'>Status</th>
+                                        <th style="font-size:0.9rem;  font-weight: bold;"scope='col'>Título</th>
+                                        <th style="font-size:0.9rem;  font-weight: bold;"scope='col'>Tipo</th>                                        
+                                        <th style="font-size:0.9rem;  font-weight: bold;"scope='col'>Cliente</th>
+                                        <th style="font-size:0.9rem;  font-weight: bold;"scope='col'>Prioridade</th>
+                                        <th style="font-size:0.9rem;  font-weight: bold;"scope='col'class="text-right">Ação</th>
+                                    </tr>       
+                                </thead>
+                                <tfoot>
+                                   <tr> 
+                                        <th scope='col'>Status</th>
+                                        <th scope='col'>Título</th>
+                                        <th scope='col'>Tipo</th>                                        
+                                        <th scope='col'>Cliente</th>
+                                        <th scope='col'>Prioridade</th>
+                                        <th scope='col'class="text-right">Ação</th>
+                                    </tr>
+                                </tfoot> 
+                                <tbody>
+<!--                                    //<?php foreach ($view_listar_chamado AS $listar_chamado): ?>
+                                        <tr> 
+                                            <td><button type="button" class="btn btn-sm btn-default"  style="background: //<?php echo $listar_chamado['cor_status']; ?>;width: 160px"><?php echo $listar_chamado['descricao_status']; ?></button></td>                                            
+                                            <td>//<?php echo $listar_chamado['titulo']; ?></td>                                                                                        
+                                            <td>//<?php echo $listar_chamado['tipo']; ?></td>
+                                            <td>//<?php echo $listar_chamado['nome_cliente']; ?></td>
+                                            <td><button type="button" class="btn btn-sm btn-default" style="background: //<?php echo $listar_chamado['cor_prioridade']; ?>;width: 100px"><?php echo $listar_chamado['descricao_prioridade']; ?></button></td>
+                                           
+                                            
+                                            <td class='text-right'>
+                                                <form class='form-check-inline' ><a href='/Chamado/form/id///<?php echo $listar_chamado['id']; ?>' type='submit' class='btn btn-sm btn-warning btn-just-icon '><i class='material-icons'>edit</i></a></form>
+                                                <form class='form-check-inline'><a href='/Chamado/visualizar/id///<?php echo $listar_chamado['id']; ?>' type='submit' class='btn btn-sm btn-rose btn-just-icon ' ><i class='material-icons'>remove_red_eye</i></a></form>
+                                                <form class='form-check-inline'><a href='/ChamadoGrupo/form/id///<?php echo $listar_chamado['id']."/id_colaborador/".$view_user_dados["id_colaborador"]; ?>' type='submit' class='btn btn-sm btn-rose btn-just-icon '><i class='material-icons'>supervised_user_circle</i></a></form>
+                                                <form class='form-check-inline'><a onclick="return confirm('Você tem certeza que deseja Excluir este registro ?');"   href='/Chamado/excluir/id///<?php echo $listar_chamado['id']; ?>' class='btn btn-sm btn-danger btn-just-icon '><i class='material-icons'>close</i></a></form>
+                                            </td>                    
+                                        </tr>
+                                    //<?php endforeach; ?> -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+     
+            <div class='col-md-5'>
+                <div class='card'>
+                    <div class='card-header card-header-rose card-header-icon'>
+                        <div class='card-icon'>
+                            <i class='material-icons'>account_balance_wallet</i>
+                        </div>
+                        <h4 class='card-title'>Chamados Sem Atribuição</h4>
+<!--                    <a href='/Chamado/form/' type='submit' class='btn btn-md btn-rose pull-right  '><i class='material-icons '>add_circle_outline</i></a>-->
+                    </div>
+                    
+                    
+                    <div class='card-body col-md-12'>
+                        <div class='toolbar'> </div>
+                        <div class='material-datatables'>
+                            <table id='tabela2' class='table table-striped table-no-bordered table-hover table-responsive' cellspacing='0' width='100%' style='width:100%'>
+                                <thead>            
+                                    <tr> 
+                                        <th style="font-size:0.9rem;  font-weight: bold;"scope='col'>Tipo</th>                                        
+                                        <th style="font-size:0.9rem;  font-weight: bold;"scope='col'>Cliente</th>
+                                        <th style="font-size:0.9rem;  font-weight: bold;"scope='col'>Prioridade</th>
+                                        <th style="font-size:0.9rem;  font-weight: bold;"scope='col'class="text-right">Ação</th>
+                                    </tr>       
+                                </thead>
+                                <tfoot>
+                                   <tr> 
+                                        <th scope='col'>Título</th>                                      
+                                        <th scope='col'>Cliente</th>
+                                        <th scope='col'>Prioridade</th>
+                                        <th scope='col'class="text-right">Ação</th>
+                                    </tr>
+                                </tfoot> 
+                                <tbody>
+                                    <?php foreach ($view_listar_chamado_sem_tec AS $listar_chamado_sem_tec): ?>
+                                        <tr> 
+                                            <!--<td><button type="button" class="btn btn-sm btn-default"  style="background: <?php echo $listar_chamado_sem_tec['cor_status']; ?>;width: 180px"><?php echo $listar_chamado_sem_tec['descricao_status']; ?></button></td>-->
+                                            
+                                            <td><?php echo $listar_chamado_sem_tec['titulo']; ?></td>
+                                            
+                                            
+                                            <!--<td><?php echo $listar_chamado_sem_tec['tipo']; ?></td>-->
+                                            <td><?php echo $listar_chamado_sem_tec['nome_cliente']; ?></td>
+                                            <td><button type="button" class="btn btn-sm btn-default" style="background: <?php echo $listar_chamado_sem_tec['cor_prioridade']; ?>;width: 100px"><?php echo $listar_chamado_sem_tec['descricao_prioridade']; ?></button></td>
+                                           
+                                            
+                                            <td class='text-right'>
+                                                
+                                                
+                                                <form class='form-check-inline'><a href='/ChamadoGrupo/form/id/<?php echo $listar_chamado_sem_tec['id']."/id_colaborador/".$view_user_dados["id_colaborador"]; ?>' type='submit' class='btn btn-sm btn-rose btn-just-icon '><i class='material-icons'>supervised_user_circle</i></a></form>
+                                               <form class='form-check-inline'><a href='/Chamado/visualizar_tab/id/<?php echo $listar_chamado_sem_tec['id']; ?>' type='submit' class='btn btn-sm btn-rose btn-just-icon ' ><i class='material-icons'>remove_red_eye</i></a></form>
+                                            </td>                    
+                                        </tr>
+                                    <?php endforeach; ?> 
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

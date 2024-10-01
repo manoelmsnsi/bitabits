@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>Tela PDV</title>
+        <link href="/web-files/sistema/css/bootstrap.css" rel="stylesheet">
+        
+      
+        <link href="/web-files/sistema/css/pdv.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+        <link rel="stylesheet" href="/web-files/sistema/js/auto_complete/jquery-ui.css"  type="text/css"/>
+        <link rel="stylesheet" href="/web-files/sistema/js/auto_complete/jquery-ui.css"  type="text/css"/>
+        
+        <style>
+       
+        .ui-autocomplete {
+          padding: 0;
+          list-style: none;
+          background-color: #fff;
+          width: 218px;
+          border: 1px solid #B0BECA;
+          max-height: 350px;
+          overflow-x: hidden;
+        }
+
+        .ui-autocomplete .ui-menu-item {
+          border-top: 1px solid #b9bbbe;
+          display: block;
+          padding: 4px 6px;
+          color: #353D44;
+          cursor: pointer;
+        }
+        .ui-autocomplete .ui-menu-item:first-child {
+          border-top: none;
+        }
+        .ui-autocomplete .ui-menu-item.ui-state-focus {
+          background-color: #3c9b97;
+          color: #fff;
+        }
+	</style>
+        
+        <link href="/web-files/sistema/js/auto_complete/jquery-ui.css" rel="stylesheet" type="text/css"/> 
+        <script src="/web-files/sistema/js/auto_complete/jquery-1.11.1.min.js" type="text/javascript"></script>        
+        <script src="/web-files/sistema/js/auto_complete/jquery-ui.min.js" type="text/javascript"></script> 
+        <script src="/web-files/sistema/js/auto_complete/jquery.select-to-autocomplete.js" type="text/javascript"></script>    
+
+      <script>       
+          (function($){
+            $(function(){
+              $('select').selectToAutocomplete();
+                
+            });
+          })(jQuery);
+           
+          </script>
+
+    </head>
+    <body> 
+        <?php  foreach ($view_listar_venda AS $listar_venda): ?>
+        <section class="sessao">
+            <div class="container-fluid">
+                <div class="row" id="CardTop" data-pg-name="Titulo">
+                    <div class="col-md-12 col-lg-12 col-xl-12">
+                        <div class="card-titulo">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img src="/web-files/sistema/imagens/bb.png" width="40"/> 
+                                </div> 
+                                <div class="col-md-4 text-center">                                    
+                                     
+                                    <div style="color:white"> <?php echo "Venda N:".$listar_venda["id"]." [CAIXA".$view_caixa."] ".$view_user_dados['usuario']." ".  date("d/m/Y")." " ?>  </div>
+                        
+                                </div>
+                                <div class="col-md-4 text-right">
+                                    <a href="/Admin/Index/" class="btn btn-sm btn-danger ">X</a>                                     
+                                </div>
+                            </div>
+                        </div>                         
+                    </div>
+                </div>
+                <div class="row" data-pg-name="Corpo" id="CardCorpo"> 
+                   
+                    <div class=" col-md-4 col-xl-8 col-lg-8"> 
+                        <form  enctype='multipart/form-data' method='post' action='/Itens/incluir_pdv/id_tabela/<?php echo $view_id."/tipo/Venda/caixa/$view_caixa" ;?>'>
+                                <div class="form-row ">
+                                    <div class="form-group col-md-1">
+                                        <label for="inputEmail4">Qtd.</label>
+                                        <input type="number" id="quantidade" autofocus name="quantidade" class="form-control" placeholder="" value="1"/>
+                                    </div>
+                                    <div class="form-group col-md-11 "> 
+                                        <label for="inputEmail4">Cód. Produto</label>
+                                       
+                                        <select tabindex="0"  id='id_produto' name='id_produto'  class='form-control' onchange='if(this.value != 0) { this.form.submit(); }'   >
+                                            <option  ></option>    
+                                        <?php foreach ($view_listar_produto AS $listar_produto):                         
+                                                if( $listar_produto['id'] == $listar_itens['id_produto']){ ?>
+                                                      <option selected value=' <?php echo $listar_produto['id'] ; ?>' ><?php echo $listar_produto['descricao']." - ".$listar_produto['codigo_barra'] ; ?></option>  <!--  PRECISA MEXER -->
+                                                  <?php }else{ ?>
+                                                      <option value=' <?php echo $listar_produto['id'].','.$listar_produto['valor_venda'] ; ?> '><?php echo $listar_produto['descricao']." - ".$listar_produto['codigo_barra'] ; ?></option>  <!-- PRECISA MEXER -->
+                                            <?php  } endforeach; ?>
+                                       </select> 
+ 
+                                    </div>
+<!--                                    <div class="form-group col-md-1">  
+                                         <label for="inputEmail4">.</label>
+                                       <button type="submit" class="btn btn-sm btn-primary btn-lg btn-block">+</button>  
+                                    </div>-->
+                                </div>  
+                            </form>
+                       
+                       
+                        <table class="table tbl card">
+                             <h4>Lista de Produtos</h4>
+                            <thead> 
+                                <tr> 
+                                    <th>Produto</th>
+                                    <th>Qtd</th> 
+                                    <th>Valor Unitário</th> 
+                                    <th>Valor Total</th> 
+                                    <th>Ação</th> 
+                                </tr>                                 
+                            </thead>                             
+                            <tbody> 
+                                <?php foreach ($view_listar_itens AS $listar_itens): ?>
+                                <tr> 
+                                    <td><?php echo $listar_itens["descricao"]; ?></td>
+                                    <th scope="row"><?php echo $listar_itens["quantidade"]; ?></th>       
+                                     <td><?php echo $listar_itens['valor_venda']; $total_venda=$total_venda+($listar_itens['valor_venda']*$listar_itens['quantidade']);?></td>
+                                      <th scope="row"><?php echo $listar_itens["quantidade"]*$listar_itens["valor_venda"]; ?></th>
+                                     <td class='text-right'>                                                   
+                                        <form class='form-check-inline'><a onclick="return confirm('Tem Certeza que deseja EXCLUIR ?');"   href='/Itens/excluir_pdv/id/<?php echo $listar_itens['id']."/id_tabela/".$listar_venda["id"]."/quantidade/".$listar_itens["quantidade"]."/id_produto/".$listar_itens["id_produto"]."/caixa/".$view_caixa."/tipo/Venda/"; ?>' class='btn btn-sm btn-danger btn-just-icon '><i class="fas fa-trash-alt"></i></a></form>
+                                    </td>  
+                                </tr>
+                                <?php endforeach; ?>
+                                
+                                                             
+                            </tbody>                             
+                        </table>
+                        <div class="card tbl footer-subtotal sub-total">
+                            <div class="row">
+                                
+                                <div class="col-md-4">
+                                    <label>SUBTOTAL</label>                                     
+                                </div>
+                                <div class="col-md-8">
+                                    <h3 > <?php echo 'R$' . number_format($total_venda, 2, ',', '.'); ?></h3>
+                                    
+                                </div>
+                            </div>
+                        </div>                         
+                    </div>
+                     <div class="col-md-4 col-lg-4 col-xl-4">
+                        <section class="sessao">
+                            
+                        </section>  
+                         <div class="card space">
+                             
+                                    <div class="card-header">Formas de Pagamento</div>
+                                    <div class="card-body">                                        
+                                            <form class='form-check-inline' action="/Contas/incluir/" method="POST">  
+                                            <div class="form-row">
+                                                <div class="card tbl footer float-left">
+                                                <div class="row">
+                                                   
+                                                    <div class="d-flex col-md-12">
+                                                        <div class="f-btn row">   
+                                                                <input id='' type='hidden'name='data_vencimento' class='form-control' value="<?php echo date("Y-m-d")?>">
+                                                                
+                                                                <input id='' type='hidden'name='id_filial'  required='true'value='<?php echo $view_user_dados['id_filial'] ?>'>
+                                                                <input id='' type='hidden'name='id_status'  required='true'value='1'>
+                                                                <input id='' type='hidden'name='id_colaborador'  required='true'value='<?php echo $view_user_dados['id_colaborador'] ?>'>
+                                                                <input id='' type='hidden'name='id_conta_bancaria'  required='true'value='1'>
+                                                                <input id='' type='hidden'name='id'  required='true'value='<?php echo $listar_venda['id'] ?>'>
+                                                                <input id='' type='hidden'name='id_tabela'  required='true'value='<?php echo $listar_venda['id'] ?>'>
+
+                                                                <input id='' type='hidden'name='caixa'  required='true'value='<?php echo $view_caixa; ?>'>
+                                                                <input id='' type='hidden'name='tabela'  required='true'value='Venda'>
+                                                                <input id='' type='hidden' name='tipo'  required='true'value='Receita<?php //echo $listar_venda['tipo']; ?>'>
+                                                                <input id='' type='hidden' name='tipo2'  required='true'value='Pdv'>
+                                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                <button  type="submit" name="finalizar" id="finalizar"class='btn btn-sm btn-success btn-just-icon  ' >FINALIZAR (F2)</button>
+                                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                <a  href='/Cupom/nf_termica/id/<?php echo $listar_venda["id"]."/pago/$total_venda/" ?>' class='btn btn-sm btn-info btn-just-icon '>CUPOM</a>                                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                <a  href='/Itens/excluir_pdv/id/<?php echo $listar_itens['id']."/id_tabela/".$listar_venda["id"]; ?>' class='btn btn-sm btn-danger btn-just-icon '>CANCELAR (F3)</a></form>
+                                                        </div>                             
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label for="inputEmail4">Cliente </label>                                                
+                                                 <select id='id_cliente' name='id_pessoa' class='form-control' required='true' autocorrect='off' autocomplete='off'>
+                                                    <?php foreach ($view_listar_cliente AS $listar_cliente):                        
+                                                        if( $listar_cliente['id'] == $listar_venda['id_cliente']){ ?>
+                                                              <option selected='true' value=' <?php echo $listar_cliente['id'] ; ?>' ><?php echo $listar_cliente['nome'] ; ?></option>  <!--  PRECISA MEXER -->
+                                                          <?php }else{ ?>
+                                                              <option value=' <?php echo $listar_cliente['id'] ; ?> '><?php echo $listar_cliente['nome'] ; ?></option>  <!-- PRECISA MEXER -->
+                                                    <?php  } endforeach; ?>
+                                               </select>  
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="inputEmail4">Tipo </label>                                                
+                                                <select id='id_tipo_documento' name='id_tipo_documento' class='form-control' required='true' autocorrect='off' autocomplete='off'>
+                                                    <?php foreach ($view_listar_tipo_documento AS $listar_tipo_documento):                        
+                                                        if( $listar_tipo_documento['id'] == $listar_venda['id_tipo_documento']){ ?>
+                                                              <option selected='true' value=' <?php echo $listar_tipo_documento['id'] ; ?>' ><?php echo $listar_tipo_documento['descricao'] ; ?></option>  <!--  PRECISA MEXER -->
+                                                          <?php }else{ ?>
+                                                              <option value=' <?php echo $listar_tipo_documento['id'] ; ?> '><?php echo $listar_tipo_documento['descricao'] ; ?></option>  <!-- PRECISA MEXER -->
+                                                    <?php  } endforeach; ?>
+                                               </select> 
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="inputEmail4">Forma </label>
+                                                <select id='id_tipo_pagamento' name='id_tipo_pagamento' class='form-control' required='true' autocorrect='off' autocomplete='off'>
+                                                    <?php foreach ($view_listar_tipo_pagamento AS $listar_tipo_pagamento):                        
+                                                        if( $listar_tipo_pagamento['id'] == $listar_venda['id_tipo_pagamento']){ ?>
+                                                              <option selected='true' value=' <?php echo $listar_tipo_pagamento['id'] ; ?>' ><?php echo $listar_tipo_pagamento['descricao'] ; ?></option>  <!--  PRECISA MEXER -->
+                                                          <?php }else{ ?>
+                                                              <option value=' <?php echo $listar_tipo_pagamento['id'] ; ?> '><?php echo $listar_tipo_pagamento['descricao'] ; ?></option>  <!-- PRECISA MEXER -->
+                                                    <?php  } endforeach; ?>
+                                               </select> 
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="inputEmail4">Pago</label>
+                                                <input type="number" id="valor_entrada" name="valor_entrada"class="form-control" />
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="inputEmail4">Troco </label>
+                                                <input type="text" onclick="teste()"id="valor_troco" name="valor_troco"class="form-control" />
+                                            </div>
+                                                <input type='hidden'  id="valor_total" name='valor_total' class='form-control' required='true' value='<?php echo $total_venda;?>'>                                    
+                                                 </form>
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>
+                </div> 
+               
+                   
+                
+                             
+                                 
+                           
+            </div>
+        </section>
+        <?php  endforeach; ?>
+        <!-- JavaScript-->
+        <script src="/web-files/sistema/js/jquery.min.js"></script>
+        <script src="/web-files/sistema/js/popper.min.js"></script>
+        <script src="/web-files/sistema/js/bootstrap.min.js"></script>
+    </body>
+</html>
+
+ <!-- ===== AUTOCOMPLETAR ===== -->
+  
+    
+
+    <!-- ===== FIM AUTOCOMPLETAR ===== --> 
+    <script>  
+             
+  
+        $("#valor_entrada").keyup(function(){
+        var valor_entrada = $("#valor_entrada").val();
+        var valor_total = $("#valor_total").val(); 
+        var valor_troco = valor_entrada-valor_total;
+     
+        $("#valor_troco").val(valor_troco.toLocaleString('us', {minimumFractionDigits: 2, maximumFractionDigits: 2}));
+       
+      });
+      
+      $(window).on("keyup", function(event) {
+    if (event.keyCode == 113) {
+   
+      $("#finalizar").trigger("click");
+   
+    }
+});
+
+
+</script>

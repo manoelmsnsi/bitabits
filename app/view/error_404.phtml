@@ -1,0 +1,122 @@
+        <?php 
+         
+        $variables = array(REMOTE_ADDR,
+        HTTP_X_FORWARDED_FOR,
+        HTTP_X_FORWARDED,
+        HTTP_FORWARDED_FOR,
+        HTTP_FORWARDED,
+        HTTP_X_COMING_,
+        HTTP_COMING_, 
+        HTTP_CLIENT_IP);
+        foreach ($variables as $variable){
+            if (isset($_SERVER[$variable])){
+                $return.= $_SERVER[$variable];
+                break;
+            }
+        }
+       
+      
+
+        ?>
+
+        <!DOCTYPE html>
+<html lang="pt_br">
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport'/>
+        <link href="/web-files/sistema/css/material_admin.css" rel="stylesheet"/>
+        <link href="/web-files/sistema/css/material_admin.css?v=2.1.0" rel="stylesheet"/>
+        <link href="/web-files/sistema/css/demo_admin.css" rel="stylesheet"/>
+        <link href="/web-files/sistema/js/auto_complete/jquery-ui.css" rel="stylesheet" type="text/css"/> 
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"> 
+        <script src="https://cdn.ckeditor.com/4.11.3/standard/ckeditor.js"></script>
+
+        <title> Acesso Restrito </title>
+    </head>
+    
+    
+    <body class="off-canvas-sidebar">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top text-white">
+            <div class="container">
+                <div class="navbar-wrapper">
+                    <a class="navbar-brand" href="#">
+                        <img src="/web-files/sistema/imagens/logo-md.png" width="100"/>
+                    </a>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="navbar-toggler-icon icon-bar"></span>
+                    <span class="navbar-toggler-icon icon-bar"></span>
+                    <span class="navbar-toggler-icon icon-bar"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end">
+                    <ul class="navbar-nav">
+                        <li class="nav-item ">
+                             <a href="javascript:history.back()" class="nav-link"> <i class="material-icons">keyboard_arrow_left</i> Voltar </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- End Navbar -->
+        <div class="wrapper wrapper-full-page">
+            <div class="page-header error-page header-filter" style="background-image: url('/web-files/sistema/imagens/backgrond_login.jpg'); background-position: center center; background-repeat: repeat; background-size: auto;">
+                <!--   you can change the color of the filter page using: data-color="blue | green | orange | red | purple" -->
+                <div class="content-center">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="title"> <i class="material-icons" style="font-size:8rem;">cancel_presentation</i> </h1> 
+                            <h2>Erro 404 - página não encontrada!.</h2>
+                            <h6>Erro: <?php echo $view_erro." ".$view_cliente ?><br><?php echo ("/registro/log/")."[$return]" ?></h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+          <script src="/web-files/sistema/js/core/jquery_admin.min.js"></script>
+        <script src="/web-files/sistema/js/core/popper_admin.min.js"></script>
+        <script src="/web-files/sistema/js/core/bootstrap_admin.min.js"></script>
+        <script src="/web-files/sistema/js/plugins/perfect_scrollbar.jquery_admin.min.js"></script>
+        <!-- Plugin for the momentJs  -->
+        <script src="/web-files/sistema/js/plugins/moment_admin.min.js"></script>
+        <!--  Plugin for Sweet Alert -->
+        <script src="/web-files/sistema/js/plugins/sweetalert2_admin.js"></script>
+        <!-- Forms Validations Plugin -->
+        <script src="/web-files/sistema/js/plugins/jquery.validate_admin.min.js"></script>
+        <!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
+        <script src="/web-files/sistema/js/plugins/jquery.bootstrap_wizard_admin.js"></script>
+        <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
+        <script src="/web-files/sistema/js/plugins/bootstrap_selectpicker_admin.js"></script>
+        <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
+        <script src="/web-files/sistema/js/plugins/bootstrap_datetimepicker_admin.min.js"></script>
+        <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
+        <script src="/web-files/sistema/js/plugins/jquery.dataTables_admin.min.js"></script>
+        <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
+        <script src="/web-files/sistema/js/plugins/bootstrap_tagsinput_admin.js"></script>
+        <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+        <script src="/web-files/sistema/js/plugins/jasny_bootstrap_admin.min.js"></script>
+        <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
+        <script src="/web-files/sistema/js/plugins/fullcalendar_admin.min.js"></script>
+        <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
+        <script src="/web-files/sistema/js/plugins/jquery_jvectormap_admin.js"></script>
+        <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+        <script src="/web-files/sistema/js/plugins/nouislider_admin.min.js"></script>
+        <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+        <!-- Library for adding dinamically elements -->
+        <script src="/web-files/sistema/js/plugins/arrive_admin.min.js"></script>
+        <!--  Google Maps Plugin    -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+        <!-- Chartist JS -->
+        <script src="/web-files/sistema/js/plugins/chartist_admin.min.js"></script>
+        <!--  Notifications Plugin    -->
+        <script src="/web-files/sistema/js/plugins/bootstrap_notify_admin.js"></script>
+        <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+        <script src="/web-files/sistema/js/material_admin.js?v=2.1.0" type="text/javascript"></script>
+        <!-- Material Dashboard DEMO methods, don't include it in your project! -->
+        <script src="/web-files/sistema/js/demo_admin.js"></script>
+    </body>
+</html>

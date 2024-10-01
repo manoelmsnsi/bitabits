@@ -1,0 +1,193 @@
+<?php 
+            require_once 'inicio.phtml';          
+          
+            foreach ($view_listar_contas AS $listar_contas):
+     ?>
+    
+        <div class='content'>
+                <div class='container-fluid'>
+                    <div class='row'>
+                        <div class='col-md-12'>
+                            <div class='card '>
+                                <div class='card-header card-header-rose card-header-icon'>
+                                    <div class='card-icon'>
+                                        <i class='material-icons'>work_outline</i>
+                                    </div>
+                                    <h4 class='card-title'>Detalhes da Venda</h4>
+                                </div>
+                               <form form enctype='multipart/form-data' method='post' action='/#/'> <!-- PRECISA MEXER -->
+                                    <div class='card-body '>
+                                         <div class='row'>
+                                                        <input id='' type='hidden'name='id'  required='true'value='<?php echo $listar_venda['id'] ?>'>
+                                                        <input id='' type='hidden'name='id_tabela'  required='true'value='<?php echo $listar_venda['id'] ?>'>
+                                                        <input id='' type='hidden'name='tabela'  required='true'value='Venda'>
+                                                        
+                                                     
+                                                        <div class='col-md-6'> 
+                                                            <div class='form-group '> 
+                                                               <label  class='bmd-label-floating'>Fornecedor</label>
+                                                               <select id='id_cliente' name='id_fornecedor' class=' select form-control' required='true' autocorrect='off' autocomplete='off'>
+                                                                    <?php foreach ($view_listar_fornecedor AS $listar_fornecedor):                        
+                                                                        if( $listar_fornecedor['id'] == $listar_venda['id_cliente']){ ?>
+                                                                              <option selected='true' value=' <?php echo $listar_fornecedor['id'] ; ?>' ><?php echo $listar_fornecedor['nome_fantasia'] ; ?></option>  <!--  PRECISA MEXER -->
+                                                                          <?php }else{ ?>
+                                                                              <option value=' <?php echo $listar_fornecedor['id'] ; ?> '><?php echo $listar_fornecedor['nome_fantasia'] ; ?></option>  <!-- PRECISA MEXER -->
+                                                                    <?php  } endforeach; ?>
+                                                               </select> 
+                                                            </div>
+                                                         </div>
+                                                        <div class='col-md-6'> 
+                                                            <div class='form-group '>
+                                                               <label  class='bmd-label-floating'>Colaborador</label>
+                                                               <select id='id_colaborador' name='id_colaborador' class=' select form-control' required='true' autocorrect='off' autocomplete='off'>
+                                                                    <?php foreach ($view_listar_colaborador AS $listar_colaborador):                        
+                                                                        if( $listar_colaborador['id'] == $listar_venda['id_colaborador']){ ?>
+                                                                              <option selected='true' value=' <?php echo $listar_colaborador['id'] ; ?>' ><?php echo $listar_colaborador['nome'] ; ?></option>  <!--  PRECISA MEXER -->
+                                                                          <?php }else{ ?>
+                                                                              <option value=' <?php echo $listar_colaborador['id'] ; ?> '><?php echo $listar_colaborador['nome'] ; ?></option>  <!-- PRECISA MEXER -->
+                                                                    <?php  } endforeach; ?>
+                                                               </select> 
+                                                            </div>
+                                                         </div>
+                                                        
+                                                        
+                                                        <div class='col-md-4'> 
+                                                            <div class='form-group '>
+                                                               <label  class='bmd-label-floating'>Tipo de Documento</label>
+                                                               <select id='id_tipo_documento' name='id_tipo_documento' class=' select form-control' required='true' autocorrect='off' autocomplete='off'>
+                                                                    <?php foreach ($view_listar_tipo_documento AS $listar_tipo_documento):                        
+                                                                        if( $listar_tipo_documento['id'] == $listar_venda['id_tipo_documento']){ ?>
+                                                                              <option selected='true' value=' <?php echo $listar_tipo_documento['id'] ; ?>' ><?php echo $listar_tipo_documento['descricao'] ; ?></option>  <!--  PRECISA MEXER -->
+                                                                          <?php }else{ ?>
+                                                                              <option value=' <?php echo $listar_tipo_documento['id'] ; ?> '><?php echo $listar_tipo_documento['descricao'] ; ?></option>  <!-- PRECISA MEXER -->
+                                                                    <?php  } endforeach; ?>
+                                                               </select> 
+                                                            </div>
+                                                         </div><div class='col-md-4'> 
+                                                            <div class='form-group '>
+                                                               <label  class='bmd-label-floating'>Tipo de Pagamento</label>
+                                                               <select id='id_tipo_pagamento' name='id_tipo_pagamento' class=' select form-control' required='true' autocorrect='off' autocomplete='off'>
+                                                                    <?php foreach ($view_listar_tipo_pagamento AS $listar_tipo_pagamento):                        
+                                                                        if( $listar_tipo_pagamento['id'] == $listar_venda['id_tipo_pagamento']){ ?>
+                                                                              <option selected='true' value=' <?php echo $listar_tipo_pagamento['id'] ; ?>' ><?php echo $listar_tipo_pagamento['descricao'] ; ?></option>  <!--  PRECISA MEXER -->
+                                                                          <?php }else{ ?>
+                                                                              <option value=' <?php echo $listar_tipo_pagamento['id'] ; ?> '><?php echo $listar_tipo_pagamento['descricao'] ; ?></option>  <!-- PRECISA MEXER -->
+                                                                    <?php  } endforeach; ?>
+                                                               </select> 
+                                                            </div>
+                                                         </div><div class='col-md-4'> 
+                                                            <div class='form-group '>
+                                                               <label  class='bmd-label-floating'>Conta</label>
+                                                               <select id='id_conta_bancaria' name='id_conta_bancaria' class=' select form-control' required='true' autocorrect='off' autocomplete='off'>
+                                                                    <?php foreach ($view_listar_conta_bancaria AS $listar_conta_bancaria):                        
+                                                                        if( $listar_conta_bancaria['id'] == $listar_venda['id_conta_bancaria']){ ?>
+                                                                              <option selected='true' value=' <?php echo $listar_conta_bancaria['id'] ; ?>' ><?php echo $listar_conta_bancaria['descricao'] ; ?></option>  <!--  PRECISA MEXER -->
+                                                                          <?php }else{ ?>
+                                                                              <option value=' <?php echo $listar_conta_bancaria['id'] ; ?> '><?php echo $listar_conta_bancaria['descricao'] ; ?></option>  <!-- PRECISA MEXER -->
+                                                                    <?php  } endforeach; ?>
+                                                               </select> 
+                                                            </div>
+                                                         </div><div class='col-md-3'> 
+                                                            <div class='form-group '>
+                                                                <label  class='bmd-label-floating'>Tipo</label>
+                                                                <input id='' type='text'name='tipo' class='form-control' required='true' value='<?php echo $listar_venda['tipo'] ?>'>
+                                                            </div>
+                                                        </div><div class='col-md-3'> 
+                                                            <div class='form-group '>
+                                                               <label  class='bmd-label-floating'>Filial</label>
+                                                               <select id='id_filial' name='id_filial' class='form-control select ' required='true' autocorrect='off' autocomplete='off'>
+                                                                    <?php foreach ($view_listar_filial AS $listar_filial):                        
+                                                                        if( $listar_filial['id'] == $listar_venda['id_filial']){ ?>
+                                                                              <option selected='true' value=' <?php echo $listar_filial['id'] ; ?>' ><?php echo $listar_filial['nome_fantasia'] ; ?></option>  <!--  PRECISA MEXER -->
+                                                                          <?php }else{ ?>
+                                                                              <option value=' <?php echo $listar_filial['id'] ; ?> '><?php echo $listar_filial['nome_fantasia'] ; ?></option>  <!-- PRECISA MEXER -->
+                                                                    <?php  } endforeach; ?>
+                                                               </select> 
+                                                            </div>
+                                                         </div><div class='col-md-3'> 
+                                                            <div class='form-group '>
+                                                               <label  class='bmd-label-floating'>Status</label>
+                                                               <select id='id_status' name='id_status' class='form-control select ' required='true' autocorrect='off' autocomplete='off'>
+                                                                    <?php foreach ($view_listar_status AS $listar_status):                        
+                                                                        if( $listar_status['id'] == $listar_venda['id_status']){ ?>
+                                                                              <option selected='true' value=' <?php echo $listar_status['id'] ; ?>' ><?php echo $listar_status['descricao'] ; ?></option>  <!--  PRECISA MEXER -->
+                                                                          <?php }else{ ?>
+                                                                              <option value=' <?php echo $listar_status['id'] ; ?> '><?php echo $listar_status['descricao'] ; ?></option>  <!-- PRECISA MEXER -->
+                                                                    <?php  } endforeach; ?>
+                                                               </select> 
+                                                            </div>
+                                                         </div>
+                                                        
+                                                        <div class='col-md-3'>  
+                                                            <div class='form-group '>
+                                                                <label  class='bmd-label-floating'>Data de Vencimento</label>
+                                                                <input id='' type='date'name='data_vencimento' class='form-control' required='true'value='<?php echo date("Y-m-d") ?>'>
+                                                            </div>
+                                                       </div>
+                                                        
+                                                        
+                                                        
+                                                       
+                                                            <div class='col-md-12'>
+                                                                <div class='card'>
+                                                                    <div class='card-header card-header-rose card-header-icon'>
+                                                                        <div class='card-icon'>
+                                                                            <i class='material-icons'>account_balance_wallet</i>
+                                                                        </div>
+                                                                        <h4 class='card-title'>Itens</h4>
+                                                                    </div>
+                                                                    <div class='card-body'>
+                                                                        <div class='toolbar'> </div>
+                                                                        <div class='material-datatables'>
+                                                                            <table id='tabela1' class='table table-striped table-no-bordered table-hover' cellspacing='0' width='100%' style='width:100%'>
+                                                                              <thead>
+                                                                                <tr> 
+                                                                                    <th style="font-size:0.9rem;  font-weight: bold;"scope='col'>Descrição</th>
+                                                                                    <th style="font-size:0.9rem;  font-weight: bold;"scope='col'>Quantidade</th>
+                                                                                    <th style="font-size:0.9rem;  font-weight: bold;"scope='col'>Valor de Venda</th>
+                                                                                    <th style="font-size:0.9rem;  font-weight: bold;"scope='col'>Valor do Desconto</th>
+                                                                                    
+                                                                                </tr>
+                                                                              </thead>
+                                                                             <tfoot>
+                                                                                <tr> 
+                                                                                    <th scope='col'>Descrição</th>
+                                                                                    <th scope='col'>Quantidade</th>
+                                                                                    <th scope='col'>Valor da Venda</th>
+                                                                                    <th scope='col'>Valor do Desconto</th>
+
+                                                                                </tr>
+                                                                            </tfoot>
+                                                                            <tbody>
+                                                                                        <?php foreach ($view_listar_itens AS $listar_itens):  ?>                                              
+                                                                                        <tr> 
+                                                                                            <td><?php echo $listar_itens['descricao']; ?></td>
+                                                                                            <td><?php echo $listar_itens['quantidade']; ?></td>
+                                                                                            <td><?php echo $listar_itens['valor_venda']; $total_venda=$total_venda+($listar_itens['valor_venda']*$listar_itens['quantidade']);?></td>
+                                                                                            <td><?php echo $listar_itens['valor_desconto']; ?></td>
+                                                                                            
+                                                                                                           
+                                                                                         </tr>
+                                                                                    <?php endforeach; ?> 
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                        <hr>
+                                                                        <h3 class="pull-right">Total <?php echo 'R$' . number_format($total_venda, 2, ',', '.'); ?></h3>
+                                                                        <input id='' type='hidden'name='valor_total' class='form-control' required='true' value='<?php echo $total_venda;?>'>
+                                                                       </div>                                                                    
+                                                                </div>                                                               
+                                                            </div>
+                                                       
+                                                        <div class='card-footer text-right'>
+                                       </div>
+                                    </div>
+                                </div>
+                           </form>
+                       </div>
+                   </div>
+                </div>
+            </div>
+        </div>
+<br><br> <?php endforeach;  ?>
+

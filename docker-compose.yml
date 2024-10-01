@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  web:
+    build: ./
+    container_name: php72-app
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/html
+    networks:
+      - network_default
+
+networks:
+  network_default:
+    external: true

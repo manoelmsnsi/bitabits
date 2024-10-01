@@ -1,0 +1,2584 @@
+-- --------------------------------------------------------
+-- Servidor:                     db_develop.mysql.dbaas.com.br
+-- Versão do servidor:           5.6.36-82.0-log - Percona Server (GPL), Release 82.0, Revision 58e846a
+-- OS do Servidor:               Linux
+-- HeidiSQL Versão:              11.1.0.6116
+-- --------------------------------------------------------
+
+
+-- Copiando estrutura para tabela db_develop.Acao
+CREATE TABLE IF NOT EXISTS Acao (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  id_filial int(11) NOT NULL DEFAULT '0',
+  descricao int(11) NOT NULL DEFAULT '0',
+  acao int(11) NOT NULL DEFAULT '0',
+  id_status int(11) NOT NULL DEFAULT '0',
+  data_lancamento datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Acao: ~0 rows (aproximadamente)
+
+-- Copiando estrutura para tabela db_develop.Acesso
+CREATE TABLE IF NOT EXISTS Acesso (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  id_filial int(10) NOT NULL,
+  id_grupo int(10) NOT NULL,
+  id_usuario int(10) NOT NULL,
+  id_programa int(10) NOT NULL,
+  id_status int(3) DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Acesso: ~3 rows (aproximadamente)
+INSERT INTO Acesso (id, id_filial, id_grupo, id_usuario, id_programa, id_status, data_lancamento) VALUES
+	(14, 2, 1, 1, 0, 1, '2020-12-20 16:17:28'),
+	(16, 2, 1, 5, 0, 1, '2021-01-18 12:01:10'),
+	(18, 1, 1, 1, 0, 1, '2021-01-26 10:38:19');
+
+-- Copiando estrutura para tabela db_develop.Agenda
+CREATE TABLE IF NOT EXISTS Agenda (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  id_filial int(10) NOT NULL,
+  id_colaborador int(10) NOT NULL,
+  id_cliente int(10) NOT NULL,
+  id_status int(3) DEFAULT NULL,
+  data_atendimento date DEFAULT NULL,
+  hora_inicio time NOT NULL,
+  hora_fim time NOT NULL,
+  tempo_atendimento varchar(50) COLLATE latin1_general_ci DEFAULT NULL,
+  tipo varchar(25) COLLATE latin1_general_ci NOT NULL,
+  observacao varchar(255) COLLATE latin1_general_ci DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Agenda: ~17 rows (aproximadamente)
+INSERT INTO Agenda (id, id_filial, id_colaborador, id_cliente, id_status, data_atendimento, hora_inicio, hora_fim, tempo_atendimento, tipo, observacao, data_lancamento) VALUES
+	(1, 2, 17, 2, 110, '2021-01-30', '07:35:00', '08:00:00', ' 1 Hora e -35 Minutos.', 'Novo Atendimento', 'Paciente com Dor.', '2021-01-29 23:34:17'),
+	(2, 2, 17, 4, 112, '2021-01-30', '08:10:00', '08:20:00', ' 0 Hora e 10 Minutos.', 'Orçamento', 'Orçamento', '2021-01-29 23:35:16'),
+	(3, 2, 17, 3, 113, '2021-01-30', '08:25:00', '09:00:00', ' 1 Hora e -25 Minutos.', 'Novo Atendimento', '', '2021-01-29 23:36:20'),
+	(4, 2, 17, 6, 110, '2021-01-30', '07:50:00', '08:30:00', ' 1 Hora e -20 Minutos.', 'Novo Atendimento', 'Canal', '2021-01-29 23:37:36'),
+	(5, 2, 18, 11, 113, '2021-01-30', '10:30:00', '10:50:00', ' 0 Hora e 20 Minutos.', 'Orçamento', '', '2021-01-29 23:38:20'),
+	(6, 2, 18, 16, 112, '2021-01-30', '07:40:00', '08:15:00', ' 1 Hora e -25 Minutos.', 'Novo Atendimento', '', '2021-01-29 23:39:47'),
+	(7, 2, 18, 2, 110, '2021-01-30', '08:55:00', '09:55:00', ' 1 Hora e 0 Minutos.', 'Novo Atendimento', 'Cirurgia', '2021-01-29 23:40:30'),
+	(8, 2, 17, 6, 110, '2021-01-29', '07:30:00', '07:50:00', ' 0 Hora e 20 Minutos.', 'Novo Atendimento', '', '2021-01-29 23:41:58'),
+	(9, 2, 18, 4, 112, '2021-01-29', '07:55:00', '08:30:00', ' 1 Hora e -25 Minutos.', 'Novo Atendimento', '', '2021-01-29 23:42:27'),
+	(10, 2, 1, 2, 110, '2021-01-28', '07:30:00', '08:00:00', ' 1 Hora e -30 Minutos.', 'Novo Atendimento', '', '2021-01-29 23:44:55'),
+	(11, 2, 17, 2, 110, '2021-01-28', '07:30:00', '08:30:00', ' 1 Hora e 0 Minutos.', 'Novo Atendimento', '', '2021-01-29 23:45:29'),
+	(12, 2, 17, 4, 112, '2021-01-28', '08:30:00', '09:00:00', ' 1 Hora e -30 Minutos.', 'Orçamento', '', '2021-01-29 23:46:06'),
+	(13, 2, 17, 2, 110, '2021-01-28', '09:30:00', '10:30:00', ' 1 Hora e 0 Minutos.', 'Novo Atendimento', '', '2021-01-29 23:46:28'),
+	(14, 2, 17, 2, 110, '2021-01-31', '08:00:00', '08:30:00', ' 0 Hora e 30 Minutos.', 'Orçamento', 'clareamento', '2021-01-30 09:49:27'),
+	(15, 2, 1, 27, 114, '2021-02-02', '08:00:00', '09:00:00', NULL, 'Novo Atendimento', 'Finalizar tratamento ', '2021-03-12 12:11:54'),
+	(16, 2, 1, 2, 110, '2021-02-02', '09:00:00', '11:00:00', ' 2 Hora e 0 Minutos.', 'Novo Atendimento', '', '2021-02-01 15:30:44'),
+	(17, 2, 1, 29, 110, '2021-02-02', '11:00:00', '12:00:00', ' 1 Hora e 0 Minutos.', 'Novo Atendimento', '', '2021-02-01 15:31:57'),
+	(18, 2, 17, 27, 110, '2021-02-02', '08:00:00', '09:30:00', ' 1 Hora e 30 Minutos.', 'Novo Atendimento', 'Finalizar tratamento ', '2021-02-01 16:05:44'),
+	(19, 2, 1, 2, 110, '2021-02-19', '21:01:00', '22:01:00', ' 1 Hora e 0 Minutos.', 'Novo Atendimento', 'teste', '2021-02-19 22:00:12'),
+	(20, 2, 1, 2, 110, '2021-02-26', '14:51:00', '16:51:00', ' 2 Hora e 0 Minutos.', 'Novo Atendimento', 'teste', '2021-02-26 15:52:07'),
+	(21, 2, 1, 2, 110, '2021-03-23', '08:00:00', '08:30:00', ' 0 Hora e 30 Minutos.', 'Novo Atendimento', 'teste', '2021-03-23 13:21:11'),
+	(22, 2, 1, 3, 110, '2021-03-26', '19:29:00', '19:29:00', ' 0 Hora e 0 Minutos.', 'Novo Atendimento', 'Iwsuduej', '2021-03-26 20:27:44');
+
+-- Copiando estrutura para tabela db_develop.Anamneses
+CREATE TABLE IF NOT EXISTS Anamneses (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  id_cliente int(11) NOT NULL DEFAULT '0',
+  queixa varchar(50) DEFAULT NULL,
+  historia varchar(50) DEFAULT NULL,
+  medicamentos varchar(50) DEFAULT NULL,
+  etilismo varchar(50) DEFAULT NULL,
+  tabagismo varchar(50) DEFAULT NULL,
+  substancias_ilicitas varchar(50) DEFAULT NULL,
+  pratica_atividade_fisica varchar(50) DEFAULT NULL,
+  dst varchar(50) DEFAULT NULL,
+  exame_fisico varchar(50) DEFAULT NULL,
+  conduta varchar(50) DEFAULT NULL,
+  depressao_anciedade varchar(3) DEFAULT NULL,
+  coronariopatia varchar(3) DEFAULT NULL,
+  valvopatia varchar(3) DEFAULT NULL,
+  diabetes varchar(3) DEFAULT NULL,
+  has varchar(3) DEFAULT NULL,
+  alergias varchar(3) DEFAULT NULL,
+  convulsoes varchar(3) DEFAULT NULL,
+  cirurgias_previas varchar(3) DEFAULT NULL,
+  doenca_congenitas varchar(3) DEFAULT NULL,
+  hipo varchar(3) DEFAULT NULL,
+  internacoes varchar(3) DEFAULT NULL,
+  neoplasias varchar(3) DEFAULT NULL,
+  neuropatias varchar(3) DEFAULT NULL,
+  osteopatias varchar(3) DEFAULT NULL,
+  pneumopatias varchar(3) DEFAULT NULL,
+  outros varchar(3) DEFAULT NULL,
+  outros_nao_especificados varchar(3) DEFAULT NULL,
+  avc varchar(3) DEFAULT NULL,
+  dac varchar(3) DEFAULT NULL,
+  dm varchar(3) DEFAULT NULL,
+  doencas_geneticas varchar(3) DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  id_status int(11) DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Anamneses: ~0 rows (aproximadamente)
+INSERT INTO Anamneses (id, id_cliente, queixa, historia, medicamentos, etilismo, tabagismo, substancias_ilicitas, pratica_atividade_fisica, dst, exame_fisico, conduta, depressao_anciedade, coronariopatia, valvopatia, diabetes, has, alergias, convulsoes, cirurgias_previas, doenca_congenitas, hipo, internacoes, neoplasias, neuropatias, osteopatias, pneumopatias, outros, outros_nao_especificados, avc, dac, dm, doencas_geneticas, data_lancamento, id_status) VALUES
+	(1, 2, 'teste', 'teste', 'teste', 'teste', 'teste', 'teste', 'teste', 'teste', 'teste', 'teste', 'SIM', 'SIM', 'SIM', 'SIM', 'SIM', 'SIM', 'SIM', 'SIM', 'SIM', 'SIM', 'SIM', 'SIM', 'SIM', 'SIM', 'SIM', NULL, 'tes', 'SIM', 'SIM', 'SIM', 'SIM', '2021-01-30 00:26:58', 1),
+	(2, 20, 'fghfgb', '', '', '', '', '', '', '', '', '', 'SIM', 'SIM', 'SIM', NULL, NULL, 'SIM', NULL, NULL, NULL, 'SIM', NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, 'SIM', '2021-01-30 09:36:42', 1),
+	(3, 26, '', '', '', '', '', '', '', '', '', '', NULL, 'SIM', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'SIM', NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, '2021-01-30 11:58:52', 1);
+
+-- Copiando estrutura para tabela db_develop.Atestado
+CREATE TABLE IF NOT EXISTS Atestado (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  id_cliente int(11) DEFAULT NULL,
+  id_colaborador int(11) DEFAULT NULL,
+  id_status int(11) DEFAULT NULL,
+  texto text,
+  data_atestado date DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Atestado: ~0 rows (aproximadamente)
+INSERT INTO Atestado (id, id_cliente, id_colaborador, id_status, texto, data_atestado, data_lancamento) VALUES
+	(1, 2, 18, 1, '<h1 style="font-style: italic;">Atestado</h1>\r\n\r\n<ol>\r\n	<li>atestado&nbsp;</li>\r\n	<li>atestado</li>\r\n</ol>\r\n\r\n<table border="1" cellpadding="1" cellspacing="1" style="width:500px">\r\n	<tbody>\r\n		<tr>\r\n			<td>teste</td>\r\n			<td>teste</td>\r\n		</tr>\r\n		<tr>\r\n			<td>teste</td>\r\n			<td>teste</td>\r\n		</tr>\r\n		<tr>\r\n			<td>teste</td>\r\n			<td>&nbsp;</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>&nbsp;</p>\r\n', '2021-01-30', '2021-01-30 00:22:55'),
+	(2, 20, 18, 1, '<h1 style="font-style: italic;">Atestad fulano</h1>\r\n\r\n<ol>\r\n	<li>asdczsdds</li>\r\n	<li><strong>sadsad</strong></li>\r\n	<li>sfd\r\n	<table border="1" cellpadding="1" cellspacing="1" style="width:500px">\r\n		<tbody>\r\n			<tr>\r\n				<td>czx</td>\r\n				<td>&nbsp;</td>\r\n			</tr>\r\n			<tr>\r\n				<td>cxzc</td>\r\n				<td>zczx</td>\r\n			</tr>\r\n			<tr>\r\n				<td>&nbsp;</td>\r\n				<td>czxc</td>\r\n			</tr>\r\n		</tbody>\r\n	</table>\r\n\r\n	<p>&nbsp;</p>\r\n	</li>\r\n</ol>\r\n', '2021-01-29', '2021-01-30 09:38:42');
+
+-- Copiando estrutura para tabela db_develop.Caixa
+CREATE TABLE IF NOT EXISTS Caixa (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  id_filial int(10) NOT NULL,
+  id_tabela int(10) NOT NULL,
+  tabela varchar(30) COLLATE latin1_general_ci NOT NULL,
+  tipo varchar(10) COLLATE latin1_general_ci DEFAULT NULL,
+  id_status int(3) DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  id_caixa int(11) DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Caixa: ~37 rows (aproximadamente)
+INSERT INTO Caixa (id, id_filial, id_tabela, tabela, tipo, id_status, data_lancamento, id_caixa) VALUES
+	(1, 2, 1, 'Contas', 'Receita', 1, '2021-01-29 23:28:56', 1),
+	(2, 2, 2, 'Contas', 'Receita', 1, '2021-01-29 23:29:59', 1),
+	(3, 2, 13, 'Contas', 'Despesa', 99, '2021-01-29 23:33:11', 1),
+	(4, 2, 17, 'Contas', 'Receita', 1, '2021-01-29 23:55:28', 1),
+	(5, 2, 22, 'Contas', 'Receita', 1, '2021-01-30 12:06:56', 1),
+	(6, 2, 8, 'Contas', 'Receita', 1, '2021-01-30 12:18:52', 1),
+	(7, 2, 30, 'Contas', 'Receita', 1, '2021-02-10 10:29:50', 1),
+	(8, 2, 31, 'Contas', 'Receita', 99, '2021-02-13 11:06:57', 1),
+	(9, 2, 32, 'Contas', 'Receita', 99, '2021-02-13 11:23:12', 1),
+	(10, 2, 33, 'Contas', 'Receita', 1, '2021-02-13 11:26:31', 1),
+	(11, 2, 37, 'Contas', 'Receita', 99, '2021-02-13 11:31:26', 1),
+	(12, 2, 38, 'Contas', 'Receita', 99, '2021-02-13 11:50:27', 1),
+	(13, 2, 9, 'Contas', 'Receita', 1, '2021-02-23 17:06:22', 1),
+	(14, 2, 40, 'Contas', 'Despesa', 1, '2021-03-13 09:34:18', 1),
+	(15, 2, 41, 'Contas', 'Despesa', 1, '2021-03-13 17:45:10', 1),
+	(16, 2, 42, 'Contas', 'Receita', 1, '2021-03-13 17:55:57', 1),
+	(17, 2, 43, 'Contas', 'Despesa', 1, '2021-03-13 18:00:14', 1),
+	(18, 2, 44, 'Contas', 'Despesa', 1, '2021-03-13 18:10:42', 1),
+	(19, 2, 48, 'Contas', 'Receita', 99, '2021-03-14 16:01:13', 2),
+	(20, 2, 48, 'Contas', 'Receita', 99, '2021-03-14 16:04:23', 2),
+	(21, 2, 48, 'Contas', 'Receita', 99, '2021-03-14 16:05:03', 2),
+	(22, 2, 31, 'Contas', 'Receita', 99, '2021-03-14 16:06:20', 2),
+	(23, 2, 48, 'Contas', 'Receita', 99, '2021-03-14 16:08:38', 2),
+	(24, 2, 48, 'Contas', 'Receita', 1, '2021-03-14 16:09:11', 2),
+	(25, 2, 32, 'Contas', 'Receita', 99, '2021-03-14 16:10:06', 2),
+	(26, 2, 32, 'Contas', 'Receita', 1, '2021-03-14 16:11:06', 2),
+	(27, 2, 31, 'Contas', 'Receita', 1, '2021-03-14 16:24:06', 2),
+	(28, 2, 35, 'Contas', 'Receita', 99, '2021-03-14 16:28:28', 2),
+	(29, 2, 35, 'Contas', 'Receita', 99, '2021-03-14 16:31:34', 2),
+	(30, 2, 35, 'Contas', 'Receita', 1, '2021-03-14 16:34:16', 2),
+	(31, 2, 12, 'Contas', 'Receita', 1, '2021-03-14 16:34:37', 2),
+	(32, 2, 24, 'Contas', 'Receita', 1, '2021-03-14 16:37:56', 2),
+	(33, 2, 57, 'Contas', 'Despesa', 1, '2021-03-15 18:04:54', 2),
+	(34, 2, 58, 'Contas', 'Despesa', 1, '2021-03-15 18:06:26', 2),
+	(35, 2, 59, 'Contas', 'Receita', 1, '2021-03-15 18:06:55', 2),
+	(36, 2, 62, 'Contas', 'Despesa', 1, '2021-03-15 18:11:00', 2),
+	(37, 2, 63, 'Contas', 'Receita', 1, '2021-03-15 18:13:25', 2),
+	(38, 2, 64, 'Contas', 'Receita', 1, '2021-03-15 18:19:34', 2),
+	(39, 2, 65, 'Contas', 'Receita', 1, '2021-03-15 18:20:34', 2),
+	(40, 2, 66, 'Contas', 'Receita', 1, '2021-03-15 18:21:53', 2),
+	(41, 2, 67, 'Contas', 'Despesa', 1, '2021-03-15 18:26:26', 2),
+	(42, 2, 68, 'Contas', 'Despesa', 1, '2021-03-15 18:28:20', 2),
+	(43, 2, 69, 'Contas', 'Despesa', 1, '2021-03-15 18:33:46', 2),
+	(44, 2, 70, 'Contas', 'Despesa', 1, '2021-03-15 18:33:58', 2),
+	(45, 2, 71, 'Contas', 'Despesa', 1, '2021-03-15 18:35:33', 2);
+
+-- Copiando estrutura para tabela db_develop.CaixaPai
+CREATE TABLE IF NOT EXISTS CaixaPai (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  id_filial int(11) DEFAULT NULL,
+  id_status int(11) DEFAULT NULL,
+  id_caixa int(11) DEFAULT NULL,
+  abertura datetime DEFAULT NULL,
+  valor_abertura double(10,2) DEFAULT NULL,
+  fechamento datetime DEFAULT NULL,
+  valor_fechamento double(10,2) DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.CaixaPai: ~0 rows (aproximadamente)
+INSERT INTO CaixaPai (id, id_filial, id_status, id_caixa, abertura, valor_abertura, fechamento, valor_fechamento, data_lancamento) VALUES
+	(1, 2, 11, 1, '2021-01-29 23:27:34', 100.00, '2021-03-14 16:00:38', 3380.00, '2021-01-29 23:27:34'),
+	(2, 2, 10, 1, '2021-03-14 16:00:52', 0.00, NULL, NULL, '2021-03-14 16:00:52');
+
+-- Copiando estrutura para tabela db_develop.Cargo
+CREATE TABLE IF NOT EXISTS Cargo (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  id_filial int(10) NOT NULL,
+  id_tabela int(20) DEFAULT NULL,
+  id_status int(3) DEFAULT NULL,
+  tabela varchar(20) COLLATE latin1_general_ci DEFAULT NULL,
+  descricao varchar(255) COLLATE latin1_general_ci DEFAULT NULL,
+  observacao varchar(255) COLLATE latin1_general_ci DEFAULT NULL,
+  data_posse date DEFAULT NULL,
+  data_saida date DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  id_pessoa int(11) DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Cargo: ~5 rows (aproximadamente)
+INSERT INTO Cargo (id, id_filial, id_tabela, id_status, tabela, descricao, observacao, data_posse, data_saida, data_lancamento, id_pessoa) VALUES
+	(1, 2, 5, 1, 'Cliente', 'Obreiro', '123', '2020-11-20', '2020-11-20', '2020-11-20 16:26:52', NULL),
+	(2, 2, 15, 1, 'Cliente', 'Gdcy', 'Jtvhfby', '2020-12-31', '2020-12-31', '2020-12-31 12:56:03', NULL),
+	(3, 2, 3, 1, 'Cliente', '1', '1', '0001-01-01', '0001-01-01', '2021-01-07 17:19:40', NULL),
+	(4, 2, 15, 1, 'Cliente', '1', '12222', '0001-01-01', '0001-01-01', '2021-01-12 17:10:08', NULL),
+	(5, 2, 15, 1, 'Cliente', '11', '1', '0001-01-01', '0001-01-01', '2021-01-12 17:11:04', NULL),
+	(6, 2, 15, 1, 'Cliente', '2', '2', '0002-02-02', '0002-02-02', '2021-01-12 17:12:28', NULL),
+	(7, 4, 14, 1, 'Cliente', '1', '123', '2021-01-25', '2021-01-25', '2021-01-26 00:00:05', NULL),
+	(8, 2, 33, 1, 'Cliente', 'teste', 'eteste', '2021-02-01', '2021-02-19', '2021-02-19 21:40:20', NULL),
+	(9, 2, 1, 1, 'Cliente', 'Socio', 'teste', '2018-01-01', '2099-01-01', '2021-03-05 10:28:41', NULL);
+
+-- Copiando estrutura para tabela db_develop.Chamado
+CREATE TABLE IF NOT EXISTS Chamado (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  titulo varchar(50) COLLATE latin1_general_ci DEFAULT NULL,
+  id_status int(11) DEFAULT NULL,
+  id_prioridade int(11) DEFAULT NULL,
+  id_cliente int(11) DEFAULT NULL,
+  observacao mediumtext COLLATE latin1_general_ci,
+  tipo varchar(20) COLLATE latin1_general_ci DEFAULT NULL,
+  data_inicio datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  data_fim datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  data_lancamento datetime NOT NULL,
+  tabela varchar(255) COLLATE latin1_general_ci DEFAULT NULL,
+  id_tabela int(11) DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Chamado: ~2 rows (aproximadamente)
+INSERT INTO Chamado (id, titulo, id_status, id_prioridade, id_cliente, observacao, tipo, data_inicio, data_fim, data_lancamento, tabela, id_tabela) VALUES
+	(1, 'teste', 104, 101, 2, NULL, 'Requisição', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2021-03-23 13:28:10', 'Venda', 43),
+	(2, 'teste', 100, 101, 2, NULL, 'Requisição', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2021-03-23 13:29:04', 'Chamado', 0),
+	(3, 'formatação', 105, 101, NULL, NULL, 'Requisição', '2021-04-01 15:51:03', '0000-00-00 00:00:00', '2021-04-01 15:50:18', 'Chamado', 1),
+	(4, '123', 104, 101, 2, NULL, 'Requisição', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2021-04-01 16:15:45', 'Chamado', 0);
+
+-- Copiando estrutura para tabela db_develop.ChamadoGrupo
+CREATE TABLE IF NOT EXISTS ChamadoGrupo (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  id_colaborador int(11) NOT NULL DEFAULT '0',
+  id_chamado int(11) NOT NULL DEFAULT '0',
+  id_status int(11) NOT NULL DEFAULT '0',
+  data_lancamento datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.ChamadoGrupo: ~2 rows (aproximadamente)
+INSERT INTO ChamadoGrupo (id, id_colaborador, id_chamado, id_status, data_lancamento) VALUES
+	(1, 1, 0, 1, '2021-03-23 13:40:16'),
+	(2, 1, 1, 1, '2021-03-23 13:42:28'),
+	(3, 1, 1, 1, '2021-03-23 13:43:09'),
+	(4, 1, 3, 1, '2021-04-01 15:50:33'),
+	(5, 1, 4, 1, '2021-04-01 17:21:11');
+
+-- Copiando estrutura para tabela db_develop.Cheque
+CREATE TABLE IF NOT EXISTS Cheque (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  id_venda int(11) DEFAULT NULL,
+  banco varchar(45) COLLATE latin1_general_ci DEFAULT NULL,
+  agencia varchar(50) COLLATE latin1_general_ci DEFAULT NULL,
+  numero_cheque varchar(50) COLLATE latin1_general_ci DEFAULT NULL,
+  emissor varchar(45) COLLATE latin1_general_ci DEFAULT NULL,
+  valor double(10,2) DEFAULT NULL,
+  baixa datetime DEFAULT NULL,
+  id_status int(3) DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Cheque: ~6 rows (aproximadamente)
+INSERT INTO Cheque (id, id_venda, banco, agencia, numero_cheque, emissor, valor, baixa, id_status, data_lancamento) VALUES
+	(1, 23, '3653', '6356', '436', '34634', 363.00, '2020-12-31 12:58:48', 108, '2020-12-31 12:58:48'),
+	(2, 23, '123', '123', '123', '123', 1233.00, '2021-01-26 12:09:44', 109, '2021-01-26 12:09:39'),
+	(3, 3, 'X000', 'X000', 'Xx00', 'X000', 2000.00, '2021-02-08 20:37:08', 108, '2021-02-08 20:37:08'),
+	(4, 3, 'X000', 'X000', 'Xx01', 'X000', 3050.00, '2021-02-08 20:37:40', 109, '2021-02-08 20:37:40'),
+	(5, 1, '1', '1', '1', '1', 1.00, '2021-05-17 18:16:49', 1, '2021-05-17 18:16:49'),
+	(6, 1, '2', '2', '2', '2', 2.00, '2021-05-17 18:18:06', 1, '2021-05-17 18:18:06');
+
+-- Copiando estrutura para tabela db_develop.Classe
+CREATE TABLE IF NOT EXISTS Classe (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  descricao varchar(50) COLLATE latin1_general_ci DEFAULT NULL,
+  idade_minima int(11) DEFAULT NULL,
+  idade_maxima int(11) DEFAULT NULL,
+  id_status int(11) DEFAULT NULL,
+  id_trimestre int(11) DEFAULT NULL,
+  id_filial int(11) DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Classe: ~4 rows (aproximadamente)
+INSERT INTO Classe (id, descricao, idade_minima, idade_maxima, id_status, id_trimestre, id_filial, data_lancamento) VALUES
+	(1, 'Davizinhos', 3, 4, 1, 2, 2, '2020-11-20 16:24:57'),
+	(2, 'Teste 1', 10, 16, 1, 1, 1, '2021-03-09 18:59:06'),
+	(3, 'campeões da fé', 10, 18, 1, 2, 1, '2020-12-29 20:40:38'),
+	(4, 'nova classe', 15, 20, 1, 2, 1, '2020-12-29 20:50:16'),
+	(5, 'classe  123', 10, 25, 1, 2, 1, '2021-03-09 18:59:18'),
+	(6, 'Cordeirinhos', 8, 10, 1, 3, 2, '2021-01-17 19:22:58');
+
+-- Copiando estrutura para tabela db_develop.Composicao
+CREATE TABLE IF NOT EXISTS Composicao (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  id_filial int(10) NOT NULL,
+  id_produto int(20) DEFAULT NULL,
+  descricao varchar(30) COLLATE latin1_general_ci DEFAULT NULL,
+  id_status int(3) DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Composicao: ~0 rows (aproximadamente)
+INSERT INTO Composicao (id, id_filial, id_produto, descricao, id_status, data_lancamento) VALUES
+	(1, 2, 3, 'teste', 1, '2020-11-20 16:30:58'),
+	(2, 2, 1, 'tetste', 1, '2020-11-28 23:30:08'),
+	(3, 1, 7, 'Teste de produto - Cezar', 99, '2021-01-26 11:40:45');
+
+-- Copiando estrutura para tabela db_develop.ContaBancaria
+CREATE TABLE IF NOT EXISTS ContaBancaria (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  id_filial int(10) unsigned zerofill NOT NULL,
+  descricao varchar(30) COLLATE latin1_general_ci NOT NULL,
+  banco varchar(10) COLLATE latin1_general_ci DEFAULT NULL,
+  conta varchar(10) COLLATE latin1_general_ci DEFAULT NULL,
+  saldo double(10,2) DEFAULT NULL,
+  id_status int(3) DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.ContaBancaria: ~2 rows (aproximadamente)
+INSERT INTO ContaBancaria (id, id_filial, descricao, banco, conta, saldo, id_status, data_lancamento) VALUES
+	(1, 0000000002, 'Caixa Interno', '0', '0', 13894.28, 1, '2020-11-20 11:41:18'),
+	(2, 0000000002, 'Caixa Cofre', '0', '0', 550.00, 1, '2020-11-20 11:41:26');
+
+-- Copiando estrutura para tabela db_develop.Contas
+CREATE TABLE IF NOT EXISTS Contas (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  id_filial int(10) NOT NULL,
+  id_tabela int(10) NOT NULL,
+  tabela varchar(50) COLLATE latin1_general_ci NOT NULL,
+  descricao varchar(30) COLLATE latin1_general_ci DEFAULT NULL,
+  tipo varchar(10) COLLATE latin1_general_ci NOT NULL,
+  data_pagamento datetime DEFAULT NULL,
+  data_vencimento date NOT NULL,
+  valor_pago double(10,2) DEFAULT NULL,
+  valor_total double(10,2) NOT NULL,
+  valor_entrada double(10,2) NOT NULL,
+  valor_parcela double(10,2) NOT NULL,
+  valor_troco double(10,2) DEFAULT NULL,
+  id_status int(3) DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  parcela varchar(5) COLLATE latin1_general_ci DEFAULT NULL,
+  id_tipo_documento int(11) DEFAULT NULL,
+  valor_desconto double(10,2) DEFAULT NULL,
+  juros double(10,10) DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Contas: ~55 rows (aproximadamente)
+INSERT INTO Contas (id, id_filial, id_tabela, tabela, descricao, tipo, data_pagamento, data_vencimento, valor_pago, valor_total, valor_entrada, valor_parcela, valor_troco, id_status, data_lancamento, parcela, id_tipo_documento, valor_desconto, juros) VALUES
+	(1, 2, 1, 'Venda', NULL, 'Receita', '2021-01-29 23:28:56', '2021-01-29', 200.00, 0.00, 200.00, 0.00, 0.00, 4, '2021-01-29 23:28:56', '1/1', 1, 0.00, 0.9999999999),
+	(2, 2, 2, 'Venda', NULL, 'Receita', '2021-01-29 23:29:59', '2021-01-29', 2000.00, 8000.00, 2000.00, 2000.00, 0.00, 4, '2021-01-29 23:29:59', '1/6', 2, 0.00, 0.9999999999),
+	(3, 2, 2, 'Venda', NULL, 'Receita', NULL, '2021-03-01', NULL, 8000.00, 0.00, 1600.00, NULL, 99, '2021-01-29 23:30:00', '2/6', 2, 0.00, 0.0000000000),
+	(4, 2, 2, 'Venda', NULL, 'Receita', NULL, '2021-03-29', NULL, 8000.00, 0.00, 1600.00, NULL, 99, '2021-01-29 23:30:00', '3/6', 2, 0.00, 0.0000000000),
+	(5, 2, 2, 'Venda', NULL, 'Receita', NULL, '2021-04-29', NULL, 8000.00, 0.00, 1600.00, NULL, 99, '2021-01-29 23:30:00', '4/6', 2, 0.00, 0.0000000000),
+	(6, 2, 2, 'Venda', NULL, 'Receita', NULL, '2021-05-29', NULL, 8000.00, 0.00, 1600.00, NULL, 99, '2021-01-29 23:30:00', '5/6', 2, 0.00, 0.0000000000),
+	(7, 2, 2, 'Venda', NULL, 'Receita', NULL, '2021-06-29', NULL, 8000.00, 0.00, 1600.00, NULL, 99, '2021-01-29 23:30:00', '6/6', 2, 0.00, 0.0000000000),
+	(8, 2, 3, 'Venda', NULL, 'Receita', '2021-01-30 12:18:52', '2020-08-01', 250.00, 5000.00, 0.00, 1000.00, -750.00, 4, '2021-01-29 23:31:34', '1/5', 4, 0.00, 0.0000000000),
+	(9, 2, 3, 'Venda', NULL, 'Receita', '2021-02-23 17:06:22', '2020-09-01', 420.00, 5000.00, 0.00, 1000.00, -580.00, 4, '2021-01-29 23:31:34', '2/5', 4, 0.00, 0.0000000000),
+	(10, 2, 3, 'Venda', NULL, 'Receita', NULL, '2020-10-01', NULL, 5000.00, 0.00, 1000.00, NULL, 99, '2021-01-29 23:31:34', '3/5', 4, 0.00, 0.0000000000),
+	(11, 2, 3, 'Venda', NULL, 'Receita', NULL, '2020-11-01', NULL, 5000.00, 0.00, 1000.00, NULL, 99, '2021-01-29 23:31:34', '4/5', 4, 0.00, 0.0000000000),
+	(12, 2, 3, 'Venda', NULL, 'Receita', '2021-03-14 16:34:37', '2020-12-01', 1.00, 5000.00, 0.00, 1000.00, -999.00, 4, '2021-01-29 23:31:34', '5/5', 4, 0.00, 0.0000000000),
+	(13, 2, 4, 'Venda', NULL, 'Despesa', '2021-01-29 23:33:11', '2021-01-29', 500.00, 1500.00, 500.00, 500.00, 0.00, 99, '2021-01-29 23:33:11', '1/2', 1, 0.00, 0.0000000000),
+	(14, 2, 4, 'Venda', NULL, 'Despesa', NULL, '2021-03-01', NULL, 1500.00, 0.00, 1500.00, NULL, 99, '2021-01-29 23:33:11', '2/2', 1, 0.00, 0.9999999999),
+	(15, 2, 5, 'Venda', NULL, 'Receita', NULL, '2021-01-30', NULL, 1500.00, 0.00, 750.00, NULL, 99, '2021-01-29 23:44:11', '1/2', 1, 0.00, 0.9999999999),
+	(16, 2, 5, 'Venda', NULL, 'Receita', NULL, '2021-03-02', NULL, 1500.00, 0.00, 750.00, NULL, 99, '2021-01-29 23:44:11', '2/2', 1, 0.00, 0.9999999999),
+	(17, 2, 6, 'Venda', NULL, 'Receita', '2021-01-29 23:55:28', '2020-12-10', 200.00, 5800.00, 200.00, 200.00, 0.00, 4, '2021-01-29 23:55:28', '1/4', 3, 0.00, 0.0000000000),
+	(18, 2, 6, 'Venda', NULL, 'Receita', NULL, '2021-01-10', NULL, 5800.00, 0.00, 1933.33, NULL, 99, '2021-01-29 23:55:28', '2/4', 3, 0.00, 0.0000000000),
+	(19, 2, 6, 'Venda', NULL, 'Receita', NULL, '2021-01-31', NULL, 5800.00, 0.00, 1933.33, NULL, 99, '2021-01-29 23:55:28', '3/4', 2, 0.00, 0.0000000000),
+	(20, 2, 6, 'Venda', NULL, 'Receita', NULL, '2021-03-10', NULL, 5800.00, 0.00, 1933.33, NULL, 99, '2021-01-29 23:55:28', '4/4', 3, 0.00, 0.0000000000),
+	(21, 2, 7, 'Venda', NULL, 'Receita', NULL, '2021-01-30', NULL, 3000.00, 0.00, 3000.00, NULL, 99, '2021-01-30 00:06:44', '1/1', 5, 0.00, 0.0000000000),
+	(22, 2, 8, 'Venda', NULL, 'Receita', '2021-01-30 12:06:56', '2021-01-30', 200.00, 1780.00, 200.00, 200.00, 0.00, 4, '2021-01-30 12:06:56', '1/6', 1, 10.00, 0.9999999999),
+	(23, 2, 8, 'Venda', NULL, 'Receita', NULL, '2021-03-02', NULL, 1780.00, 0.00, 356.00, NULL, 99, '2021-01-30 12:06:56', '2/6', 1, 10.00, 0.9999999999),
+	(24, 2, 8, 'Venda', NULL, 'Receita', '2021-03-14 16:37:56', '2021-03-30', 300.00, 1780.00, 0.00, 356.00, -56.00, 4, '2021-01-30 12:06:56', '3/6', 1, 10.00, 0.9999999999),
+	(25, 2, 8, 'Venda', NULL, 'Receita', NULL, '2021-04-30', NULL, 1780.00, 0.00, 356.00, NULL, 99, '2021-01-30 12:06:56', '4/6', 1, 10.00, 0.9999999999),
+	(26, 2, 8, 'Venda', NULL, 'Receita', NULL, '2021-05-30', NULL, 1780.00, 0.00, 356.00, NULL, 99, '2021-01-30 12:06:56', '5/6', 1, 10.00, 0.0000010000),
+	(27, 2, 8, 'Venda', NULL, 'Receita', NULL, '2021-06-30', NULL, 1780.00, 0.00, 356.00, NULL, 99, '2021-01-30 12:06:56', '6/6', 1, 10.00, 0.9999999999),
+	(28, 2, 3, 'Venda', NULL, 'Receita', NULL, '2020-09-01', NULL, 5000.00, 0.00, 750.00, NULL, 99, '2021-01-30 12:18:52', 'R/1/5', 4, NULL, 0.0000000000),
+	(29, 2, 11, 'Venda', NULL, 'Receita', NULL, '2021-02-03', NULL, 2335.00, 0.00, 2335.00, NULL, 99, '2021-02-03 10:30:20', '1/1', 3, 0.00, 0.9999999999),
+	(30, 2, 12, 'Venda', NULL, 'Receita', '2021-02-10 10:29:50', '2021-02-10', 1575.00, 1575.00, 0.00, 0.00, 0.00, 4, '2021-02-10 10:29:50', '1/1', 1, 0.00, 0.9999999999),
+	(31, 2, 13, 'Venda', NULL, 'Receita', '2021-03-14 16:24:06', '2021-02-13', 50.00, 0.00, 100.00, 100.00, -50.00, 4, '2021-02-13 11:06:57', '1/1', 1, 0.00, 0.9999999999),
+	(32, 2, 14, 'Venda', NULL, 'Receita', '2021-03-14 16:11:06', '2021-02-13', 50.00, 200.00, 200.00, 200.00, -150.00, 4, '2021-02-13 11:23:12', '1/1', 1, 0.00, 0.0000000000),
+	(33, 2, 15, 'Venda', NULL, 'Receita', '2021-02-13 11:26:31', '2021-02-13', 200.00, 500.00, 200.00, 200.00, 0.00, 4, '2021-02-13 11:26:31', '1/4', 1, 0.00, 0.0000000000),
+	(34, 2, 15, 'Venda', NULL, 'Receita', NULL, '2021-03-13', NULL, 500.00, 0.00, 166.67, NULL, 99, '2021-02-13 11:26:31', '2/4', 1, 0.00, 0.9999999999),
+	(35, 2, 15, 'Venda', NULL, 'Receita', '2021-03-14 16:34:16', '2021-04-13', 100.00, 500.00, 0.00, 166.67, -66.67, 4, '2021-02-13 11:26:31', '3/4', 1, 0.00, 0.9999999999),
+	(36, 2, 15, 'Venda', NULL, 'Receita', NULL, '2021-05-13', NULL, 500.00, 0.00, 166.67, NULL, 99, '2021-02-13 11:26:31', '4/4', 1, 0.00, 0.0000000000),
+	(37, 2, 16, 'Venda', NULL, 'Receita', '2021-02-13 11:31:26', '2021-02-13', 375.00, 0.00, 375.00, 0.00, 0.00, 99, '2021-02-13 11:31:26', '1/1', 1, 0.00, 0.0000000000),
+	(38, 2, 17, 'Venda', NULL, 'Receita', '2021-02-13 11:50:27', '2021-02-13', 150.00, 150.00, 150.00, 150.00, 0.00, 99, '2021-02-13 11:50:27', '1/1', 1, 0.00, 0.0000000000),
+	(39, 2, 3, 'Venda', NULL, 'Receita', NULL, '2020-10-01', NULL, 5000.00, 0.00, 580.00, NULL, 99, '2021-02-23 17:06:22', 'R/2/5', 4, NULL, 0.0000000000),
+	(40, 2, 19, 'Venda', NULL, 'Despesa', '2021-03-13 09:34:18', '2021-03-13', 1000.00, 1000.00, 1000.00, 1000.00, 0.00, 4, '2021-03-13 09:34:18', '1/1', 1, 0.00, 0.9999999999),
+	(41, 2, 20, 'Venda', NULL, 'Despesa', '2021-03-13 17:45:10', '2021-03-13', 200.00, 200.00, 200.00, 200.00, 0.00, 4, '2021-03-13 17:45:10', '1/1', 1, 0.00, 0.9999999999),
+	(42, 2, 18, 'Venda', NULL, 'Receita', '2021-03-13 17:55:56', '2021-03-13', 35.00, 35.00, 35.00, 35.00, 0.00, 4, '2021-03-13 17:55:56', '1/1', 1, 0.00, 0.0000000000),
+	(43, 2, 22, 'Venda', NULL, 'Despesa', '2021-03-13 18:00:14', '2021-03-13', 200.00, 200.00, 200.00, 200.00, 0.00, 121, '2021-03-13 18:00:14', '1/1', 1, 0.00, 0.0000000000),
+	(44, 2, 23, 'Venda', NULL, 'Despesa', '2021-03-13 18:10:42', '2021-03-13', 300.00, 300.00, 300.00, 300.00, 0.00, 121, '2021-03-13 18:10:42', '1/1', 1, 0.00, 0.0000000000),
+	(45, 2, 25, 'Venda', NULL, 'Receita', NULL, '2020-11-01', NULL, 1200.00, 0.00, 600.00, NULL, 99, '2021-03-14 13:24:32', '1/2', 1, 0.00, 0.0000000000),
+	(46, 2, 25, 'Venda', NULL, 'Receita', NULL, '2020-12-01', NULL, 1200.00, 0.00, 600.00, NULL, 99, '2021-03-14 13:24:32', '2/2', 1, 0.00, 0.0000000000),
+	(47, 2, 26, 'Venda', NULL, 'Receita', NULL, '2021-03-14', NULL, 1000.00, 0.00, 500.00, NULL, 99, '2021-03-14 15:03:32', '1/2', 1, 0.00, 0.0000000000),
+	(48, 2, 26, 'Venda', NULL, 'Receita', '2021-03-14 16:09:11', '2021-03-01', 500.00, 1000.00, 0.00, 500.00, -3.47, 4, '2021-03-14 15:03:32', '2/2', 1, 0.00, 0.0000000000),
+	(49, 2, 26, 'Venda', NULL, 'Receita', NULL, '2021-04-01', NULL, 1000.00, 0.00, 3.47, NULL, 99, '2021-03-14 16:09:11', 'R/2/2', 1, NULL, 0.0000000000),
+	(50, 2, 14, 'Venda', NULL, 'Receita', NULL, '2021-03-13', NULL, 200.00, 0.00, 150.00, NULL, 99, '2021-03-14 16:11:06', 'R/1/1', 1, NULL, 0.0000000000),
+	(51, 2, 13, 'Venda', NULL, 'Receita', NULL, '2021-03-13', NULL, 0.00, 0.00, 50.00, NULL, 99, '2021-03-14 16:24:06', 'R/1/1', 1, NULL, 0.0000000000),
+	(52, 2, 15, 'Venda', NULL, 'Receita', NULL, '2021-05-13', NULL, 500.00, 0.00, 100.00, NULL, 99, '2021-03-14 16:28:28', 'R/3/4', 1, NULL, NULL),
+	(53, 2, 15, 'Venda', NULL, 'Receita', NULL, '2021-05-13', NULL, 500.00, 0.00, 100.00, NULL, 99, '2021-03-14 16:31:34', 'R/3/4', 1, NULL, 0.0000000000),
+	(54, 2, 15, 'Venda', NULL, 'Receita', NULL, '2021-05-13', NULL, 500.00, 0.00, 66.67, NULL, 99, '2021-03-14 16:34:16', 'R/3/4', 1, NULL, 0.0000000000),
+	(55, 2, 3, 'Venda', NULL, 'Receita', NULL, '2021-01-01', NULL, 5000.00, 0.00, 999.00, NULL, 99, '2021-03-14 16:34:37', 'R/5/5', 4, NULL, 0.0000000000),
+	(56, 2, 8, 'Venda', NULL, 'Receita', NULL, '2021-04-30', NULL, 1780.00, 0.00, 56.00, NULL, 99, '2021-03-14 16:37:56', 'R/3/6', 1, NULL, 0.0000000000),
+	(57, 2, 24, 'Venda', NULL, 'Despesa', '2021-03-15 18:04:54', '2021-03-15', 100.00, 100.00, 100.00, 100.00, 0.00, 121, '2021-03-15 18:04:54', '1/1', 1, 0.00, 0.0000000000),
+	(58, 2, 27, 'Venda', NULL, 'Despesa', '2021-03-15 18:06:26', '2021-03-15', 200.00, 200.00, 200.00, 200.00, 0.00, 121, '2021-03-15 18:06:26', '1/1', 1, 0.00, 0.0000000000),
+	(59, 2, 28, 'Venda', NULL, 'Receita', '2021-03-15 18:06:55', '2021-03-15', 200.00, 200.00, 200.00, 200.00, 0.00, 4, '2021-03-15 18:06:55', '1/1', 1, 0.00, 0.0000000000),
+	(60, 2, 29, 'Venda', NULL, 'Receita', NULL, '2021-03-15', NULL, 150.00, 0.00, 75.00, NULL, 99, '2021-03-15 18:07:34', '1/2', 1, 0.00, 0.0005333333),
+	(61, 2, 29, 'Venda', NULL, 'Receita', NULL, '2021-04-15', NULL, 150.00, 0.00, 75.00, NULL, 99, '2021-03-15 18:07:34', '2/2', 1, 0.00, 0.0005333333),
+	(62, 2, 30, 'Venda', NULL, 'Despesa', '2021-03-15 18:11:00', '2021-03-15', 250.00, 250.00, 250.00, 250.00, 0.00, 121, '2021-03-15 18:11:00', '1/1', 1, 0.00, 0.0000000000),
+	(63, 2, 31, 'Venda', NULL, 'Receita', '2021-03-15 18:13:25', '2021-03-15', 150.00, 150.00, 150.00, 150.00, 0.00, 4, '2021-03-15 18:13:25', '1/1', 1, 0.00, 0.0000000000),
+	(64, 2, 32, 'Venda', NULL, 'Receita', '2021-03-15 18:19:34', '2021-03-15', 200.00, 200.00, 200.00, 200.00, 0.00, 4, '2021-03-15 18:19:34', '1/1', 1, 0.00, 0.0000000000),
+	(65, 2, 33, 'Venda', NULL, 'Receita', '2021-03-15 18:20:34', '2021-03-15', 20.00, 20.00, 0.00, 0.00, 0.00, 4, '2021-03-15 18:20:34', '1/1', 1, 0.00, 0.0000000000),
+	(66, 2, 34, 'Venda', NULL, 'Receita', '2021-03-15 18:21:53', '2021-03-15', 20.00, 20.00, 20.00, 20.00, 0.00, 4, '2021-03-15 18:21:53', '1/1', 1, 0.00, 0.0000000000),
+	(67, 2, 35, 'Venda', NULL, 'Despesa', '2021-03-15 18:26:26', '2021-03-15', 205.00, 205.00, 205.00, 205.00, 0.00, 121, '2021-03-15 18:26:26', '1/1', 1, 0.00, 0.0000000000),
+	(68, 2, 36, 'Venda', NULL, 'Despesa', '2021-03-15 18:28:20', '2021-03-15', 203.00, 203.00, 203.00, 203.00, 0.00, 121, '2021-03-15 18:28:20', '1/1', 1, 0.00, 0.0000000000),
+	(69, 2, 38, 'Venda', NULL, 'Despesa', '2021-03-15 18:33:46', '2021-03-15', 100.00, 100.00, 100.00, 100.00, 0.00, 121, '2021-03-15 18:33:46', '1/1', 1, 0.00, 0.0000000000),
+	(70, 2, 38, 'Venda', NULL, 'Despesa', '2021-03-15 18:33:58', '2021-03-15', 100.00, 100.00, 100.00, 100.00, 0.00, 121, '2021-03-15 18:33:58', '1/1', 1, 0.00, 0.0000000000),
+	(71, 2, 39, 'Venda', NULL, 'Despesa', '2021-03-15 18:35:33', '2021-03-15', 100.00, 100.00, 100.00, 100.00, 0.00, 121, '2021-03-15 18:35:33', '1/1', 1, 0.00, 0.0000000000),
+	(72, 2, 40, 'Venda', NULL, 'Receita', NULL, '2021-01-01', NULL, 1500.00, 0.00, 750.00, NULL, 1, '2021-03-19 09:42:28', '1/2', 2, 0.00, 0.0005333333),
+	(73, 2, 40, 'Venda', NULL, 'Receita', NULL, '2021-02-01', NULL, 1500.00, 0.00, 750.00, NULL, 1, '2021-03-19 09:42:28', '2/2', 2, 0.00, 0.0005333333);
+
+-- Copiando estrutura para tabela db_develop.Contato
+CREATE TABLE IF NOT EXISTS Contato (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  id_filial int(10) NOT NULL,
+  id_tabela int(10) NOT NULL,
+  tabela varchar(20) COLLATE latin1_general_ci DEFAULT NULL,
+  descricao varchar(20) COLLATE latin1_general_ci DEFAULT NULL,
+  contato varchar(50) COLLATE latin1_general_ci DEFAULT NULL,
+  id_status int(3) DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Contato: ~3 rows (aproximadamente)
+INSERT INTO Contato (id, id_filial, id_tabela, tabela, descricao, contato, id_status, data_lancamento) VALUES
+	(1, 2, 2, 'Cliente', 'Celular', '69 9 9999-9999', 1, '2021-01-30 00:08:42'),
+	(2, 2, 20, 'Cliente', 'E-mail', 'manoelmsnsii@gmail.com', 1, '2021-01-30 09:24:59'),
+	(3, 2, 19, 'Cliente', 'Celular', '(69) 99222-7789', 1, '2021-01-30 09:25:37'),
+	(4, 2, 32, 'Cliente', 'Celular', 'te', 1, '2021-02-09 11:17:21'),
+	(5, 2, 33, 'Cliente', 'Celular', '69999999999', 99, '2021-02-09 11:24:07'),
+	(6, 2, 1, 'Cliente', 'E-mail', 'manoelmsnsi@gmail.com', 1, '2021-03-05 10:27:22'),
+	(7, 2, 2, 'Filial', 'E-mail', 'manoelmsnsi@gmail.com', 1, '2021-03-05 10:56:24'),
+	(8, 2, 1, 'Cliente', 'E-mail', 'manoelmsnsi@gmail.com', 1, '2021-04-19 13:39:07');
+
+-- Copiando estrutura para tabela db_develop.Contrato
+CREATE TABLE IF NOT EXISTS Contrato (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  data_vencimento date DEFAULT NULL,
+  valor_total int(11) DEFAULT NULL,
+  tipo varchar(50) COLLATE latin1_general_ci DEFAULT NULL,
+  valor_parcela int(11) DEFAULT NULL,
+  parcela int(11) DEFAULT NULL,
+  id_cliente int(11) DEFAULT NULL,
+  id_status int(11) DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Contrato: ~0 rows (aproximadamente)
+
+-- Copiando estrutura para tabela db_develop.Eclesiastico
+CREATE TABLE IF NOT EXISTS Eclesiastico (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  id_filial int(10) NOT NULL,
+  id_status int(3) DEFAULT NULL,
+  id_tabela int(20) DEFAULT NULL,
+  data_admissao date DEFAULT NULL,
+  tipo_admissao varchar(20) COLLATE latin1_general_ci DEFAULT NULL,
+  data_emissao_carteira date DEFAULT NULL,
+  vencimento_carteira date DEFAULT NULL,
+  codigo_membro varchar(20) COLLATE latin1_general_ci DEFAULT NULL,
+  batismo_espirito varchar(3) COLLATE latin1_general_ci DEFAULT NULL,
+  data_batismo_espirito date DEFAULT NULL,
+  batismo_agua varchar(3) COLLATE latin1_general_ci DEFAULT NULL,
+  data_batismo_agua date DEFAULT NULL,
+  cidade_batismo varchar(80) COLLATE latin1_general_ci DEFAULT NULL,
+  igreja_batismo varchar(80) COLLATE latin1_general_ci DEFAULT NULL,
+  data_conversao date DEFAULT NULL,
+  classe_ebd varchar(50) COLLATE latin1_general_ci DEFAULT NULL,
+  tabela varchar(20) COLLATE latin1_general_ci DEFAULT NULL,
+  observacoes text COLLATE latin1_general_ci,
+  data_lancamento datetime DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Eclesiastico: ~0 rows (aproximadamente)
+INSERT INTO Eclesiastico (id, id_filial, id_status, id_tabela, data_admissao, tipo_admissao, data_emissao_carteira, vencimento_carteira, codigo_membro, batismo_espirito, data_batismo_espirito, batismo_agua, data_batismo_agua, cidade_batismo, igreja_batismo, data_conversao, classe_ebd, tabela, observacoes, data_lancamento) VALUES
+	(1, 2, 1, 5, '2020-11-20', 'Batismo', '2020-11-20', '2020-11-20', '1', 'Sim', '2020-11-20', 'Sim', '2020-11-20', 'mirante', 'ieadms', '2020-11-20', '1', 'Cliente', '1', '2020-11-20 16:26:36'),
+	(2, 2, 1, 15, '2020-12-31', 'Batismo', '2020-12-31', '2020-12-31', 'Fg', 'Sim', '2020-12-31', 'Sim', '2020-12-31', 'Vfvucbh', 'Ffhfxy', '2020-12-31', 'Gdgtc7fg', 'Cliente', 'Bgv', '2020-12-31 12:55:45'),
+	(3, 2, 1, 1, '0001-01-01', 'Batismo', '0001-01-01', '0001-01-01', '1', 'Sim', '0001-01-01', 'Sim', '0001-01-01', '1', '1', '0001-01-01', '1', 'Cliente', '1', '2021-01-05 16:20:01'),
+	(4, 2, 1, 3, '0001-01-01', 'Batismo', '0001-01-01', '0001-01-01', '1', 'Sim', '0001-01-01', 'Sim', '0001-01-01', '1', '1', '0001-01-01', '1', 'Cliente', '1', '2021-01-07 17:19:31'),
+	(5, 3, 1, 21, '2021-01-25', 'Batismo', '2021-01-25', '2021-01-25', '123', 'Sim', '2021-01-25', 'Sim', '2021-01-25', '123123', '123', '2021-01-25', '123123', 'Cliente', 'cvz\\xcvxvds', '2021-01-25 21:55:12');
+
+-- Copiando estrutura para tabela db_develop.Endereco
+CREATE TABLE IF NOT EXISTS Endereco (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  id_filial int(10) NOT NULL,
+  id_tabela int(10) NOT NULL,
+  id_status int(3) DEFAULT NULL,
+  tabela varchar(20) COLLATE latin1_general_ci DEFAULT NULL,
+  pais varchar(20) COLLATE latin1_general_ci DEFAULT NULL,
+  estado varchar(20) COLLATE latin1_general_ci DEFAULT NULL,
+  cep varchar(9) COLLATE latin1_general_ci DEFAULT NULL,
+  cidade varchar(255) COLLATE latin1_general_ci DEFAULT NULL,
+  logradouro varchar(255) COLLATE latin1_general_ci DEFAULT NULL,
+  numero varchar(10) COLLATE latin1_general_ci DEFAULT NULL,
+  bairro varchar(50) COLLATE latin1_general_ci DEFAULT NULL,
+  complemento varchar(255) COLLATE latin1_general_ci DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Endereco: ~0 rows (aproximadamente)
+INSERT INTO Endereco (id, id_filial, id_tabela, id_status, tabela, pais, estado, cep, cidade, logradouro, numero, bairro, complemento, data_lancamento) VALUES
+	(1, 2, 2, 1, 'Cliente', 'Brasil', 'RO', '76920-000', 'Ouro Preto do Oeste', 'teste', '000', '123', 'outro', '2021-01-30 00:08:06'),
+	(2, 2, 19, 1, 'Cliente', 'brasil', 'Rondônia', '76.920-00', 'Ouro Preto do Oeste', 'RUA CAFÉ FILHO', '68', 'UNIÃO', 'comercial', '2021-01-30 09:24:53'),
+	(3, 2, 32, 1, 'Cliente', 'te', 'te', 'te', 'te', 'te', 'te', 'te', 'te', '2021-02-09 11:17:16'),
+	(4, 2, 33, 1, 'Cliente', 'Brasil ', 'Rondônia ', '76920000', 'Ouro Preto do Oeste ', 'Avenida ', '00', 'Bairro', 'Nenhum ', '2021-02-09 11:23:38');
+
+-- Copiando estrutura para tabela db_develop.Escolaridade
+CREATE TABLE IF NOT EXISTS Escolaridade (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  id_filial int(11) NOT NULL DEFAULT '0',
+  id_status int(11) NOT NULL DEFAULT '0',
+  id_tabela int(11) NOT NULL DEFAULT '0',
+  tabela varchar(50) COLLATE latin1_general_ci NOT NULL DEFAULT '0',
+  tipo varchar(80) COLLATE latin1_general_ci NOT NULL DEFAULT '0',
+  escola varchar(80) COLLATE latin1_general_ci NOT NULL DEFAULT '0',
+  prev_termino varchar(50) COLLATE latin1_general_ci NOT NULL DEFAULT '0000-00-00',
+  ano_conclusao varchar(80) COLLATE latin1_general_ci NOT NULL DEFAULT '0',
+  observacoes varchar(255) COLLATE latin1_general_ci NOT NULL DEFAULT '0',
+  data_lancamento datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Escolaridade: ~0 rows (aproximadamente)
+INSERT INTO Escolaridade (id, id_filial, id_status, id_tabela, tabela, tipo, escola, prev_termino, ano_conclusao, observacoes, data_lancamento) VALUES
+	(1, 1, 99, 5, 'Cliente', 'Ensino Fundamental', '1EEES', '2020-11-20', '2020-11-20', 'teste213', '2020-11-20 16:14:44'),
+	(2, 1, 1, 5, 'Cliente', 'Ensino Fundamental', 'EEXC', '2020-11-19', '2020-11-20', 'steste', '2020-11-20 16:27:45'),
+	(3, 1, 1, 15, 'Cliente', 'Ensino Fundamental', '1', '0001-01-01', '0001-01-01', '1', '2021-01-08 09:35:34'),
+	(4, 1, 1, 15, 'Cliente', 'Ensino Fundamental', '1', '0001-01-01', '0001-01-01', '1', '2021-01-12 17:13:00'),
+	(5, 1, 99, 14, 'Cliente', 'Ensino Fundamental', '1', '2021-01-25', '2021-01-25', '1', '2021-01-26 00:04:45');
+
+-- Copiando estrutura para tabela db_develop.Familia
+CREATE TABLE IF NOT EXISTS Familia (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  id_filial int(11) NOT NULL DEFAULT '0',
+  id_status int(11) NOT NULL DEFAULT '0',
+  id_tabela int(11) NOT NULL DEFAULT '0',
+  tabela varchar(50) NOT NULL DEFAULT '0',
+  tipo varchar(50) NOT NULL DEFAULT '0',
+  nome varchar(200) NOT NULL DEFAULT '0',
+  contato varchar(50) NOT NULL DEFAULT '0000-00-00',
+  data_nascimento date NOT NULL DEFAULT '0000-00-00',
+  data_lancamento date NOT NULL DEFAULT '0000-00-00',
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Familia: ~10 rows (aproximadamente)
+INSERT INTO Familia (id, id_filial, id_status, id_tabela, tabela, tipo, nome, contato, data_nascimento, data_lancamento) VALUES
+	(1, 2, 1, 5, 'Cliente', 'Cônjuge', 'Esposa', '69 99999-9999', '2020-11-04', '2020-11-20'),
+	(2, 2, 1, 15, 'Cliente', 'Cônjuge', 'JAIRO DIESEL', '234522', '2020-12-31', '2020-12-31'),
+	(3, 2, 1, 1, 'Cliente', 'Cônjuge', '1', '1', '2021-01-05', '2021-01-05'),
+	(4, 2, 1, 3, 'Cliente', 'Cônjuge', '1', '1', '2021-01-07', '2021-01-07'),
+	(5, 3, 1, 21, 'Cliente', 'Cônjuge', 'manoel', '99000-88', '2021-01-25', '2021-01-25'),
+	(6, 3, 99, 14, 'Cliente', 'Cônjuge', '1', '1', '2021-01-25', '2021-01-25'),
+	(7, 4, 99, 23, 'Cliente', 'Cônjuge', '1', '123', '2021-01-25', '2021-01-26'),
+	(8, 2, 1, 2, 'Cliente', 'Cônjuge', 'Mae do Cliente ', '69 9 9999-8888', '1982-03-16', '2021-01-30'),
+	(9, 2, 1, 20, 'Cliente', 'Filho(a)', 'fghf', 'ghfgh', '2021-01-30', '2021-01-30'),
+	(10, 2, 1, 20, 'Cliente', 'Filho(a)', 'fghf', 'ghfgh', '2021-01-30', '2021-01-30'),
+	(11, 2, 1, 21, 'Cliente', 'Pai', '', '', '0000-00-00', '2021-01-30');
+
+-- Copiando estrutura para tabela db_develop.fatura
+CREATE TABLE IF NOT EXISTS fatura (
+  id int(11) NOT NULL,
+  id_user int(11) NOT NULL,
+  ref int(11) NOT NULL,
+  forma varchar(100) NOT NULL,
+  data varchar(100) NOT NULL,
+  valor varchar(100) NOT NULL,
+  status varchar(100) NOT NULL
+) 
+
+-- Copiando dados para a tabela db_develop.fatura: ~0 rows (aproximadamente)
+INSERT INTO fatura (id, id_user, ref, forma, data, valor, status) VALUES
+	(3, 1, 28771, 'Mercado Pago', '13/12/2018', '140.00', 'Pendente'),
+	(0, 1, 90271, 'Mercado Pago', '10/02/2021', '140.00', 'Pendente'),
+	(0, 1, 54431, 'Mercado Pago', '10/02/2021', '140.00', 'Pendente'),
+	(0, 1, 36431, 'Mercado Pago', '12/02/2021', '140.00', 'Pendente'),
+	(0, 1, 16361, 'Mercado Pago', '19/02/2021', '140.00', 'Pendente');
+
+-- Copiando estrutura para tabela db_develop.Filial
+CREATE TABLE IF NOT EXISTS Filial (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  nome_fantasia varchar(255) COLLATE latin1_general_ci NOT NULL,
+  razao_social varchar(255) COLLATE latin1_general_ci DEFAULT NULL,
+  cnpj varchar(18) COLLATE latin1_general_ci DEFAULT NULL,
+  inscricao varchar(14) COLLATE latin1_general_ci DEFAULT NULL,
+  regiao varchar(255) COLLATE latin1_general_ci DEFAULT NULL,
+  id_status int(3) DEFAULT NULL,
+  data_nascimento date DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Filial: ~2 rows (aproximadamente)
+INSERT INTO Filial (id, nome_fantasia, razao_social, cnpj, inscricao, regiao, id_status, data_nascimento, data_lancamento) VALUES
+	(1, 'Bit a Bits', 'Bit a Bits LTDA', '25.207.829/0001-90', '00000', 'Ouro Preto do Oeste', 1, '2019-09-23', '2019-10-01 20:07:16'),
+	(2, 'BIT A BITS - JI PARANA', 'BIT A BITS - JI PARANA', '25.207.829/0001-90', '123456', 'JI-PARANA', 1, '2020-02-08', '2020-06-28 21:27:42');
+
+-- Copiando estrutura para tabela db_develop.Grupo
+CREATE TABLE IF NOT EXISTS Grupo (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  id_filial int(10) NOT NULL,
+  descricao varchar(30) COLLATE latin1_general_ci DEFAULT NULL,
+  id_status int(3) DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  id_tabela int(11) DEFAULT NULL,
+  tabela varchar(50) COLLATE latin1_general_ci DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Grupo: ~18 rows (aproximadamente)
+INSERT INTO Grupo (id, id_filial, descricao, id_status, data_lancamento, id_tabela, tabela) VALUES
+	(1, 1, 'Administrador Acesso', 1, '2019-09-12 05:25:39', 1, 'Acesso'),
+	(9, 1, 'Colaborador', 1, '2020-01-28 18:09:32', 1, 'Acesso'),
+	(10, 1, 'Administrador Filial', 1, '2020-02-10 16:30:56', 1, 'Filial'),
+	(12, 1, 'Colaborador', 1, '2020-02-13 23:20:22', 1, 'Filial'),
+	(13, 1, 'Diagnóstico e Vistoria', 1, '2020-05-13 20:55:41', 1, 'Produto'),
+	(14, 1, 'Radiologia', 1, '2020-05-13 21:30:58', 1, 'Produto'),
+	(15, 1, 'Testes e Exames Laboratoriais', 1, '2020-05-13 22:32:48', 1, 'Produto'),
+	(16, 1, 'Prevenção', 1, '2020-05-13 21:33:48', 1, 'Produto'),
+	(17, 1, 'Odontopediatria', 1, '2020-05-13 21:34:41', 1, 'Produto'),
+	(18, 1, 'Dentística', 1, '2020-05-13 21:35:25', 1, 'Produto'),
+	(19, 1, 'Endodontia', 1, '2020-05-13 21:36:09', 1, 'Produto'),
+	(20, 1, 'Periodontia', 1, '2020-05-13 21:36:38', 1, 'Produto'),
+	(21, 1, 'Prótese', 1, '2020-05-13 21:37:34', 1, 'Produto'),
+	(22, 1, 'Cirurgia', 1, '2020-05-13 21:38:16', 1, 'Produto'),
+	(23, 1, 'Urgências', 1, '2020-05-13 21:38:52', 1, 'Produto'),
+	(24, 1, 'Disfunção Têmporo-Mandibular', 1, '2020-05-13 21:39:37', 1, 'Produto'),
+	(25, 1, 'Recepção', 1, '2020-07-03 01:12:06', 0, 'Filial'),
+	(26, 2, 'Teste', 1, '2020-07-16 14:04:48', 0, ''),
+	(27, 1, 'testexx', 99, '2020-11-20 14:19:32', NULL, 'Filial');
+
+-- Copiando estrutura para tabela db_develop.GrupoAcesso
+CREATE TABLE IF NOT EXISTS GrupoAcesso (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  id_grupo int(11) NOT NULL DEFAULT '0',
+  id_programa int(11) NOT NULL DEFAULT '0',
+  id_status int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.GrupoAcesso: ~254 rows (aproximadamente)
+INSERT INTO GrupoAcesso (id, id_grupo, id_programa, id_status) VALUES
+	(1, 1, 0, 1),
+	(2, 1, 1, 1),
+	(3, 1, 2, 1),
+	(4, 1, 4, 1),
+	(5, 1, 5, 1),
+	(6, 1, 6, 1),
+	(7, 1, 7, 1),
+	(8, 1, 8, 1),
+	(9, 1, 9, 1),
+	(10, 1, 10, 1),
+	(11, 1, 11, 1),
+	(12, 1, 12, 1),
+	(13, 1, 13, 1),
+	(14, 1, 14, 1),
+	(15, 1, 15, 1),
+	(16, 1, 16, 1),
+	(17, 1, 17, 1),
+	(18, 1, 18, 1),
+	(19, 1, 19, 1),
+	(20, 1, 20, 1),
+	(21, 1, 21, 1),
+	(22, 1, 22, 1),
+	(23, 1, 23, 1),
+	(24, 1, 24, 1),
+	(25, 1, 25, 1),
+	(26, 1, 26, 1),
+	(27, 1, 27, 1),
+	(28, 1, 28, 1),
+	(29, 1, 29, 1),
+	(30, 1, 30, 1),
+	(31, 1, 31, 1),
+	(32, 1, 32, 1),
+	(33, 1, 33, 1),
+	(34, 1, 34, 1),
+	(35, 1, 35, 1),
+	(36, 1, 36, 1),
+	(37, 1, 37, 1),
+	(38, 1, 38, 1),
+	(39, 1, 40, 1),
+	(40, 1, 41, 1),
+	(41, 1, 42, 1),
+	(42, 1, 43, 1),
+	(43, 1, 44, 1),
+	(44, 1, 45, 1),
+	(45, 1, 46, 1),
+	(46, 1, 47, 1),
+	(47, 1, 48, 1),
+	(48, 1, 49, 1),
+	(49, 1, 50, 1),
+	(50, 1, 51, 1),
+	(51, 1, 52, 1),
+	(52, 1, 53, 1),
+	(53, 1, 54, 1),
+	(54, 1, 55, 1),
+	(55, 1, 56, 1),
+	(56, 1, 57, 1),
+	(57, 1, 58, 1),
+	(58, 1, 59, 1),
+	(59, 1, 60, 1),
+	(60, 1, 61, 1),
+	(61, 1, 62, 1),
+	(62, 1, 63, 1),
+	(63, 1, 64, 1),
+	(64, 1, 65, 1),
+	(65, 1, 66, 1),
+	(66, 1, 67, 1),
+	(67, 1, 68, 1),
+	(68, 1, 69, 1),
+	(69, 1, 70, 1),
+	(70, 1, 71, 1),
+	(71, 1, 72, 1),
+	(72, 1, 73, 1),
+	(73, 1, 74, 1),
+	(74, 1, 75, 1),
+	(75, 1, 76, 1),
+	(76, 1, 77, 1),
+	(77, 1, 78, 1),
+	(78, 1, 79, 1),
+	(79, 1, 80, 1),
+	(80, 1, 81, 1),
+	(81, 1, 82, 1),
+	(82, 1, 83, 1),
+	(83, 1, 84, 1),
+	(84, 1, 85, 1),
+	(85, 1, 86, 1),
+	(86, 1, 87, 1),
+	(87, 1, 88, 1),
+	(88, 1, 89, 1),
+	(89, 1, 90, 1),
+	(90, 1, 91, 1),
+	(91, 1, 92, 1),
+	(92, 1, 93, 1),
+	(93, 1, 94, 1),
+	(94, 1, 95, 1),
+	(95, 1, 96, 1),
+	(96, 1, 97, 1),
+	(97, 1, 98, 1),
+	(98, 1, 99, 1),
+	(99, 1, 100, 1),
+	(100, 1, 101, 1),
+	(101, 1, 102, 1),
+	(102, 1, 103, 1),
+	(103, 1, 104, 1),
+	(104, 1, 105, 1),
+	(105, 1, 106, 1),
+	(106, 1, 107, 1),
+	(107, 1, 108, 1),
+	(108, 1, 109, 1),
+	(109, 1, 110, 1),
+	(110, 1, 111, 1),
+	(111, 1, 112, 1),
+	(112, 1, 113, 1),
+	(113, 1, 114, 1),
+	(114, 1, 115, 1),
+	(115, 1, 116, 1),
+	(116, 1, 117, 1),
+	(117, 1, 118, 1),
+	(118, 1, 119, 1),
+	(119, 1, 120, 1),
+	(120, 1, 121, 1),
+	(121, 1, 122, 1),
+	(122, 1, 123, 1),
+	(123, 1, 124, 1),
+	(124, 1, 125, 1),
+	(125, 1, 126, 1),
+	(126, 1, 127, 1),
+	(127, 1, 128, 1),
+	(128, 1, 129, 1),
+	(129, 1, 130, 1),
+	(130, 1, 131, 1),
+	(131, 1, 138, 1),
+	(132, 1, 139, 1),
+	(133, 1, 140, 1),
+	(134, 1, 141, 1),
+	(135, 1, 142, 1),
+	(136, 1, 143, 1),
+	(137, 1, 144, 1),
+	(138, 1, 145, 1),
+	(139, 1, 146, 1),
+	(140, 1, 147, 1),
+	(141, 1, 148, 1),
+	(142, 1, 149, 1),
+	(143, 1, 150, 1),
+	(144, 1, 151, 1),
+	(145, 1, 152, 1),
+	(146, 1, 153, 1),
+	(147, 1, 154, 1),
+	(148, 1, 155, 1),
+	(149, 1, 156, 1),
+	(150, 1, 157, 1),
+	(151, 1, 158, 1),
+	(152, 1, 159, 1),
+	(153, 1, 160, 1),
+	(154, 1, 161, 1),
+	(155, 1, 162, 1),
+	(156, 1, 163, 1),
+	(157, 1, 164, 1),
+	(158, 1, 165, 1),
+	(159, 1, 166, 1),
+	(160, 1, 167, 1),
+	(161, 1, 168, 1),
+	(162, 1, 169, 1),
+	(163, 1, 170, 1),
+	(164, 1, 171, 1),
+	(165, 1, 172, 1),
+	(166, 1, 173, 1),
+	(167, 1, 174, 1),
+	(168, 1, 175, 1),
+	(169, 1, 176, 1),
+	(170, 1, 177, 1),
+	(171, 1, 178, 1),
+	(172, 1, 179, 1),
+	(173, 1, 180, 1),
+	(174, 1, 181, 1),
+	(175, 1, 182, 1),
+	(176, 1, 183, 1),
+	(177, 1, 184, 1),
+	(178, 1, 185, 1),
+	(179, 1, 186, 1),
+	(180, 1, 187, 1),
+	(181, 1, 188, 1),
+	(182, 1, 189, 1),
+	(183, 1, 190, 1),
+	(184, 1, 191, 1),
+	(185, 1, 192, 1),
+	(186, 1, 193, 1),
+	(187, 1, 194, 1),
+	(188, 1, 195, 1),
+	(189, 1, 198, 1),
+	(190, 1, 199, 1),
+	(191, 1, 200, 1),
+	(192, 1, 201, 1),
+	(193, 1, 202, 1),
+	(194, 1, 203, 1),
+	(195, 1, 204, 1),
+	(196, 1, 205, 1),
+	(197, 1, 206, 1),
+	(198, 1, 207, 1),
+	(199, 1, 208, 1),
+	(200, 1, 209, 1),
+	(201, 1, 210, 1),
+	(202, 1, 211, 1),
+	(203, 1, 212, 1),
+	(204, 1, 213, 1),
+	(205, 1, 214, 1),
+	(206, 1, 215, 1),
+	(207, 1, 216, 1),
+	(208, 1, 217, 1),
+	(209, 1, 218, 1),
+	(210, 1, 219, 1),
+	(211, 1, 220, 1),
+	(212, 1, 221, 1),
+	(213, 1, 222, 1),
+	(214, 1, 223, 1),
+	(215, 1, 224, 1),
+	(216, 1, 225, 1),
+	(217, 1, 226, 1),
+	(218, 1, 227, 1),
+	(219, 1, 228, 1),
+	(220, 1, 229, 1),
+	(221, 1, 230, 1),
+	(222, 1, 231, 1),
+	(223, 1, 232, 1),
+	(224, 1, 233, 1),
+	(225, 1, 234, 1),
+	(226, 1, 235, 1),
+	(227, 1, 236, 1),
+	(228, 1, 237, 1),
+	(229, 1, 238, 1),
+	(230, 1, 239, 1),
+	(231, 1, 240, 1),
+	(232, 1, 241, 1),
+	(233, 1, 242, 1),
+	(234, 1, 243, 1),
+	(235, 1, 244, 1),
+	(236, 1, 245, 1),
+	(237, 1, 246, 1),
+	(238, 1, 247, 1),
+	(239, 1, 248, 1),
+	(240, 1, 249, 1),
+	(241, 1, 250, 1),
+	(242, 1, 251, 1),
+	(243, 1, 252, 1),
+	(244, 1, 253, 1),
+	(245, 1, 254, 1),
+	(246, 1, 255, 1),
+	(247, 1, 256, 1),
+	(248, 1, 257, 1),
+	(249, 1, 258, 1),
+	(250, 1, 259, 1),
+	(251, 1, 260, 1),
+	(252, 1, 261, 1),
+	(253, 1, 262, 1),
+	(254, 1, 263, 1),
+	(255, 1, 264, 1);
+
+-- Copiando estrutura para tabela db_develop.GrupoFilial
+CREATE TABLE IF NOT EXISTS GrupoFilial (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  id_grupo int(11) DEFAULT NULL,
+  id_filial int(11) DEFAULT '0',
+  id_status int(11) DEFAULT '0',
+  data_lancamento datetime DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.GrupoFilial: ~5 rows (aproximadamente)
+INSERT INTO GrupoFilial (id, id_grupo, id_filial, id_status, data_lancamento) VALUES
+	(1, 10, 1, 1, '0000-00-00 00:00:00'),
+	(2, 10, 2, 1, '0000-00-00 00:00:00'),
+	(3, 10, 3, 99, '2021-01-25 22:44:09'),
+	(4, 10, 3, 99, '2021-01-26 11:41:57'),
+	(5, 10, 3, 99, '2021-01-26 11:59:49');
+
+-- Copiando estrutura para tabela db_develop.Historico
+CREATE TABLE IF NOT EXISTS Historico (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  id_filial int(10) NOT NULL,
+  observacao varchar(255) COLLATE latin1_general_ci DEFAULT NULL,
+  id_tabela int(20) DEFAULT NULL,
+  tabela varchar(20) COLLATE latin1_general_ci DEFAULT NULL,
+  id_status int(3) DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Historico: ~12 rows (aproximadamente)
+INSERT INTO Historico (id, id_filial, observacao, id_tabela, tabela, id_status, data_lancamento) VALUES
+	(1, 0, 'teste', 3, 'Pessoa', 2, '2021-01-03 00:00:00'),
+	(2, 0, 'Motivo XX', 3, 'Pessoa', 99, '2021-01-03 00:00:00'),
+	(3, 0, 'MOTIVO , 123', 3, 'Pessoa', 115, '2021-01-03 00:00:00'),
+	(4, 0, '1', 15, 'Pessoa', 1, '2021-01-08 00:00:00'),
+	(5, 0, '123', 16, 'Pessoa', 1, '2021-01-15 00:00:00'),
+	(6, 0, 'teste', 4, 'Pessoa', 2, '2021-01-17 00:00:00'),
+	(7, 0, 'Cliente foi enviado para negativação serasa', 0, 'Pessoa', 120, '2021-01-24 00:00:00'),
+	(8, 2, 'Cliente foi enviado para negativação serasa', 124, 'Cobranca', 120, '2021-01-24 18:29:06'),
+	(9, 2, 'Cliente foi enviado para negativação serasa', 124, 'Cobranca', 120, '2021-01-24 18:29:10'),
+	(10, 2, 'teste', 98, 'Cobranca', 1, '2021-01-25 13:06:13'),
+	(11, 2, '123', 98, 'Cobranca', 1, '2021-01-25 13:08:56'),
+	(12, 2, 'TESTE 3', 98, 'Cobranca', 1, '2021-01-25 13:10:36'),
+	(13, 2, 'teste5', 99, 'Cobranca', 1, '2021-01-25 13:14:24'),
+	(14, 0, 'outtro', 21, 'Pessoa', 2, '2021-01-25 00:00:00'),
+	(15, 2, 'sdgbhsgbgxfguxfhgxfgg', 98, 'Cobranca', 1, '2021-01-25 22:29:58'),
+	(16, 0, '12', 14, 'Pessoa', 1, '2021-01-26 00:00:00'),
+	(17, 0, 'cvbcb', 20, 'Pessoa', 2, '2021-01-30 00:00:00'),
+	(18, 0, 'Djdhdhdidj', 30, 'Pessoa', 115, '2021-02-05 00:00:00'),
+	(19, 2, 'flkkbjnzldkfnglknzgldfngb', 23, 'Cobranca', 1, '2021-03-13 10:28:09'),
+	(20, 0, 'T nf  f vr,vz4gs4', 33, 'Pessoa', 2, '2021-03-26 00:00:00');
+
+-- Copiando estrutura para tabela db_develop.HistoricoChamada
+CREATE TABLE IF NOT EXISTS HistoricoChamada (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  id_pessoa int(11) DEFAULT NULL,
+  id_licao int(11) DEFAULT NULL,
+  chamada varchar(50) COLLATE latin1_general_ci DEFAULT NULL,
+  data_lancamento date DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.HistoricoChamada: ~39 rows (aproximadamente)
+INSERT INTO HistoricoChamada (id, id_pessoa, id_licao, chamada, data_lancamento) VALUES
+	(8, 1, 3, 'Presente', '2020-12-29'),
+	(9, 3, 3, 'Presente', '2020-12-29'),
+	(18, 3, 4, 'Presente', '2020-12-29'),
+	(19, 1, 4, 'Presente', '2020-12-29'),
+	(20, 1, 5, 'Presente', '2020-12-29'),
+	(21, 3, 6, 'Presente', '2020-12-29'),
+	(22, 1, 6, 'Ausente', '2020-12-29'),
+	(23, 3, 7, 'Presente', '2020-12-30'),
+	(24, 1, 7, 'Presente', '2020-12-30'),
+	(25, 3, 8, 'Presente', '2020-12-30'),
+	(26, 1, 8, 'Ausente', '2020-12-30'),
+	(27, 3, 9, 'Presente', '2020-12-31'),
+	(28, 1, 9, 'Ausente', '2020-12-31'),
+	(29, 3, 10, 'Presente', '2020-12-31'),
+	(30, 2, 10, 'Ausente', '2020-12-31'),
+	(31, 1, 10, 'Presente', '2020-12-31'),
+	(32, 3, 5, 'Presente', '2021-01-03'),
+	(33, 2, 5, 'Presente', '2021-01-03'),
+	(34, 1, 5, 'Ausente', '2021-01-03'),
+	(35, 3, 11, 'Presente', '2021-01-05'),
+	(36, 2, 11, 'Ausente', '2021-01-05'),
+	(37, 1, 11, 'Presente', '2021-01-05'),
+	(38, 1, 12, 'Presente', '2021-01-10'),
+	(39, 2, 12, 'Presente', '2021-01-10'),
+	(40, 5, 12, 'Presente', '2021-01-10'),
+	(41, 3, 14, 'Ausente', '2021-01-10'),
+	(42, 2, 14, 'Presente', '2021-01-10'),
+	(43, 1, 14, 'Presente', '2021-01-10'),
+	(44, 2, 17, 'Presente', '2021-01-30'),
+	(45, 3, 17, 'Presente', '2021-01-30'),
+	(46, 1, 17, 'Presente', '2021-01-30'),
+	(47, 2, 18, 'Presente', '2021-02-05'),
+	(48, 5, 18, 'Presente', '2021-02-05'),
+	(49, 1, 18, 'Presente', '2021-02-05'),
+	(50, 2, 1, 'Presente', '2021-03-09'),
+	(51, 5, 1, 'Presente', '2021-03-09'),
+	(52, 1, 1, 'Ausente', '2021-03-09'),
+	(53, 3, 2, 'Presente', '2021-03-09'),
+	(54, 1, 2, 'Presente', '2021-03-09'),
+	(55, 13, 3, 'Presente', '2021-03-09'),
+	(56, 3, 3, 'Presente', '2021-03-09'),
+	(57, 1, 3, 'Presente', '2021-03-09');
+
+-- Copiando estrutura para tabela db_develop.Intranet
+CREATE TABLE IF NOT EXISTS Intranet (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  titulo varchar(50) COLLATE latin1_general_ci DEFAULT NULL,
+  noticia varchar(255) COLLATE latin1_general_ci DEFAULT NULL,
+  modulo varchar(50) COLLATE latin1_general_ci DEFAULT NULL,
+  funcionalidade varchar(50) COLLATE latin1_general_ci DEFAULT NULL,
+  id_status int(11) DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Intranet: ~0 rows (aproximadamente)
+
+-- Copiando estrutura para tabela db_develop.ItenClasse
+CREATE TABLE IF NOT EXISTS ItenClasse (
+  id int(11) unsigned NOT NULL AUTO_INCREMENT,
+  id_pessoa int(11) DEFAULT NULL,
+  id_classe int(11) DEFAULT NULL,
+  tipo varchar(50) COLLATE latin1_general_ci DEFAULT NULL,
+  id_status int(11) DEFAULT NULL,
+  id_Iten_trimestre int(11) DEFAULT NULL,
+  id_filial int(11) DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.ItenClasse: ~17 rows (aproximadamente)
+INSERT INTO ItenClasse (id, id_pessoa, id_classe, tipo, id_status, id_Iten_trimestre, id_filial, data_lancamento) VALUES
+	(14, 1, 1, 'Aluno', 1, 1, 1, '2020-12-29 16:12:00'),
+	(15, 3, 1, 'Aluno', 1, 1, 1, '2020-12-29 16:12:15'),
+	(18, 1, 2, 'Aluno', 1, 1, 1, '2020-12-29 17:43:47'),
+	(19, 3, 2, 'Aluno', 1, 1, 1, '2020-12-29 17:44:18'),
+	(20, 1, 3, 'Aluno', 1, 2, 1, '2020-12-29 20:41:11'),
+	(21, 1, 4, 'Aluno', 1, 2, 1, '2020-12-29 20:50:52'),
+	(22, 3, 4, 'Aluno', 2, 2, 1, '2020-12-29 20:51:03'),
+	(23, 1, 1, 'Aluno', 1, 0, 1, '2020-12-30 22:25:40'),
+	(24, 3, 3, 'Aluno', 1, 2, 1, '2020-12-30 22:27:34'),
+	(25, 1, 5, 'Aluno', 1, 2, 1, '2020-12-31 11:39:51'),
+	(26, 3, 5, 'Aluno', 1, 2, 1, '2020-12-31 11:40:05'),
+	(27, 13, 5, 'Aluno', 1, 2, 1, '2020-12-31 12:42:30'),
+	(28, 2, 3, 'Aluno', 1, 2, 1, '2020-12-31 12:44:42'),
+	(29, 1, 1, 'Aluno', 1, 0, 1, '2021-01-05 11:56:29'),
+	(30, 1, 1, 'Aluno', 2, 0, 1, '2021-01-10 19:49:09'),
+	(31, 1, 1, 'Aluno', 1, 0, 1, '2021-01-10 19:55:55'),
+	(32, 2, 4, 'Aluno', 1, 2, 1, '2021-01-10 20:04:02'),
+	(33, 5, 4, 'Aluno', 1, 2, 1, '2021-01-10 20:07:56'),
+	(34, 1, 6, 'Aluno', 1, 3, 1, '2021-01-30 00:46:15'),
+	(35, 2, 6, 'Aluno', 1, 3, 1, '2021-01-30 00:46:25'),
+	(36, 3, 6, 'Aluno', 1, 3, 1, '2021-01-30 00:46:30');
+
+-- Copiando estrutura para tabela db_develop.Itens
+CREATE TABLE IF NOT EXISTS Itens (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  id_filial int(10) NOT NULL,
+  id_tabela int(10) NOT NULL,
+  tabela varchar(20) COLLATE latin1_general_ci DEFAULT NULL,
+  id_produto int(20) DEFAULT NULL,
+  descricao varchar(255) COLLATE latin1_general_ci DEFAULT NULL,
+  quantidade varchar(5) COLLATE latin1_general_ci DEFAULT NULL,
+  valor_venda double(10,2) DEFAULT NULL,
+  valor_desconto double(5,2) DEFAULT NULL,
+  valor_promocao double(10,2) DEFAULT NULL,
+  id_status int(3) DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Itens: ~49 rows (aproximadamente)
+INSERT INTO Itens (id, id_filial, id_tabela, tabela, id_produto, descricao, quantidade, valor_venda, valor_desconto, valor_promocao, id_status, data_lancamento) VALUES
+	(1, 2, 1, 'Outros', 0, 'Tratamento 1', '1', 200.00, NULL, NULL, 1, '2021-01-29 23:28:42'),
+	(2, 2, 2, 'Outros', 0, 'Tratamento 10', '1', 10000.00, NULL, NULL, 1, '2021-01-29 23:29:36'),
+	(3, 2, 3, 'Outros', 0, 'Tratamento 2', '1', 5000.00, NULL, NULL, 1, '2021-01-29 23:31:03'),
+	(4, 2, 4, 'Outros', 0, 'Despesa 1', '1', 2000.00, NULL, NULL, 1, '2021-01-29 23:32:58'),
+	(5, 2, 5, 'Outros', 0, 'Tratamento 3', '1', 1500.00, NULL, NULL, 1, '2021-01-29 23:43:56'),
+	(6, 2, 6, 'Outros', 0, 'Tratamento 5', '1', 6000.00, NULL, NULL, 1, '2021-01-29 23:55:11'),
+	(7, 2, 7, 'Outros', 0, 'Tratamento 6', '1', 3000.00, NULL, NULL, 1, '2021-01-30 00:06:32'),
+	(8, 2, 8, 'Outros', 0, 'obturacso dente 22', '4', 300.00, NULL, NULL, 1, '2021-01-30 09:54:56'),
+	(9, 2, 8, 'Servico', 2, NULL, '2', 500.00, NULL, NULL, 1, '2021-01-30 09:55:54'),
+	(10, 3, 10, 'Venda', 5, NULL, '1', 50.00, NULL, NULL, 1, '2021-01-30 12:14:24'),
+	(11, 3, 10, 'Venda', 4, NULL, '5', 50.00, NULL, NULL, 1, '2021-01-30 12:14:35'),
+	(12, 2, 11, 'Produto', 7, NULL, '2', 100.00, NULL, NULL, 1, '2021-02-02 23:27:56'),
+	(13, 2, 11, 'Servico', 2, NULL, '3', 510.00, NULL, NULL, 1, '2021-02-02 23:28:15'),
+	(14, 2, 11, 'Outros', 0, 'Tutorial Venda', '1', 20.00, NULL, NULL, 1, '2021-02-02 23:28:33'),
+	(15, 2, 11, 'Produto', 7, NULL, '1', 50.00, NULL, NULL, 1, '2021-02-03 09:59:44'),
+	(16, 2, 11, 'Produto', 7, NULL, '2', 30.00, NULL, NULL, 1, '2021-02-03 10:00:11'),
+	(17, 2, 11, 'Produto', 7, NULL, '2', 0.00, NULL, NULL, 1, '2021-02-03 10:06:46'),
+	(18, 2, 11, 'Produto', 5, NULL, '2', 100.00, NULL, NULL, 1, '2021-02-03 10:13:33'),
+	(19, 2, 11, 'Produto', 9, NULL, '2', 50.00, NULL, NULL, 99, '2021-02-03 10:14:44'),
+	(20, 2, 11, 'Produto', 9, NULL, '3', NULL, NULL, NULL, 99, '2021-02-03 10:17:07'),
+	(21, 2, 11, 'Produto', 9, NULL, '3', 25.00, NULL, NULL, 1, '2021-02-03 10:17:37'),
+	(22, 2, 11, 'Servico', 2, NULL, '2', 100.00, NULL, NULL, 1, '2021-02-03 10:26:52'),
+	(23, 2, 12, 'Produto', 9, NULL, '3', 25.00, NULL, NULL, 1, '2021-02-03 11:16:46'),
+	(24, 2, 12, 'Servico', 2, NULL, '5', 250.00, NULL, NULL, 1, '2021-02-03 11:16:59'),
+	(25, 2, 12, 'Outros', 0, 'Lançamento Avulso', '1', 250.00, NULL, NULL, 1, '2021-02-03 11:17:15'),
+	(26, 2, 1, 'Promocao', 1, '', '0', 0.00, 0.00, 2.50, 1, '2021-02-12 22:04:38'),
+	(27, 2, 1, 'Promocao', 3, '', '0', 0.00, 0.00, 400.00, 1, '2021-02-12 22:05:21'),
+	(28, 2, 13, 'Outros', 0, 'Teste venda a vista estorno', '1', 100.00, NULL, NULL, 1, '2021-02-13 11:06:31'),
+	(29, 2, 14, 'Outros', 0, 'teste', '1', 200.00, NULL, NULL, 1, '2021-02-13 11:22:50'),
+	(30, 2, 15, 'Outros', 0, 'Tutorial Venda', '1', 500.00, NULL, NULL, 1, '2021-02-13 11:25:30'),
+	(31, 2, 16, 'Outros', 0, 'teste', '1', 375.00, NULL, NULL, 1, '2021-02-13 11:31:07'),
+	(32, 2, 17, 'Outros', 0, 'teste av', '1', 150.00, NULL, NULL, 1, '2021-02-13 11:49:53'),
+	(33, 2, 18, 'Produto', 7, NULL, '1', 0.00, NULL, NULL, 99, '2021-03-07 01:16:18'),
+	(34, 2, 18, 'Produto', 1, NULL, '1', 5.00, NULL, NULL, 1, '2021-03-07 01:16:46'),
+	(35, 2, 18, 'Servico', 2, NULL, '1', 20.00, NULL, NULL, 1, '2021-03-07 01:17:14'),
+	(36, 2, 18, 'Outros', 0, 'Lançamento  avulso ', '1', 10.00, NULL, NULL, 1, '2021-03-07 01:17:33'),
+	(37, 2, 19, 'Outros', 0, 'teste', '1', 1000.00, NULL, NULL, 1, '2021-03-13 09:34:00'),
+	(38, 2, 20, 'Servico', 2, NULL, '1', 200.00, NULL, NULL, 1, '2021-03-13 17:44:45'),
+	(39, 2, 22, 'Outros', 0, '200', '1', 200.00, NULL, NULL, 1, '2021-03-13 17:59:55'),
+	(40, 2, 23, 'Outros', 0, '300', '1', 300.00, NULL, NULL, 1, '2021-03-13 18:03:55'),
+	(41, 2, 25, 'Servico', 2, NULL, '1', 1000.00, NULL, NULL, 1, '2021-03-14 12:55:06'),
+	(42, 2, 25, 'Servico', 2, NULL, '2', 100.00, NULL, NULL, 1, '2021-03-14 12:55:28'),
+	(43, 2, 26, 'Outros', 0, '1000', '1', 1000.00, NULL, NULL, 1, '2021-03-14 15:03:11'),
+	(44, 2, 24, 'Outros', 0, 'teste', '1', 100.00, NULL, NULL, 1, '2021-03-15 18:04:43'),
+	(45, 2, 27, 'Servico', 2, NULL, '1', 200.00, NULL, NULL, 1, '2021-03-15 18:06:16'),
+	(46, 2, 28, 'Outros', 0, '1', '1', 200.00, NULL, NULL, 1, '2021-03-15 18:06:48'),
+	(47, 2, 29, 'Servico', 2, NULL, '1', 150.00, NULL, NULL, 1, '2021-03-15 18:07:24'),
+	(48, 2, 30, 'Servico', 2, NULL, '1', 250.00, NULL, NULL, 1, '2021-03-15 18:10:51'),
+	(49, 2, 31, 'Servico', 2, NULL, '1', 150.00, NULL, NULL, 1, '2021-03-15 18:13:15'),
+	(50, 2, 32, 'Servico', 2, NULL, '1', 200.00, NULL, NULL, 1, '2021-03-15 18:19:16'),
+	(51, 2, 33, 'Servico', 2, NULL, '1', 20.00, NULL, NULL, 1, '2021-03-15 18:20:25'),
+	(52, 2, 34, 'Servico', 2, NULL, '1', 20.00, NULL, NULL, 1, '2021-03-15 18:21:45'),
+	(53, 2, 35, 'Servico', 2, NULL, '1', 205.00, NULL, NULL, 1, '2021-03-15 18:26:15'),
+	(54, 2, 36, 'Servico', 2, NULL, '1', 203.00, NULL, NULL, 1, '2021-03-15 18:28:13'),
+	(55, 2, 38, 'Servico', 2, NULL, '1', 100.00, NULL, NULL, 1, '2021-03-15 18:33:32'),
+	(56, 2, 39, 'Servico', 2, NULL, '1', 100.00, NULL, NULL, 1, '2021-03-15 18:35:26'),
+	(57, 2, 40, 'Servico', 2, NULL, '1', 1500.00, NULL, NULL, 1, '2021-03-19 09:42:09'),
+	(58, 2, 37, 'Servico', 2, NULL, '1', 123.00, NULL, NULL, 1, '2021-03-25 16:48:33'),
+	(59, 2, 42, 'Servico', 2, NULL, '1', 9876.00, NULL, NULL, 1, '2021-03-26 21:08:36'),
+	(60, 2, 43, 'Servico', 2, NULL, '1', 1200.00, NULL, NULL, 1, '2021-03-29 12:19:25'),
+	(61, 2, 43, 'Servico', 2, NULL, '1', 123.00, NULL, NULL, 1, '2021-04-01 16:56:15'),
+	(62, 2, 43, 'Servico', 2, NULL, '1', 10.00, NULL, NULL, 1, '2021-04-01 16:57:00'),
+	(63, 2, 43, 'Servico', 2, NULL, '1', 20.00, NULL, NULL, 1, '2021-04-01 17:08:55'),
+	(64, 2, 43, 'Servico', 2, NULL, '1', 4.00, NULL, NULL, 1, '2021-04-01 17:13:49'),
+	(65, 2, 43, 'Servico', 2, NULL, '1', 10.00, NULL, NULL, 1, '2021-04-01 17:26:45'),
+	(66, 2, 43, 'Servico', 2, NULL, '1', 10.00, NULL, NULL, 1, '2021-04-01 17:27:10');
+
+-- Copiando estrutura para tabela db_develop.itens_cargo
+CREATE TABLE IF NOT EXISTS itens_cargo (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  id_pessoa int(11) NOT NULL DEFAULT '0',
+  id_cargo int(11) NOT NULL DEFAULT '0',
+  id_status int(11) NOT NULL DEFAULT '0',
+  data_lancamento datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.itens_cargo: ~0 rows (aproximadamente)
+
+-- Copiando estrutura para tabela db_develop.ItenTrimestre
+CREATE TABLE IF NOT EXISTS ItenTrimestre (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  id_trimestre int(11) DEFAULT NULL,
+  id_classe int(11) DEFAULT NULL,
+  id_filial int(11) DEFAULT NULL,
+  id_status int(11) DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.ItenTrimestre: ~0 rows (aproximadamente)
+INSERT INTO ItenTrimestre (id, id_trimestre, id_classe, id_filial, id_status, data_lancamento) VALUES
+	(1, 1, 1, 1, 1, '0000-00-00 00:00:00');
+
+-- Copiando estrutura para tabela db_develop.Licao
+CREATE TABLE IF NOT EXISTS Licao (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  licao varchar(50) COLLATE latin1_general_ci NOT NULL DEFAULT '0',
+  id_classe int(11) NOT NULL DEFAULT '0',
+  id_status int(11) NOT NULL DEFAULT '0',
+  data_lancamento date NOT NULL DEFAULT '0000-00-00',
+  total_biblia int(11) DEFAULT NULL,
+  total_revista int(11) DEFAULT NULL,
+  total_visita int(11) DEFAULT NULL,
+  total_oferta double(10,2) DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Licao: ~2 rows (aproximadamente)
+INSERT INTO Licao (id, licao, id_classe, id_status, data_lancamento, total_biblia, total_revista, total_visita, total_oferta) VALUES
+	(1, 'teste1', 4, 1, '2021-03-09', 4, 3, 4, 20.00),
+	(2, 'Teste 2', 2, 1, '2021-03-09', 2, 2, 1, 55.00),
+	(3, 'teste 3', 5, 1, '2021-03-09', 3, 3, 2, 37.00);
+
+-- Copiando estrutura para tabela db_develop.Logs
+CREATE TABLE IF NOT EXISTS Logs (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  id_filial int(10) NOT NULL,
+  id_usuario int(10) NOT NULL,
+  id_comando int(10) NOT NULL,
+  comando varchar(50) COLLATE latin1_general_ci NOT NULL,
+  id_status int(3) DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  observacao varchar(250) COLLATE latin1_general_ci DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Logs: ~177 rows (aproximadamente)
+INSERT INTO Logs (id, id_filial, id_usuario, id_comando, comando, id_status, data_lancamento, observacao) VALUES
+	(1, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-02-22 11:11:45', ''),
+	(2, 1, 1, 0, '/Upload/visualizar/', 1, '2021-02-22 12:14:20', ''),
+	(3, 1, 1, 0, '/ItenClasse/admin_listar/', 1, '2021-02-22 12:14:24', ''),
+	(4, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-02-22 12:29:32', ''),
+	(5, 1, 1, 0, '/ItenClasse/admin_listar/', 1, '2021-02-22 13:00:40', ''),
+	(6, 1, 1, 0, '/ItenClasse/admin_listar/', 1, '2021-02-22 13:03:16', ''),
+	(7, 1, 1, 1, '/Autenticar/LOGOUT/', 1, '2021-02-22 13:25:08', ''),
+	(8, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-02-22 13:25:12', ''),
+	(9, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-02-23 09:24:31', ''),
+	(10, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-02-23 09:36:17', ''),
+	(11, 1, 1, 1, '/Autenticar/LOGOUT/', 1, '2021-02-23 09:56:00', ''),
+	(12, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-02-23 16:07:12', ''),
+	(13, 1, 1, 0, '/Upload/visualizar/', 1, '2021-02-23 16:07:56', ''),
+	(14, 1, 1, 1, '/Autenticar/LOGOUT/', 1, '2021-02-23 16:27:42', ''),
+	(15, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-02-23 17:04:35', ''),
+	(16, 1, 1, 0, '/Chamado/visualizar/', 1, '2021-02-23 17:05:08', ''),
+	(17, 1, 1, 0, '/Chamado/visualizar/', 1, '2021-02-23 17:05:17', ''),
+	(18, 1, 1, 0, '/Chamado/visualizar/', 1, '2021-02-23 17:05:22', ''),
+	(19, 1, 1, 9, '/Contas/receita_receber/', 1, '2021-02-23 17:06:22', ''),
+	(20, 1, 1, 1, '/Autenticar/LOGOUT/', 1, '2021-02-23 17:40:03', ''),
+	(21, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-02-25 00:35:17', ''),
+	(22, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-02-25 00:35:36', ''),
+	(23, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-02-26 15:51:37', ''),
+	(24, 1, 1, 20, '/Agenda/incluir/', 1, '2021-02-26 15:52:07', ''),
+	(25, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-02-26 15:59:27', ''),
+	(26, 1, 1, 1, '/Autenticar/LOGOUT/', 1, '2021-02-26 16:23:53', ''),
+	(27, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-01 09:43:53', ''),
+	(28, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-01 13:21:21', ''),
+	(29, 1, 1, 1, '/Autenticar/LOGOUT/', 1, '2021-03-01 13:50:22', ''),
+	(30, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-01 23:42:23', ''),
+	(31, 1, 1, 0, '/Upload/visualizar/', 1, '2021-03-01 23:42:30', ''),
+	(32, 1, 1, 0, 'SQL', 1, '2021-03-01 23:43:33', 'Select * FROM Filial'),
+	(33, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-02 12:43:37', ''),
+	(34, 1, 1, 0, '/Upload/visualizar/', 1, '2021-03-02 12:44:13', ''),
+	(35, 1, 1, 0, '/Upload/visualizar/', 1, '2021-03-02 12:44:21', ''),
+	(36, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-03 14:11:57', ''),
+	(37, 1, 1, 0, 'SQL', 1, '2021-03-03 14:13:16', 'Select  nome,apelido FROM Pessoa'),
+	(38, 1, 1, 0, 'SQL', 1, '2021-03-03 14:13:33', 'Select  nome,apelido FROM Pessoa LIMIT 10'),
+	(39, 1, 1, 0, 'SQL', 1, '2021-03-03 14:13:44', 'Select  nome,apelido,rg FROM Pessoa LIMIT 10'),
+	(40, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-04 19:01:23', ''),
+	(41, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-05 10:24:17', ''),
+	(42, 1, 1, 6, '/Contato/incluir/', 1, '2021-03-05 10:27:22', ''),
+	(43, 1, 1, 9, '/Cargo/incluir/', 1, '2021-03-05 10:28:41', ''),
+	(44, 1, 1, 1, '/Autenticar/LOGOUT/', 1, '2021-03-05 10:48:26', ''),
+	(45, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-05 10:48:38', ''),
+	(46, 1, 1, 7, '/Contato/incluir/', 1, '2021-03-05 10:56:24', ''),
+	(47, 1, 1, 1, '/Autenticar/LOGOUT/', 1, '2021-03-05 11:16:29', ''),
+	(48, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-05 11:20:42', ''),
+	(49, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-05 11:21:04', ''),
+	(50, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-05 11:23:13', ''),
+	(51, 1, 1, 1, '/Autenticar/LOGOUT/', 1, '2021-03-05 11:24:16', ''),
+	(52, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-05 11:24:20', ''),
+	(53, 1, 1, 5, '/Pessoa/excluir/', 1, '2021-03-05 11:28:33', 'teste'),
+	(54, 1, 1, 1, '/Autenticar/LOGOUT/', 1, '2021-03-05 11:31:29', ''),
+	(55, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-05 11:31:31', ''),
+	(56, 1, 1, 1, '/Autenticar/LOGOUT/', 1, '2021-03-05 11:31:47', ''),
+	(57, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-05 11:31:50', ''),
+	(58, 1, 1, 1, '/Autenticar/LOGOUT/', 1, '2021-03-05 11:32:29', ''),
+	(59, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-05 11:32:32', ''),
+	(60, 1, 1, 21, '/Pessoa/excluir/', 1, '2021-03-05 11:45:30', 'teste'),
+	(61, 1, 1, 22, '/Pessoa/excluir/', 1, '2021-03-05 11:55:42', '123'),
+	(62, 1, 1, 24, '/Pessoa/excluir/', 1, '2021-03-05 11:56:24', '123'),
+	(63, 1, 1, 1, '/Autenticar/LOGOUT/', 1, '2021-03-05 12:16:09', ''),
+	(64, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-05 12:29:22', ''),
+	(65, 1, 1, 28, '/Contas/excluir/', 1, '2021-03-05 12:30:26', 'erro , de digitação'),
+	(66, 1, 1, 0, '/Upload/visualizar/', 1, '2021-03-05 12:32:59', ''),
+	(67, 1, 1, 39, '/Contas/excluir/', 1, '2021-03-05 12:33:43', 'Excluir, Receita Email'),
+	(68, 1, 1, 1, '/Autenticar/LOGOUT/', 1, '2021-03-05 12:53:38', ''),
+	(69, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-06 11:07:55', ''),
+	(70, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-06 11:09:00', ''),
+	(71, 1, 1, 0, '/Upload/visualizar/', 1, '2021-03-06 11:09:11', ''),
+	(72, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-07 01:11:13', ''),
+	(73, 1, 1, 0, '/ItenClasse/admin_listar/', 1, '2021-03-07 01:12:27', ''),
+	(74, 1, 1, 0, '/ItenClasse/admin_listar/', 1, '2021-03-07 01:13:10', ''),
+	(75, 1, 1, 18, '/Venda/incluir/', 1, '2021-03-07 01:16:06', ''),
+	(76, 1, 1, 33, '/Itens/incluir/', 1, '2021-03-07 01:16:18', ''),
+	(77, 1, 1, 34, '/Itens/incluir/', 1, '2021-03-07 01:16:46', ''),
+	(78, 1, 1, 33, '/Itens/excluir/', 1, '2021-03-07 01:17:01', ''),
+	(79, 1, 1, 35, '/Itens/incluir/', 1, '2021-03-07 01:17:14', ''),
+	(80, 1, 1, 36, '/Itens/incluir/', 1, '2021-03-07 01:17:33', ''),
+	(81, 1, 1, 0, '/Upload/visualizar/', 1, '2021-03-07 01:18:20', ''),
+	(82, 1, 1, 0, '/Upload/visualizar/', 1, '2021-03-07 01:18:31', ''),
+	(83, 1, 1, 0, '/ItenClasse/admin_listar/', 1, '2021-03-07 01:31:39', ''),
+	(84, 1, 1, 0, '/ItenClasse/admin_listar/', 1, '2021-03-07 01:49:57', ''),
+	(85, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-07 16:26:36', ''),
+	(86, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-09 18:55:25', ''),
+	(87, 1, 1, 0, '/ItenClasse/admin_listar/', 1, '2021-03-09 18:57:46', ''),
+	(88, 1, 1, 0, '/ItenClasse/admin_listar/', 1, '2021-03-09 18:58:12', ''),
+	(89, 1, 1, 0, '/ItenClasse/admin_listar/', 1, '2021-03-09 18:58:17', ''),
+	(90, 1, 1, 0, '/ItenClasse/admin_listar/', 1, '2021-03-09 18:58:52', ''),
+	(91, 1, 1, 2, '/Classe/alterar/', 1, '2021-03-09 18:59:06', ''),
+	(92, 1, 1, 5, '/Classe/alterar/', 1, '2021-03-09 18:59:18', ''),
+	(93, 1, 1, 0, '/ItenClasse/admin_listar/', 1, '2021-03-09 18:59:30', ''),
+	(94, 1, 1, 0, '/ItenClasse/admin_listar/', 1, '2021-03-09 19:00:30', ''),
+	(95, 1, 1, 0, '/ItenClasse/admin_listar/', 1, '2021-03-09 19:00:35', ''),
+	(96, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-10 22:45:33', ''),
+	(97, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-11 16:25:17', ''),
+	(98, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-11 16:25:20', ''),
+	(99, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-12 12:10:50', ''),
+	(100, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-12 12:11:06', ''),
+	(101, 1, 1, 15, '/Agenda/alterar/', 1, '2021-03-12 12:11:54', ''),
+	(102, 1, 1, 1, '/Autenticar/LOGOUT/', 1, '2021-03-12 12:31:37', ''),
+	(103, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-13 09:11:32', ''),
+	(104, 1, 1, 19, '/Venda/incluir/', 1, '2021-03-13 09:32:53', ''),
+	(105, 1, 1, 37, '/Itens/incluir/', 1, '2021-03-13 09:34:00', ''),
+	(106, 1, 1, 40, '/Contas/incluir/', 1, '2021-03-13 09:34:18', ''),
+	(107, 1, 1, 20, '/Venda/incluir/', 1, '2021-03-13 09:40:14', ''),
+	(108, 1, 1, 1, '/Autenticar/LOGOUT/', 1, '2021-03-13 10:00:04', ''),
+	(109, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-13 10:20:56', ''),
+	(110, 1, 1, 2, '/Historico/incluir/', 1, '2021-03-13 10:28:09', ''),
+	(111, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-13 10:48:09', ''),
+	(112, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-13 12:24:14', ''),
+	(113, 1, 1, 21, '/Venda/incluir/', 1, '2021-03-13 12:26:24', ''),
+	(114, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-13 17:18:55', ''),
+	(115, 1, 1, 18, '/Programa/alterar/', 1, '2021-03-13 17:19:32', ''),
+	(116, 1, 1, 1, '/Autenticar/LOGOUT/', 1, '2021-03-13 17:19:37', ''),
+	(117, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-13 17:19:40', ''),
+	(118, 1, 1, 18, '/Programa/alterar/', 1, '2021-03-13 17:24:36', ''),
+	(119, 1, 1, 1, '/Autenticar/LOGOUT/', 1, '2021-03-13 17:24:40', ''),
+	(120, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-13 17:24:46', ''),
+	(121, 1, 1, 0, '/Caixa/estorna/', 1, '2021-03-13 17:25:40', ''),
+	(122, 1, 1, 3, '/Caixa/estorna/', 1, '2021-03-13 17:42:06', ''),
+	(123, 1, 1, 38, '/Itens/incluir/', 1, '2021-03-13 17:44:45', ''),
+	(124, 1, 1, 41, '/Contas/incluir/', 1, '2021-03-13 17:45:10', ''),
+	(125, 1, 1, 121, '/Status/incluir/', 1, '2021-03-13 17:52:06', ''),
+	(126, 1, 1, 42, '/Contas/incluir/', 1, '2021-03-13 17:55:57', ''),
+	(127, 1, 1, 99, '/Status/alterar/', 1, '2021-03-13 17:59:12', ''),
+	(128, 1, 1, 22, '/Venda/incluir/', 1, '2021-03-13 17:59:39', ''),
+	(129, 1, 1, 39, '/Itens/incluir/', 1, '2021-03-13 17:59:55', ''),
+	(130, 1, 1, 43, '/Contas/incluir/', 1, '2021-03-13 18:00:14', ''),
+	(131, 1, 1, 0, 'SQL', 1, '2021-03-13 18:02:00', 'select * from Contas WHERE id_tabela=\'22\''),
+	(132, 1, 1, 23, '/Venda/incluir/', 1, '2021-03-13 18:03:44', ''),
+	(133, 1, 1, 40, '/Itens/incluir/', 1, '2021-03-13 18:03:55', ''),
+	(134, 1, 1, 0, 'SQL', 1, '2021-03-13 18:06:45', 'select * from Contas WHERE id_tabela=\'23\''),
+	(135, 1, 1, 0, 'SQL', 1, '2021-03-13 18:07:02', 'select * from Venda WHERE id=\'23\''),
+	(136, 1, 1, 0, 'SQL', 1, '2021-03-13 18:09:53', 'select * from Venda WHERE id=\'23\''),
+	(137, 1, 1, 0, 'SQL', 1, '2021-03-13 18:10:03', 'select * from Venda WHERE id=\'23\''),
+	(138, 1, 1, 44, '/Contas/incluir/', 1, '2021-03-13 18:10:42', ''),
+	(139, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-14 12:12:55', ''),
+	(140, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-14 12:13:07', ''),
+	(141, 1, 1, 24, '/Venda/incluir/', 1, '2021-03-14 12:15:04', ''),
+	(142, 1, 1, 0, 'SQL', 1, '2021-03-14 12:40:16', 'select * from TipoPagamento'),
+	(143, 1, 1, 0, 'SQL', 1, '2021-03-14 12:42:12', '\r\nselect * from TipoPagamento'),
+	(144, 1, 1, 0, 'SQL', 1, '2021-03-14 12:43:04', '\r\nselect * from TipoPagamento'),
+	(145, 1, 1, 0, 'SQL', 1, '2021-03-14 12:43:21', '\r\nselect * from TipoPagamento'),
+	(146, 1, 1, 0, 'SQL', 1, '2021-03-14 12:45:11', 'ALTER TABLE TipoPagamento ADD juros decimal(3,2) '),
+	(147, 1, 1, 0, 'SQL', 1, '2021-03-14 12:45:27', 'select * from TipoPagamento'),
+	(148, 1, 1, 7, '/TipoPagamento/alterar/', 1, '2021-03-14 12:49:22', ''),
+	(149, 1, 1, 25, '/Venda/incluir/', 1, '2021-03-14 12:54:52', ''),
+	(150, 1, 1, 41, '/Itens/incluir/', 1, '2021-03-14 12:55:06', ''),
+	(151, 1, 1, 42, '/Itens/incluir/', 1, '2021-03-14 12:55:28', ''),
+	(152, 1, 1, 0, 'SQL', 1, '2021-03-14 13:02:02', 'select * from Contas limit 1'),
+	(153, 1, 1, 0, 'SQL', 1, '2021-03-14 13:17:23', '	ALTER TABLE Contas ADD juros decimal(3,2);\r\nselect * from Contas limit 1'),
+	(154, 1, 1, 0, 'SQL', 1, '2021-03-14 13:17:30', '\r\nselect * from Contas limit 1'),
+	(155, 1, 1, 0, 'SQL', 1, '2021-03-14 13:24:03', 'select * from Contas limit 1'),
+	(156, 1, 1, 45, '/Contas/incluir/', 1, '2021-03-14 13:24:32', ''),
+	(157, 1, 1, 46, '/Contas/incluir/', 1, '2021-03-14 13:24:32', ''),
+	(158, 1, 1, 0, 'SQL', 1, '2021-03-14 13:49:48', 'select * from Contas limit 1'),
+	(159, 1, 1, 0, 'SQL', 1, '2021-03-14 14:00:42', 'select * from Contas limit 1'),
+	(160, 1, 1, 0, 'SQL', 1, '2021-03-14 14:36:38', 'SELECT Contas.id,Contas.id_tabela,Contas.id_filial FROM Contas WHERE id=45 LIMIT 1'),
+	(161, 1, 1, 0, 'SQL', 1, '2021-03-14 14:36:47', 'SELECT*FROM Contas WHERE id=45 LIMIT 1'),
+	(162, 1, 1, 7, '/TipoPagamento/alterar/', 1, '2021-03-14 14:45:38', ''),
+	(163, 1, 1, 7, '/TipoPagamento/alterar/', 1, '2021-03-14 14:46:18', ''),
+	(164, 1, 1, 7, '/TipoPagamento/alterar/', 1, '2021-03-14 14:46:23', ''),
+	(165, 1, 1, 7, '/TipoPagamento/alterar/', 1, '2021-03-14 14:46:58', ''),
+	(166, 1, 1, 7, '/TipoPagamento/alterar/', 1, '2021-03-14 14:47:05', ''),
+	(167, 1, 1, 7, '/TipoPagamento/alterar/', 1, '2021-03-14 14:47:34', ''),
+	(168, 1, 1, 0, 'SQL', 1, '2021-03-14 14:50:34', 'ALTER TABLE TipoPagamento MODIFY juros double(10,2);'),
+	(169, 1, 1, 0, 'SQL', 1, '2021-03-14 14:50:44', 'select 8 from TipoPagamento'),
+	(170, 1, 1, 0, 'SQL', 1, '2021-03-14 14:51:25', 'select * from TipoPagamento'),
+	(171, 1, 1, 7, '/TipoPagamento/alterar/', 1, '2021-03-14 14:52:17', ''),
+	(172, 1, 1, 7, '/TipoPagamento/alterar/', 1, '2021-03-14 14:52:24', ''),
+	(173, 1, 1, 0, 'SQL', 1, '2021-03-14 14:52:42', 'ALTER TABLE TipoPagamento MODIFY juros double(10,10);'),
+	(174, 1, 1, 7, '/TipoPagamento/alterar/', 1, '2021-03-14 14:53:05', ''),
+	(175, 1, 1, 7, '/TipoPagamento/alterar/', 1, '2021-03-14 14:55:16', ''),
+	(176, 1, 1, 7, '/TipoPagamento/alterar/', 1, '2021-03-14 14:55:31', ''),
+	(177, 1, 1, 7, '/TipoPagamento/alterar/', 1, '2021-03-14 14:55:39', ''),
+	(178, 1, 1, 0, 'SQL', 1, '2021-03-14 15:02:03', 'ALTER TABLE Contas MODIFY juros double(10,10);'),
+	(179, 1, 1, 26, '/Venda/incluir/', 1, '2021-03-14 15:02:33', ''),
+	(180, 1, 1, 43, '/Itens/incluir/', 1, '2021-03-14 15:03:11', ''),
+	(181, 1, 1, 47, '/Contas/incluir/', 1, '2021-03-14 15:03:32', ''),
+	(182, 1, 1, 48, '/Contas/incluir/', 1, '2021-03-14 15:03:32', ''),
+	(183, 1, 1, 48, '/Contas/alterar/', 1, '2021-03-14 15:05:12', 'teste'),
+	(184, 1, 1, 10, '/TipoPagamento/alterar/', 1, '2021-03-14 15:22:10', ''),
+	(185, 1, 1, 9, '/TipoPagamento/alterar/', 1, '2021-03-14 15:22:15', ''),
+	(186, 1, 1, 8, '/TipoPagamento/alterar/', 1, '2021-03-14 15:22:19', ''),
+	(187, 1, 1, 1, '/TipoPagamento/alterar/', 1, '2021-03-14 15:22:25', ''),
+	(188, 1, 1, 2, '/TipoPagamento/alterar/', 1, '2021-03-14 15:22:30', ''),
+	(189, 1, 1, 3, '/TipoPagamento/alterar/', 1, '2021-03-14 15:22:36', ''),
+	(190, 1, 1, 4, '/TipoPagamento/alterar/', 1, '2021-03-14 15:22:41', ''),
+	(191, 1, 1, 5, '/TipoPagamento/alterar/', 1, '2021-03-14 15:22:48', ''),
+	(192, 1, 1, 6, '/TipoPagamento/alterar/', 1, '2021-03-14 15:22:52', ''),
+	(193, 1, 1, 1, '/Caixa/incluir/', 1, '2021-03-14 16:00:38', ''),
+	(194, 1, 1, 2, '/Caixa/incluir/', 1, '2021-03-14 16:00:52', ''),
+	(195, 1, 1, 48, '/Contas/receita_receber/', 1, '2021-03-14 16:01:13', ''),
+	(196, 1, 1, 19, '/Caixa/estorna/', 1, '2021-03-14 16:01:38', ''),
+	(197, 1, 1, 48, '/Contas/receita_receber/', 1, '2021-03-14 16:04:23', ''),
+	(198, 1, 1, 20, '/Caixa/estorna/', 1, '2021-03-14 16:04:39', ''),
+	(199, 1, 1, 48, '/Contas/receita_receber/', 1, '2021-03-14 16:05:03', ''),
+	(200, 1, 1, 21, '/Caixa/estorna/', 1, '2021-03-14 16:05:39', ''),
+	(201, 1, 1, 31, '/Contas/receita_receber/', 1, '2021-03-14 16:06:20', ''),
+	(202, 1, 1, 22, '/Caixa/estorna/', 1, '2021-03-14 16:07:11', ''),
+	(203, 1, 1, 48, '/Contas/receita_receber/', 1, '2021-03-14 16:08:38', ''),
+	(204, 1, 1, 23, '/Caixa/estorna/', 1, '2021-03-14 16:08:50', ''),
+	(205, 1, 1, 48, '/Contas/receita_receber/', 1, '2021-03-14 16:09:11', ''),
+	(206, 1, 1, 32, '/Contas/receita_receber/', 1, '2021-03-14 16:10:06', ''),
+	(207, 1, 1, 25, '/Caixa/estorna/', 1, '2021-03-14 16:10:37', ''),
+	(208, 1, 1, 32, '/Contas/receita_receber/', 1, '2021-03-14 16:11:06', ''),
+	(209, 1, 1, 0, 'SQL', 1, '2021-03-14 16:22:42', 'update Contas SET Contas.juros=\'0.0000000000\''),
+	(210, 1, 1, 0, 'SQL', 1, '2021-03-14 16:22:52', 'select * from Contas'),
+	(211, 1, 1, 31, '/Contas/receita_receber/', 1, '2021-03-14 16:24:06', ''),
+	(212, 1, 1, 35, '/Contas/receita_receber/', 1, '2021-03-14 16:28:28', ''),
+	(213, 1, 1, 28, '/Caixa/estorna/', 1, '2021-03-14 16:29:02', ''),
+	(214, 1, 1, 35, '/Contas/receita_receber/', 1, '2021-03-14 16:31:34', ''),
+	(215, 1, 1, 29, '/Caixa/estorna/', 1, '2021-03-14 16:32:15', ''),
+	(216, 1, 1, 35, '/Contas/receita_receber/', 1, '2021-03-14 16:34:16', ''),
+	(217, 1, 1, 12, '/Contas/receita_receber/', 1, '2021-03-14 16:34:37', ''),
+	(218, 1, 1, 24, '/Contas/receita_receber/', 1, '2021-03-14 16:37:56', ''),
+	(219, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-15 08:48:16', ''),
+	(220, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-15 08:48:19', ''),
+	(221, 1, 1, 1, '/Autenticar/LOGOUT/', 1, '2021-03-15 09:09:04', ''),
+	(222, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-15 09:40:21', ''),
+	(223, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-15 09:55:53', ''),
+	(224, 1, 1, 1, '/Autenticar/LOGOUT/', 1, '2021-03-15 11:02:56', ''),
+	(225, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-15 11:09:08', ''),
+	(226, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-15 11:28:35', ''),
+	(227, 1, 1, 1, '/Autenticar/LOGOUT/', 1, '2021-03-15 12:35:53', ''),
+	(228, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-15 18:03:23', ''),
+	(229, 1, 1, 44, '/Itens/incluir/', 1, '2021-03-15 18:04:43', ''),
+	(230, 1, 1, 57, '/Contas/incluir/', 1, '2021-03-15 18:04:54', ''),
+	(231, 1, 1, 27, '/Venda/incluir/', 1, '2021-03-15 18:06:10', ''),
+	(232, 1, 1, 45, '/Itens/incluir/', 1, '2021-03-15 18:06:16', ''),
+	(233, 1, 1, 58, '/Contas/incluir/', 1, '2021-03-15 18:06:26', ''),
+	(234, 1, 1, 28, '/Venda/incluir/', 1, '2021-03-15 18:06:43', ''),
+	(235, 1, 1, 46, '/Itens/incluir/', 1, '2021-03-15 18:06:48', ''),
+	(236, 1, 1, 59, '/Contas/incluir/', 1, '2021-03-15 18:06:55', ''),
+	(237, 1, 1, 29, '/Venda/incluir/', 1, '2021-03-15 18:07:18', ''),
+	(238, 1, 1, 47, '/Itens/incluir/', 1, '2021-03-15 18:07:24', ''),
+	(239, 1, 1, 60, '/Contas/incluir/', 1, '2021-03-15 18:07:34', ''),
+	(240, 1, 1, 61, '/Contas/incluir/', 1, '2021-03-15 18:07:34', ''),
+	(241, 1, 1, 30, '/Venda/incluir/', 1, '2021-03-15 18:10:46', ''),
+	(242, 1, 1, 48, '/Itens/incluir/', 1, '2021-03-15 18:10:51', ''),
+	(243, 1, 1, 62, '/Contas/incluir/', 1, '2021-03-15 18:11:00', ''),
+	(244, 1, 1, 31, '/Venda/incluir/', 1, '2021-03-15 18:13:09', ''),
+	(245, 1, 1, 49, '/Itens/incluir/', 1, '2021-03-15 18:13:15', ''),
+	(246, 1, 1, 63, '/Contas/incluir/', 1, '2021-03-15 18:13:25', ''),
+	(247, 1, 1, 32, '/Venda/incluir/', 1, '2021-03-15 18:19:09', ''),
+	(248, 1, 1, 50, '/Itens/incluir/', 1, '2021-03-15 18:19:16', ''),
+	(249, 1, 1, 64, '/Contas/incluir/', 1, '2021-03-15 18:19:34', ''),
+	(250, 1, 1, 33, '/Venda/incluir/', 1, '2021-03-15 18:20:20', ''),
+	(251, 1, 1, 51, '/Itens/incluir/', 1, '2021-03-15 18:20:25', ''),
+	(252, 1, 1, 65, '/Contas/incluir/', 1, '2021-03-15 18:20:35', ''),
+	(253, 1, 1, 34, '/Venda/incluir/', 1, '2021-03-15 18:21:39', ''),
+	(254, 1, 1, 52, '/Itens/incluir/', 1, '2021-03-15 18:21:45', ''),
+	(255, 1, 1, 66, '/Contas/incluir/', 1, '2021-03-15 18:21:53', ''),
+	(256, 1, 1, 35, '/Venda/incluir/', 1, '2021-03-15 18:26:09', ''),
+	(257, 1, 1, 53, '/Itens/incluir/', 1, '2021-03-15 18:26:15', ''),
+	(258, 1, 1, 67, '/Contas/incluir/', 1, '2021-03-15 18:26:26', ''),
+	(259, 1, 1, 36, '/Venda/incluir/', 1, '2021-03-15 18:28:03', ''),
+	(260, 1, 1, 54, '/Itens/incluir/', 1, '2021-03-15 18:28:13', ''),
+	(261, 1, 1, 68, '/Contas/incluir/', 1, '2021-03-15 18:28:20', ''),
+	(262, 1, 1, 37, '/Venda/incluir/', 1, '2021-03-15 18:30:49', ''),
+	(263, 1, 1, 38, '/Venda/incluir/', 1, '2021-03-15 18:31:07', ''),
+	(264, 1, 1, 55, '/Itens/incluir/', 1, '2021-03-15 18:33:32', ''),
+	(265, 1, 1, 69, '/Contas/incluir/', 1, '2021-03-15 18:33:46', ''),
+	(266, 1, 1, 70, '/Contas/incluir/', 1, '2021-03-15 18:33:59', ''),
+	(267, 1, 1, 39, '/Venda/incluir/', 1, '2021-03-15 18:35:12', ''),
+	(268, 1, 1, 56, '/Itens/incluir/', 1, '2021-03-15 18:35:26', ''),
+	(269, 1, 1, 71, '/Contas/incluir/', 1, '2021-03-15 18:35:34', ''),
+	(270, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-17 19:32:43', ''),
+	(271, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-18 11:46:29', ''),
+	(272, 1, 1, 1, '/Mesa/incluir/', 1, '2021-03-18 11:52:11', ''),
+	(273, 1, 1, 2, '/Mesa/incluir/', 1, '2021-03-18 12:02:42', ''),
+	(274, 1, 1, 3, '/Mesa/incluir/', 1, '2021-03-18 12:48:28', ''),
+	(275, 1, 1, 4, '/Mesa/incluir/', 1, '2021-03-18 12:48:55', ''),
+	(276, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-18 12:49:39', ''),
+	(277, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-19 09:21:42', ''),
+	(278, 1, 1, 45, '/Contas/excluir/', 1, '2021-03-19 09:26:28', 'teste'),
+	(279, 1, 1, 46, '/Contas/excluir/', 1, '2021-03-19 09:26:34', 'teste'),
+	(280, 1, 1, 38, '/Contas/excluir/', 1, '2021-03-19 09:26:42', 'teste'),
+	(281, 1, 1, 0, 'SQL', 1, '2021-03-19 09:27:31', 'SELECT * FROM Contas WHERE id=\'1\''),
+	(282, 1, 1, 0, 'SQL', 1, '2021-03-19 09:27:45', 'SELECT * FROM Contas WHERE id=\'2\''),
+	(283, 1, 1, 0, 'SQL', 1, '2021-03-19 09:27:57', 'SELECT * FROM Contas WHERE id_status=\'1\''),
+	(284, 1, 1, 0, 'SQL', 1, '2021-03-19 09:31:51', 'UPDATE Contas SET id_status=\'99\' WHERE id_status=\'1\''),
+	(285, 1, 1, 0, 'SQL', 1, '2021-03-19 09:32:11', 'SELECT * FROM Contas WHERE id_status=\'1\''),
+	(286, 1, 1, 37, '/Contas/incluir/', 1, '2021-03-19 09:41:47', ''),
+	(287, 1, 1, 40, '/Venda/incluir/', 1, '2021-03-19 09:42:00', ''),
+	(288, 1, 1, 57, '/Itens/incluir/', 1, '2021-03-19 09:42:09', ''),
+	(289, 1, 1, 72, '/Contas/incluir/', 1, '2021-03-19 09:42:28', ''),
+	(290, 1, 1, 73, '/Contas/incluir/', 1, '2021-03-19 09:42:28', ''),
+	(291, 1, 1, 1, '/Autenticar/LOGOUT/', 1, '2021-03-19 10:26:00', ''),
+	(292, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-22 09:12:55', ''),
+	(293, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-23 13:20:46', ''),
+	(294, 1, 1, 21, '/Agenda/incluir/', 1, '2021-03-23 13:21:11', ''),
+	(295, 1, 1, 264, '/Programa/incluir/', 1, '2021-03-23 13:25:55', ''),
+	(296, 1, 1, 255, '/GrupoAcesso/incluir/', 1, '2021-03-23 13:27:50', ''),
+	(297, 1, 1, 1, '/Autenticar/LOGOUT/', 1, '2021-03-23 13:27:54', ''),
+	(298, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-23 13:27:57', ''),
+	(299, 1, 1, 1, '/Chamado/incluir/', 1, '2021-03-23 13:28:11', ''),
+	(300, 1, 1, 2, '/Chamado/incluir/', 1, '2021-03-23 13:29:05', ''),
+	(301, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-03-23 13:33:51', ''),
+	(302, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-03-23 13:38:01', ''),
+	(303, 1, 1, 1, '/ChamadoGrupo/incluir/', 1, '2021-03-23 13:40:16', ''),
+	(304, 1, 1, 3, '/ChamadoGrupo/incluir/', 1, '2021-03-23 13:43:09', ''),
+	(305, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-03-23 13:43:34', ''),
+	(306, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-03-23 15:47:53', ''),
+	(307, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-03-23 15:47:59', ''),
+	(308, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-24 10:26:45', ''),
+	(309, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-24 10:26:48', ''),
+	(310, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-03-24 10:27:14', ''),
+	(311, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-03-24 10:27:19', ''),
+	(312, 1, 1, 1, '/Autenticar/LOGOUT/', 1, '2021-03-24 11:32:53', ''),
+	(313, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-25 16:43:15', ''),
+	(314, 1, 1, 58, '/Itens/incluir/', 1, '2021-03-25 16:48:33', ''),
+	(315, 1, 1, 37, '/Contas/incluir/', 1, '2021-03-25 16:51:03', ''),
+	(316, 1, 1, 37, '/Contas/incluir/', 1, '2021-03-25 16:51:03', ''),
+	(317, 1, 1, 1, '/Autenticar/LOGOUT/', 1, '2021-03-25 17:46:54', ''),
+	(318, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-26 20:25:11', ''),
+	(319, 1, 1, 33, '/Pessoa/alterar/', 1, '2021-03-26 20:26:36', ''),
+	(320, 1, 1, 22, '/Agenda/incluir/', 1, '2021-03-26 20:27:44', ''),
+	(321, 1, 1, 41, '/Venda/incluir/', 1, '2021-03-26 20:28:15', ''),
+	(322, 1, 1, 42, '/Venda/incluir/', 1, '2021-03-26 21:08:04', ''),
+	(323, 1, 1, 59, '/Itens/incluir/', 1, '2021-03-26 21:08:36', ''),
+	(324, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-03-29 12:19:03', ''),
+	(325, 1, 1, 43, '/Venda/incluir/', 1, '2021-03-29 12:19:18', ''),
+	(326, 1, 1, 60, '/Itens/incluir/', 1, '2021-03-29 12:19:25', ''),
+	(327, 1, 1, 1, '/Autenticar/LOGOUT/', 1, '2021-03-29 12:39:16', ''),
+	(328, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-04-01 15:49:34', ''),
+	(329, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 15:49:53', ''),
+	(330, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 15:50:01', ''),
+	(331, 1, 1, 3, '/Chamado/incluir/', 1, '2021-04-01 15:50:21', ''),
+	(332, 1, 1, 4, '/ChamadoGrupo/incluir/', 1, '2021-04-01 15:50:33', ''),
+	(333, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 15:50:37', ''),
+	(334, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 15:50:45', ''),
+	(335, 1, 1, 3, '/Chamado/alterar/', 1, '2021-04-01 15:51:03', ''),
+	(336, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 15:51:08', ''),
+	(337, 1, 1, 4, '/Chamado/incluir/', 1, '2021-04-01 16:15:47', ''),
+	(338, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 16:17:11', ''),
+	(339, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 16:18:18', ''),
+	(340, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 16:19:04', ''),
+	(341, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 16:19:29', ''),
+	(342, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 16:19:55', ''),
+	(343, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 16:22:08', ''),
+	(344, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 16:22:17', ''),
+	(345, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 16:22:34', ''),
+	(346, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 16:33:37', ''),
+	(347, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 16:34:30', ''),
+	(348, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 16:35:31', ''),
+	(349, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 16:35:39', ''),
+	(350, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 16:35:53', ''),
+	(351, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 16:36:27', ''),
+	(352, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 16:40:09', ''),
+	(353, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 16:40:38', ''),
+	(354, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 16:41:06', ''),
+	(355, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 16:53:07', ''),
+	(356, 1, 1, 61, '/Itens/incluir/', 1, '2021-04-01 16:56:15', ''),
+	(357, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 16:56:48', ''),
+	(358, 1, 1, 62, '/Itens/incluir/', 1, '2021-04-01 16:57:00', ''),
+	(359, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 17:00:23', ''),
+	(360, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 17:00:24', ''),
+	(361, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 17:07:45', ''),
+	(362, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 17:08:03', ''),
+	(363, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 17:08:09', ''),
+	(364, 1, 1, 63, '/Itens/incluir/', 1, '2021-04-01 17:08:55', ''),
+	(365, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 17:08:55', ''),
+	(366, 1, 1, 64, '/Itens/incluir/', 1, '2021-04-01 17:13:49', ''),
+	(367, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 17:13:49', ''),
+	(368, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 17:15:00', ''),
+	(369, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 17:16:36', ''),
+	(370, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 17:19:15', ''),
+	(371, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 17:19:23', ''),
+	(372, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 17:19:38', ''),
+	(373, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 17:20:50', ''),
+	(374, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 17:20:57', ''),
+	(375, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 17:21:03', ''),
+	(376, 1, 1, 5, '/ChamadoGrupo/incluir/', 1, '2021-04-01 17:21:11', ''),
+	(377, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 17:21:16', ''),
+	(378, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 17:22:55', ''),
+	(379, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 17:24:21', ''),
+	(380, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 17:24:26', ''),
+	(381, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 17:25:15', ''),
+	(382, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 17:26:26', ''),
+	(383, 1, 1, 65, '/Itens/incluir/', 1, '2021-04-01 17:26:45', ''),
+	(384, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 17:26:45', ''),
+	(385, 1, 1, 66, '/Itens/incluir/', 1, '2021-04-01 17:27:10', ''),
+	(386, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 17:36:48', ''),
+	(387, 1, 1, 0, '/ChamadoInterno/visualizar/', 1, '2021-04-01 17:44:18', ''),
+	(388, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-04-19 13:36:24', ''),
+	(389, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-04-19 13:36:39', ''),
+	(390, 1, 1, 0, '/Upload/visualizar/', 1, '2021-04-19 13:36:45', ''),
+	(391, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-04-19 13:38:45', ''),
+	(392, 1, 1, 8, '/Contato/incluir/', 1, '2021-04-19 13:39:07', ''),
+	(393, 1, 1, 1, '/Pessoa/alterar/', 1, '2021-04-19 13:39:18', ''),
+	(394, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-04-27 20:57:43', ''),
+	(395, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-04-30 10:58:30', ''),
+	(396, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-04-30 10:58:32', ''),
+	(397, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-05-11 13:26:33', ''),
+	(398, 1, 1, 0, '/Upload/visualizar/', 1, '2021-05-11 13:26:48', ''),
+	(399, 1, 1, 0, '/Upload/visualizar/', 1, '2021-05-11 13:27:00', ''),
+	(400, 1, 1, 0, '/ItenClasse/admin_listar/', 1, '2021-05-11 13:27:05', ''),
+	(401, 1, 1, 1, '/Autenticar/LOGOUT/', 1, '2021-05-11 13:28:02', ''),
+	(402, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-05-13 16:31:03', ''),
+	(403, 1, 1, 1, '/Autenticar/LOGOUT/', 1, '2021-05-13 16:36:22', ''),
+	(404, 1, 1, 0, '/Autenticar/LOGIN/', 1, '2021-05-13 16:37:09', '');
+
+-- Copiando estrutura para tabela db_develop.Marca
+CREATE TABLE IF NOT EXISTS Marca (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  id_filial int(10) NOT NULL,
+  descricao varchar(30) COLLATE latin1_general_ci DEFAULT NULL,
+  id_status int(3) DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Marca: ~2 rows (aproximadamente)
+INSERT INTO Marca (id, id_filial, descricao, id_status, data_lancamento) VALUES
+	(1, 2, 'Marca - 1', 1, '2020-11-20 11:24:36'),
+	(2, 2, 'Marca - 2', 1, '2020-11-20 11:24:42'),
+	(3, 1, 'Marca - 3', 1, '2020-11-20 12:33:14'),
+	(4, 1, 'Marca - 4', 1, '2020-11-20 16:31:16'),
+	(5, 1, 'MARCA X', 99, '2021-01-09 16:19:48'),
+	(6, 3, 'Teste de Marca - Cezar123', 1, '2021-01-26 11:25:18');
+
+-- Copiando estrutura para tabela db_develop.Mensagem
+CREATE TABLE IF NOT EXISTS Mensagem (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  id_origem int(11) DEFAULT NULL,
+  id_destino int(11) DEFAULT NULL,
+  mensagem varchar(255) COLLATE latin1_general_ci DEFAULT NULL,
+  id_status int(11) DEFAULT NULL,
+  data_visualizacao datetime DEFAULT '0000-00-00 00:00:00',
+  data_lancamento datetime DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Mensagem: ~14 rows (aproximadamente)
+INSERT INTO Mensagem (id, id_origem, id_destino, mensagem, id_status, data_visualizacao, data_lancamento) VALUES
+	(48, 5, 1, 'oi', 1, '2021-01-20 17:01:16', '2021-01-20 16:01:13'),
+	(51, 5, 1, 'feio', 1, '2021-01-20 17:01:27', '2021-01-20 17:01:27'),
+	(52, 1, 1, 'Minino Feio', 1, '2021-01-20 17:01:57', '2021-01-20 17:01:57'),
+	(53, 5, 1, 'seleciona o teste', 1, '2021-01-20 17:01:47', '2021-01-20 17:01:09'),
+	(54, 5, 1, 'opa', 1, '2021-01-20 17:01:47', '2021-01-20 17:01:12'),
+	(55, 5, 1, 'o manoel', 1, '2021-01-20 17:01:47', '2021-01-20 17:01:16'),
+	(56, 1, 5, 'Minino Feio', 1, '2021-01-20 17:01:21', '2021-01-20 17:01:53'),
+	(57, 5, 1, 'so o maior gatao', 1, '2021-01-20 17:01:56', '2021-01-20 17:01:27'),
+	(58, 5, 1, 'aumenta e diminui o', 1, '2021-01-20 17:01:56', '2021-01-20 17:01:37'),
+	(59, 5, 1, 'conforme recebe', 1, '2021-01-20 17:01:56', '2021-01-20 17:01:47'),
+	(60, 5, 1, 'mesagem', 1, '2021-01-20 17:01:56', '2021-01-20 17:01:53'),
+	(61, 5, 1, '123', 1, '2021-01-20 17:01:22', '2021-01-20 17:01:13'),
+	(62, 1, 5, 'Tá certo', 1, '2021-01-20 17:01:37', '2021-01-20 17:01:21'),
+	(63, 1, 5, 'kkkkk', 1, '2021-01-20 17:01:19', '2021-01-20 17:01:27'),
+	(64, 5, 1, '123', 1, '2021-01-20 17:01:16', '2021-01-20 17:01:11'),
+	(65, 1, 5, 'Teste', 1, '2021-01-30 09:01:18', '2021-01-26 12:01:46'),
+	(66, 1, 7, 'fasfsdfsdfdsafds', 1, '0000-00-00 00:00:00', '2021-01-26 12:01:02'),
+	(67, 5, 1, 'hjhjyg;jv', 1, '2021-02-01 17:02:22', '2021-01-30 10:01:08'),
+	(68, 5, 1, 'gfhgdkhv', 1, '2021-02-01 17:02:22', '2021-01-30 10:01:14');
+
+-- Copiando estrutura para tabela db_develop.Mesa
+CREATE TABLE IF NOT EXISTS Mesa (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  id_filial int(10) NOT NULL,
+  descricao varchar(255) COLLATE latin1_general_ci DEFAULT NULL,
+  id_status int(3) DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Mesa: ~4 rows (aproximadamente)
+INSERT INTO Mesa (id, id_filial, descricao, id_status, data_lancamento) VALUES
+	(1, 1, 'Mesa A', 1, '2021-03-18 11:52:11'),
+	(2, 1, 'Mesa B', 2, '2021-03-18 12:02:42'),
+	(3, 1, 'Mesa C', 13, '2021-03-18 12:48:28'),
+	(4, 1, 'Mesa D', 11, '2021-03-18 12:48:55');
+
+-- Copiando estrutura para tabela db_develop.Modelo
+CREATE TABLE IF NOT EXISTS Modelo (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  id_filial int(10) NOT NULL,
+  descricao varchar(30) COLLATE latin1_general_ci DEFAULT NULL,
+  id_status int(3) DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Modelo: ~2 rows (aproximadamente)
+INSERT INTO Modelo (id, id_filial, descricao, id_status, data_lancamento) VALUES
+	(1, 2, 'Modelo -1', 1, '2020-11-20 11:24:16'),
+	(2, 2, 'Modelo - 2', 1, '2020-11-20 11:24:23'),
+	(3, 1, 'Modelo - 3', 1, '2020-11-20 13:39:28'),
+	(4, 1, 'Modelo - 4', 1, '2020-11-20 16:30:11'),
+	(5, 1, 'jarra de vidro', 1, '2021-01-09 16:18:08'),
+	(6, 1, 'Teste de produto - Cezar123', 99, '2021-01-26 11:27:55');
+
+-- Copiando estrutura para tabela db_develop.Pedido
+CREATE TABLE IF NOT EXISTS Pedido (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  id_filial int(10) NOT NULL,
+  nfe int(50) DEFAULT NULL,
+  id_status int(3) DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Pedido: ~0 rows (aproximadamente)
+
+-- Copiando estrutura para tabela db_develop.PedidoComposicao
+CREATE TABLE IF NOT EXISTS PedidoComposicao (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  id_filial int(10) NOT NULL,
+  id_pedido int(10) NOT NULL,
+  id_composicao int(10) NOT NULL,
+  tipo varchar(30) COLLATE latin1_general_ci DEFAULT NULL,
+  id_status int(3) DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.PedidoComposicao: ~0 rows (aproximadamente)
+
+-- Copiando estrutura para tabela db_develop.Pessoa
+CREATE TABLE IF NOT EXISTS Pessoa (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  id_filial int(10) NOT NULL,
+  id_status int(3) DEFAULT NULL,
+  nome varchar(255) COLLATE latin1_general_ci NOT NULL,
+  apelido varchar(50) COLLATE latin1_general_ci DEFAULT NULL,
+  cpf varchar(18) COLLATE latin1_general_ci DEFAULT NULL,
+  rg varchar(14) COLLATE latin1_general_ci DEFAULT NULL,
+  orgao_expedidor varchar(20) COLLATE latin1_general_ci DEFAULT NULL,
+  data_expedicao date DEFAULT NULL,
+  data_nascimento date DEFAULT NULL,
+  genero varchar(20) COLLATE latin1_general_ci DEFAULT NULL,
+  naturalidade varchar(80) COLLATE latin1_general_ci DEFAULT NULL,
+  nacionalidade varchar(80) COLLATE latin1_general_ci DEFAULT NULL,
+  estado_civil varchar(150) COLLATE latin1_general_ci DEFAULT NULL,
+  conjuge varchar(150) COLLATE latin1_general_ci DEFAULT NULL,
+  pai varchar(150) COLLATE latin1_general_ci DEFAULT NULL,
+  mae varchar(150) COLLATE latin1_general_ci DEFAULT NULL,
+  profissao varchar(50) COLLATE latin1_general_ci DEFAULT NULL,
+  local_trabalho varchar(50) COLLATE latin1_general_ci DEFAULT NULL,
+  tipo varchar(20) COLLATE latin1_general_ci DEFAULT NULL,
+  tipo_sanguineo varchar(5) COLLATE latin1_general_ci DEFAULT NULL,
+  observacao varchar(255) COLLATE latin1_general_ci DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Pessoa: ~25 rows (aproximadamente)
+INSERT INTO Pessoa (id, id_filial, id_status, nome, apelido, cpf, rg, orgao_expedidor, data_expedicao, data_nascimento, genero, naturalidade, nacionalidade, estado_civil, conjuge, pai, mae, profissao, local_trabalho, tipo, tipo_sanguineo, observacao, data_lancamento) VALUES
+	(1, 2, 1, 'Manoel Messias Da Silva Neto', '', '017.666.872-10', '', '', '0000-00-00', '0000-00-00', 'Masculino', '', '', 'Solteiro(a)', NULL, NULL, NULL, '', '', 'Colaborador', 'A+', NULL, '2021-04-19 13:39:18'),
+	(2, 2, 1, 'Cliente 1', '', '', '', '', '0000-00-00', '0000-00-00', 'Masculino', '', '', 'Solteiro(a)', NULL, NULL, NULL, '', '', 'Cliente', 'A+', NULL, '2021-01-29 23:17:56'),
+	(3, 2, 1, 'Cliente 2', '', '', '', '', '0000-00-00', '0000-00-00', 'Masculino', '', '', 'Solteiro(a)', NULL, NULL, NULL, '', '', 'Cliente', 'A+', NULL, '2021-01-29 23:18:07'),
+	(4, 2, 1, 'Cliente 3', '', '', '', '', '0000-00-00', '0000-00-00', 'Masculino', '', '', 'Solteiro(a)', NULL, NULL, NULL, '', '', 'Cliente', 'A+', NULL, '2021-01-29 23:18:13'),
+	(5, 2, 99, 'Cliente 4', '', '', '', '', '0000-00-00', '0000-00-00', 'Masculino', '', '', 'Solteiro(a)', NULL, NULL, NULL, '', '', 'Cliente', 'A+', NULL, '2021-01-29 23:18:18'),
+	(6, 2, 1, 'Cliente 5', '', '', '', '', '0000-00-00', '0000-00-00', 'Masculino', '', '', 'Solteiro(a)', NULL, NULL, NULL, '', '', 'Cliente', 'A+', NULL, '2021-01-29 23:18:25'),
+	(7, 2, 1, 'Cliente 6', '', '', '', '', '0000-00-00', '0000-00-00', 'Masculino', '', '', 'Solteiro(a)', NULL, NULL, NULL, '', '', 'Cliente', 'A+', NULL, '2021-01-29 23:18:31'),
+	(8, 2, 1, 'Cliente 7', '', '', '', '', '0000-00-00', '0000-00-00', 'Masculino', '', '', 'Solteiro(a)', NULL, NULL, NULL, '', '', 'Cliente', 'A+', NULL, '2021-01-29 23:18:39'),
+	(9, 2, 1, 'Cliente 8', '', '', '', '', '0000-00-00', '0000-00-00', 'Masculino', '', '', 'Solteiro(a)', NULL, NULL, NULL, '', '', 'Cliente', 'A+', NULL, '2021-01-29 23:18:46'),
+	(10, 2, 1, 'Cliente 9', '', '', '', '', '0000-00-00', '0000-00-00', 'Masculino', '', '', 'Solteiro(a)', NULL, NULL, NULL, '', '', 'Cliente', 'A+', NULL, '2021-01-29 23:18:52'),
+	(11, 2, 1, 'Cliente 10', '', '', '', '', '0000-00-00', '0000-00-00', 'Masculino', '', '', 'Solteiro(a)', NULL, NULL, NULL, '', '', 'Cliente', 'A+', NULL, '2021-01-29 23:19:00'),
+	(12, 2, 1, 'Cliente 11', '', '', '', '', '0000-00-00', '0000-00-00', 'Masculino', '', '', 'Solteiro(a)', NULL, NULL, NULL, '', '', 'Cliente', 'A+', NULL, '2021-01-29 23:19:06'),
+	(13, 2, 1, 'Cliente 12', '', '', '', '', '0000-00-00', '0000-00-00', 'Masculino', '', '', 'Solteiro(a)', NULL, NULL, NULL, '', '', 'Cliente', 'A+', NULL, '2021-01-29 23:19:12'),
+	(14, 2, 1, 'Cliente 13', '', '', '', '', '0000-00-00', '0000-00-00', 'Masculino', '', '', 'Solteiro(a)', NULL, NULL, NULL, '', '', 'Cliente', 'A+', NULL, '2021-01-29 23:19:19'),
+	(15, 2, 1, 'Cliente 14', '', '', '', '', '0000-00-00', '0000-00-00', 'Masculino', '', '', 'Solteiro(a)', NULL, NULL, NULL, '', '', 'Cliente', 'A+', NULL, '2021-01-29 23:19:26'),
+	(16, 2, 1, 'Newton Macedo Guaita', '', '', '84033073', '', '0000-00-00', '1985-10-11', 'Masculino', '', 'brasileira', 'Casado(a)', NULL, NULL, NULL, '', '05124827998', 'Colaborador', 'O-', NULL, '2021-01-30 09:27:22'),
+	(17, 2, 1, 'Doutor', '', '', '', '', '0000-00-00', '0000-00-00', 'Masculino', '', '', 'Solteiro(a)', NULL, NULL, NULL, '', '', 'Colaborador', 'A+', NULL, '2021-01-29 23:19:48'),
+	(18, 2, 1, 'Colaborador 1', '', '', '', '', '0000-00-00', '0000-00-00', 'Masculino', '', '', 'Solteiro(a)', NULL, NULL, NULL, '', '', 'Colaborador', 'A+', NULL, '2021-02-03 11:15:39'),
+	(19, 2, 1, 'Maurilio campos de matos', '', '', '', '', '0000-00-00', '0000-00-00', 'Masculino', 'goiania/go', 'brasileiro', 'Solteiro(a)', NULL, NULL, NULL, 'dentista', 'uniclinica', 'Cliente', 'A+', NULL, '2021-01-30 09:21:32'),
+	(20, 2, 2, 'teste acdastro', '', '', '', '', '0000-00-00', '0000-00-00', 'Masculino', '', '', 'Solteiro(a)', NULL, NULL, NULL, '', '', 'Cliente', 'A+', NULL, '2021-01-30 09:22:59'),
+	(21, 2, 99, 'Beatriz', 'Mshsj', '', '', '', '0000-00-00', '0000-00-00', 'Masculino', '', '', 'Solteiro(a)', NULL, NULL, NULL, '', '', 'Cliente', 'A+', NULL, '2021-01-30 09:23:31'),
+	(22, 2, 99, 'Fred ', '', '', '', '', '0000-00-00', '0000-00-00', 'Masculino', '', '', 'Solteiro(a)', NULL, NULL, NULL, '', '', 'Cliente', 'A+', NULL, '2021-01-30 09:27:53'),
+	(23, 2, 1, 'G thvftv ', '', '', '', '', '0000-00-00', '0000-00-00', 'Masculino', '', '', 'Solteiro(a)', NULL, NULL, NULL, '', '', 'Cliente', 'A+', NULL, '2021-01-30 09:28:50'),
+	(24, 2, 99, 'Fred ', '', '', '', '', '0000-00-00', '0000-00-00', 'Masculino', '', '', 'Solteiro(a)', NULL, NULL, NULL, '', '', 'Cliente', 'A+', NULL, '2021-01-30 09:33:05'),
+	(25, 2, 1, 'Fred ', '', '', '', '', '0000-00-00', '0000-00-00', 'Masculino', '', '', 'Solteiro(a)', NULL, NULL, NULL, '', '', 'Cliente', 'A+', NULL, '2021-01-30 09:44:21'),
+	(26, 2, 1, 'Iara Luiz de Souza ', '', '981.765.952-68', '', '', '0000-00-00', '0000-00-00', 'Feminino', 'Presidente medici ', '', 'Casado(a)', NULL, NULL, NULL, 'Secretária ', 'Uniclinica ', 'Cliente', 'O+', NULL, '2021-01-30 11:01:52'),
+	(27, 2, 1, 'Jáder Lucas dos Reis ', '', '014.695.422-00', '001039847', '', '0000-00-00', '1992-09-12', 'Masculino', '', '', 'Solteiro(a)', NULL, NULL, NULL, '', '', 'Cliente', 'Não I', NULL, '2021-02-01 15:23:27'),
+	(28, 2, 1, 'Ocilene Izabel de Oliveira ', '', '684.410.612-20', '000664778', '', '0000-00-00', '1977-09-12', 'Feminino', '', '', 'Casado(a)', NULL, NULL, NULL, '', '', 'Cliente', 'Não I', NULL, '2021-02-01 15:25:55'),
+	(29, 2, 1, 'Rafael de Oliveira Correia', '', '051.309.572-10', '', '', '0000-00-00', '2005-09-05', 'Masculino', '', '', 'Solteiro(a)', NULL, NULL, NULL, '', '', 'Cliente', 'A+', NULL, '2021-02-01 15:28:01'),
+	(30, 2, 115, 'Rosane Terezinha Helfenstein', '', '577.385.489-91', '60743452', '60743452', '0000-00-00', '1966-03-16', 'Feminino', '', '', 'Casado(a)', NULL, NULL, NULL, '', '', 'Cliente', 'A+', NULL, '2021-02-05 13:37:50'),
+	(31, 2, 1, '1', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Fornecedor', NULL, '', '2021-02-03 10:14:12'),
+	(32, 2, 1, 'teste', 'teste', '', '', 'teste', '0000-00-00', '0000-00-00', 'Masculino', 'teste', 'tete', 'Solteiro(a)', NULL, NULL, NULL, 'test', 'test', 'Cliente', 'A+', NULL, '2021-02-09 11:17:07'),
+	(33, 2, 2, 'Cezar Rocha A', 'Cezar ', '000.000.000-00', '00', '00', '2021-02-09', '2021-02-09', 'Masculino', 'Teste ', 'Teste ', 'Casado(a)', NULL, NULL, NULL, 'Teste ', 'Teste ', 'Cliente', 'A+', NULL, '2021-02-17 17:41:32');
+
+-- Copiando estrutura para tabela db_develop.PlanoContas
+CREATE TABLE IF NOT EXISTS PlanoContas (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  id_status int(11) NOT NULL DEFAULT '0',
+  id_pai int(11) NOT NULL DEFAULT '0',
+  id_filial int(11) NOT NULL DEFAULT '0',
+  descricao varchar(100) COLLATE latin1_general_ci NOT NULL DEFAULT '0',
+  data_lancamento datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.PlanoContas: ~5 rows (aproximadamente)
+INSERT INTO PlanoContas (id, id_status, id_pai, id_filial, descricao, data_lancamento) VALUES
+	(1, 1, 1, 1, 'Geral', '0000-00-00 00:00:00'),
+	(2, 1, 1, 2, 'Ativo', '2020-11-20 11:32:34'),
+	(3, 1, 1, 2, 'Passivo', '2020-11-20 11:32:40'),
+	(4, 1, 2, 2, 'Receita', '2020-11-20 11:32:52'),
+	(5, 1, 2, 2, 'Despesa', '2020-11-20 11:33:07'),
+	(6, 1, 5, 3, 'DESPESA ENERGIA', '2021-01-25 22:26:27'),
+	(7, 1, 5, 1, 'DESPESA ENERGIA2', '2021-01-26 00:56:27');
+
+-- Copiando estrutura para tabela db_develop.Ponto
+CREATE TABLE IF NOT EXISTS Ponto (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  id_filial int(10) NOT NULL,
+  id_colaborador int(20) DEFAULT NULL,
+  descricao varchar(255) COLLATE latin1_general_ci DEFAULT NULL,
+  data_ponto datetime DEFAULT NULL,
+  id_status int(3) DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Ponto: ~0 rows (aproximadamente)
+
+-- Copiando estrutura para tabela db_develop.Procedimentos
+CREATE TABLE IF NOT EXISTS Procedimentos (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  id_cliente int(11) DEFAULT NULL,
+  id_colaborador int(11) DEFAULT NULL,
+  id_status int(11) DEFAULT NULL,
+  listar_procedimentos text,
+  data date DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Procedimentos: ~0 rows (aproximadamente)
+INSERT INTO Procedimentos (id, id_cliente, id_colaborador, id_status, listar_procedimentos, data, data_lancamento) VALUES
+	(1, 5, 1, 1, '<p>teste</p>\r\n', '2020-11-01', '2020-11-20 13:27:07'),
+	(2, 5, 1, 1, '<p>123</p>\r\n', '2020-11-20', '2020-11-20 16:28:07'),
+	(3, 15, 1, 1, '<p>teste</p>\r\n', '2021-01-01', '2021-01-08 11:27:29'),
+	(4, 23, 22, 1, '<p>ewqewqe</p>\r\n', '2021-01-26', '2021-01-26 08:52:46');
+
+-- Copiando estrutura para tabela db_develop.Produto
+CREATE TABLE IF NOT EXISTS Produto (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  id_filial int(10) NOT NULL,
+  id_fornecedor int(10) NOT NULL,
+  id_modelo int(10) NOT NULL,
+  id_marca int(10) NOT NULL,
+  id_grupo int(10) NOT NULL,
+  descricao varchar(255) COLLATE latin1_general_ci DEFAULT NULL,
+  quantidade varchar(20) COLLATE latin1_general_ci DEFAULT NULL,
+  un_comercial varchar(3) COLLATE latin1_general_ci DEFAULT NULL,
+  quantidade_max varchar(5) COLLATE latin1_general_ci DEFAULT NULL,
+  quantidade_min varchar(5) COLLATE latin1_general_ci DEFAULT NULL,
+  valor_venda double(10,2) DEFAULT NULL,
+  valor_desconto double(10,2) DEFAULT NULL,
+  valor_compra double(10,2) DEFAULT NULL,
+  valor_custo double(10,2) DEFAULT NULL,
+  localidade varchar(255) COLLATE latin1_general_ci DEFAULT NULL,
+  id_status int(3) DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  codigo_barra varchar(45) COLLATE latin1_general_ci DEFAULT NULL,
+  tipo varchar(8) COLLATE latin1_general_ci DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Produto: ~8 rows (aproximadamente)
+INSERT INTO Produto (id, id_filial, id_fornecedor, id_modelo, id_marca, id_grupo, descricao, quantidade, un_comercial, quantidade_max, quantidade_min, valor_venda, valor_desconto, valor_compra, valor_custo, localidade, id_status, data_lancamento, codigo_barra, tipo) VALUES
+	(1, 2, 2, 2, 2, 23, 'Produto - 1', '-17', 'UN', '15', '5', 5.00, 0.00, 1.00, 2.00, '', 1, '2020-11-20 11:25:19', 'p1', 'Produto'),
+	(2, 2, 2, 2, 2, 24, 'Serviço - 1', '-78', 'UN', '0', '0', 20.00, 0.00, 0.00, 5.00, '', 1, '2020-11-20 11:26:33', '740617261219', 'Servico'),
+	(3, 2, 2, 3, 3, 24, 'Produto - 2', '4', 'UN', '50', '10', 500.00, 0.00, 150.00, 220.00, '', 1, '2020-11-20 16:29:46', 'p2', 'Produto'),
+	(4, 2, 2, 4, 5, 23, 'PRODUTO TUTORIAL', '13', 'UN', '50', '5', 50.00, 0.00, 20.00, 35.00, 'balcao 2', 1, '2021-01-09 16:22:11', '7890000000000000001', 'Produto'),
+	(5, 1, 2, 5, 5, 24, 'TESTE 55', '14', 'UN', '30', '10', 50.00, 0.00, 10.00, 25.00, 'PAT', 1, '2021-01-25 22:18:56', '7890000000000000001', 'Produto'),
+	(6, 4, 2, 5, 5, 24, '1', '', 'UN', '1', '1', 1.00, 1.00, 1.00, 1.00, '1', 1, '2021-01-26 11:16:10', '1', 'Produto'),
+	(7, 1, 2, 4, 6, 15, 'Teste de Produto ', '-17', 'KG', '', '', 0.00, 0.00, 0.00, 0.00, '', 1, '2021-01-26 11:30:21', '', 'Produto'),
+	(8, 4, 2, 5, 6, 24, 'Teste de produto - Cezar1234', '', 'UN', '', '', 0.00, 0.00, 0.00, 0.00, '', 99, '2021-01-26 11:31:00', '', 'Produto'),
+	(9, 2, 31, 5, 6, 24, '99', '988', 'UN', '99', '9', 25.00, 99.00, 99.00, 99.00, '99', 1, '2021-02-03 10:14:32', '99', 'Produto');
+
+-- Copiando estrutura para tabela db_develop.Programa
+CREATE TABLE IF NOT EXISTS Programa (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  id_filial int(10) NOT NULL,
+  id_pai int(10) NOT NULL,
+  descricao varchar(100) COLLATE latin1_general_ci DEFAULT NULL,
+  tipo varchar(20) COLLATE latin1_general_ci DEFAULT NULL,
+  comando varchar(50) COLLATE latin1_general_ci DEFAULT NULL,
+  versao varchar(10) COLLATE latin1_general_ci DEFAULT NULL,
+  icone varchar(255) COLLATE latin1_general_ci DEFAULT NULL,
+  cor varchar(10) COLLATE latin1_general_ci DEFAULT NULL,
+  id_status int(3) DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  ordem int(11) DEFAULT '0',
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Programa: ~246 rows (aproximadamente)
+INSERT INTO Programa (id, id_filial, id_pai, descricao, tipo, comando, versao, icone, cor, id_status, data_lancamento, ordem) VALUES
+	(0, 1, 1, 'PAI', 'FLUXO', '/PAI/PAI', '0.2', 'close', '#04616a', 1, '2020-01-20 09:51:22', 100),
+	(1, 1, 2, 'Programa', 'FILHO', '/Programa/admin_listar/', '0.2', 'store', '#543499', 1, '2020-01-20 09:49:36', 99),
+	(2, 1, 0, 'Sistema', 'PAI', '/Menu/Sistema/', '0.2', 'settings_application', '#04616a', 1, '2020-01-20 09:50:46', 7),
+	(4, 1, 0, 'PROGRAMA->INCLUIR', 'FLUXO', '/Programa/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-20 09:59:06', 100),
+	(5, 1, 0, 'PROGRAMA->ALTERAR', 'FLUXO', '/Programa/alterar/', '0.2', 'NOT', '#7D30B5', 1, '2020-01-20 09:59:41', 100),
+	(6, 1, 0, 'PROGRAMA->EXCLUIR', 'FLUXO', '/Programa/excluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-20 10:00:19', 100),
+	(7, 1, 0, 'Gestão de Acesso', 'PAI', '/MENU/Gestao/', '0.2', 'vpn_key', '#04616a', 1, '2020-01-20 16:13:39', 5),
+	(8, 1, 7, 'Acessos', 'FILHO', '/Acesso/admin_listar/', '0.2', 'how_to_reg', '#543499', 1, '2020-01-20 16:15:15', 99),
+	(9, 1, 0, 'ACESSO>INCLUIR', 'FLUXO', '/Acesso/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-20 16:16:01', 100),
+	(10, 1, 0, 'ACESSO>ALTERAR', 'FLUXO', '/Acesso/alterar/', '0.2', 'NOT', '#04616a', 1, '2020-01-20 16:24:11', 100),
+	(11, 1, 0, 'ACESSO>EXCLUIR', 'FLUXO', '/Acesso/excluir/', '0.2', 'NOT', '#543499', 1, '2020-01-20 16:24:43', 100),
+	(12, 1, 0, 'Financeiro', 'PAI', '/MENU/Financeiro/', '0.2', 'account_balance', '#04616a', 1, '2020-01-20 16:27:04', 4),
+	(13, 1, 0, 'Estoque', 'PAI', '/MENU/Estoque/', '0.2', 'store', '#04616a', 1, '2020-01-21 08:30:17', 3),
+	(14, 1, 2, 'Backup', 'FILHO', '/Admin/backup/', '0.2', 'dns', '#543499', 1, '2020-01-21 08:34:39', 99),
+	(15, 1, 12, 'Fluxo de Caixa', 'FLUXO', '/Caixa/admin_listar/', '0.2', 'timeline', '#543499', 1, '2020-05-08 10:19:15', 3),
+	(16, 1, 0, 'CAIXA>VISUALIZAR', 'FLUXO', '/Caixa/visualizar/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 08:37:10', 100),
+	(17, 1, 0, 'CAIXA>INCLUIR', 'FLUXO', '/Caixa/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 08:38:02', 100),
+	(18, 1, 0, 'CAIXA>ESTORNA', 'FLUXO', '/Caixa/estorna/', '0.2', '3d_rotation', NULL, 1, '2020-01-21 08:39:12', 100),
+	(19, 1, 0, 'CAIXA>ALTERAR', 'FLUXO', '/Caixa/alterar/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 08:39:57', 100),
+	(20, 1, 0, 'CAIXA>EXCLUIR', 'FLUXO', '/Caixa/alterar/', '0.2', 'NOT', '#543499', 1, '2020-01-21 08:40:35', 100),
+	(21, 1, 2, 'Cargo', 'FLUXO', '/Cargo/admin_listar/', '0.2', 'attach_money', NULL, 1, '2020-01-21 08:42:01', 99),
+	(22, 1, 0, 'CARGO>INCLUIR', 'FLUXO', '/Cargo/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 08:42:49', 100),
+	(23, 1, 0, 'CARGO>ALTERAR', 'FLUXO', '/Cargo/alterar/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 08:43:43', 100),
+	(24, 1, 0, 'CARGO>EXCLUIR', 'FLUXO', '/Cargo/excluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 08:44:09', 100),
+	(25, 1, 190, 'Chamado', 'FILHO', '/Chamado/admin_listar/', '0.2', 'atm', '#543499', 1, '2020-01-21 08:48:27', 99),
+	(26, 1, 0, 'CHAMADO>INCLUIR', 'FLUXO', '/Chamado/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 08:49:01', 100),
+	(27, 1, 0, 'CHAMADO>ALTERAR', 'FLUXO', '/Chamado/alterar/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 08:49:57', 100),
+	(28, 1, 0, 'CHAMADO>EXCLUIR', 'FLUXO', '/Chamado/excluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 08:50:46', 100),
+	(29, 1, 0, 'CHAMADO>VISUALIZAR', 'FLUXO', '/Chamado/visualizar/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 08:51:34', 100),
+	(30, 1, 0, 'CHAMADO_GRUPO', 'FLUXO', '/ChamadoGrupo/admin_listar/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 09:00:01', 100),
+	(31, 1, 0, 'CHAMADO_GRUPO>INCLUIR', 'FLUXO', '/ChamadoGrupo/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 09:01:16', 100),
+	(32, 1, 0, 'CHAMADO_GRUPO>ALTERAR', 'FLUXO', '/ChamadoGrupo/alterar/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 09:01:40', 100),
+	(33, 1, 0, 'CHAMADO_GRUPO>EXCLUIR', 'FLUXO', '/ChamadoGrupo/excluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 09:02:08', 100),
+	(34, 1, 13, 'Composição', 'FILHO', '/Composicao/admin_listar/', '0.2', 'center_focus_strong', '#543499', 1, '2020-01-21 10:03:05', 99),
+	(35, 1, 0, 'COMPOSICAO>INCLUIR', 'FLUXO', '/Composicao/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 10:03:49', 100),
+	(36, 1, 0, 'COMPOSICAO>ALTERAR', 'FLUXO', '/Composicao/alterar/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 10:17:43', 100),
+	(37, 1, 0, 'COMPOSICAO>EXCLUIR', 'FLUXO', '/Composicao/excluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 10:18:18', 100),
+	(38, 1, 12, 'Conta/Caixa', 'FILHO', '/ContaBancaria/admin_listar/', '0.2', 'account_balance_wallet', '#543499', 1, '2020-01-21 14:38:36', 99),
+	(40, 1, 0, 'CONTA_BANCARIA>ALTERAR', 'FLUXO', '/ContaBancaria/alterar/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 14:45:02', 100),
+	(41, 1, 0, 'CONTA_BANCARIA>EXCLUIR', 'FLUXO', '/ContaBancaria/excluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 14:44:08', 100),
+	(42, 1, 0, 'CONTA_BANCARIA>INCLUIR', 'FLUXO', '/ContaBancaria/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 14:46:35', 100),
+	(43, 1, 12, 'Receita', 'FILHO', '/Contas/receita_listar/', '0.2', 'get_app', '#543499', 1, '2020-01-21 15:01:58', 99),
+	(44, 1, 12, 'Despesa', 'FILHO', '/Contas/despesa_listar/', '0.2', 'publish', '#543499', 1, '2020-01-21 15:05:14', 99),
+	(45, 1, 0, 'CONTAS>FORM_RECEBER', 'FLUXO', '/Contas/form_receber/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 15:12:08', 100),
+	(46, 1, 0, 'CONTAS>VISUALIZAR', 'FLUXO', '/Contas/visualizar/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 15:13:48', 100),
+	(47, 1, 0, 'CONTAS>RECEBER', 'FLUXO', '/Contas/receita_receber/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 15:15:02', 100),
+	(48, 1, 0, 'CONTAS>INCLUIR', 'FLUXO', '/Contas/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 15:17:04', 100),
+	(49, 1, 0, 'CONTAS>ALTERAR', 'FLUXO', '/Contas/alterar/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 15:19:05', 100),
+	(50, 1, 0, 'CONTAS>EXCLUIR', 'FLUXO', '/Contas/excluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 15:20:07', 100),
+	(51, 1, 0, 'CONTATO>ADMIN_LISTAR', 'FLUXO', '/Contato/admin_listar/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 15:25:46', 100),
+	(52, 1, 0, 'CONTATO>INCLUIR', 'FLUXO', '/Contato/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 15:26:55', 100),
+	(53, 1, 0, 'CONTATO>ALTERAR', 'FLUXO', '/Contato/alterar/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 15:27:45', 100),
+	(54, 1, 0, 'CONTATO>EXCLUIR', 'FLUXO', '/Contato/excluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 15:28:36', 100),
+	(55, 1, 2, 'Contrato', 'FILHO', '/Contrato/admin_listar/', '0.2', 'view_headline', '#543499', 1, '2020-01-21 15:33:36', 99),
+	(56, 1, 0, 'CONTRATO>INCLUIR', 'FLUXO', '/Contrato/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 15:39:38', 100),
+	(57, 1, 0, 'CONTRATO>ALTERAR', 'FLUXO', '/Contrato/alterar/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 15:43:16', 100),
+	(58, 1, 0, 'CONTRATO>EXCLUIR', 'FLUXO', '/Contrato/excluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 15:45:26', 100),
+	(59, 1, 2, 'Criador', 'FILHO', '/Criador/criar_form/', '0.2', 'polymer', '#543499', 1, '2020-01-21 13:08:46', 99),
+	(60, 1, 0, 'CRIADOR>SALVAR_FORM', 'FLUXO', '/Criador/salvar_form/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 13:09:35', 100),
+	(61, 1, 0, 'ECLESIASTICO->ADMIN_LISTAR', 'FLUXO', '/Eclesiastico/admin_listar/', '0.2', 'NOT', '#04616a', 1, '2020-01-25 14:24:53', 100),
+	(62, 1, 0, 'ECLESIASTICO>INCLUIR', 'FLUXO', '/Eclesiastico/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 13:28:14', 100),
+	(63, 1, 0, 'ECLESIASTICO>ALTERAR', 'FLUXO', '/Eclesiastico/alterar/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 13:28:42', 100),
+	(64, 1, 0, 'ECLESIASTICO>EXCLUIR', 'FLUXO', '/Eclesiastico/excluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 13:29:11', 100),
+	(65, 1, 0, 'ENDERECO>ADMIN_LISTAR', 'FLUXO', '/Endereco/admin_listar/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 13:30:18', 100),
+	(66, 1, 0, 'ENDERECO>INCLUIR', 'FLUXO', '/Endereco/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 13:31:02', 100),
+	(67, 1, 0, 'ENDERECO>ALTERAR', 'FLUXO', '/Endereco/alterar/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 13:31:22', 100),
+	(68, 1, 0, 'ENDERECO>EXCLUIR', 'FLUXO', '/Endereco/excluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 13:31:47', 100),
+	(69, 1, 2, 'Filial', 'FILHO', '/Filial/admin_listar/', '0.2', 'home_work', '#543499', 1, '2020-01-21 13:34:08', 99),
+	(70, 1, 0, 'FILIAL>INCLUIR', 'FLUXO', '/Filial/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 13:35:14', 100),
+	(71, 1, 0, 'FILIAL>ALTERAR', 'FLUXO', '/Filial/alterar/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 13:35:43', 100),
+	(72, 1, 0, 'FILIAL>EXCLUIR', 'FLUXO', '/Filial/excluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 13:36:09', 100),
+	(73, 1, 0, 'ESCOLARIDADE>ADMIN_LISTAR', 'FLUXO', '/Escolaridade/admin_listar/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 13:41:42', 100),
+	(74, 1, 0, 'ESCOLARIDADE>INCLUIR', 'FLUXO', '/Escolaridade/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 13:42:10', 100),
+	(75, 1, 0, 'ESCOLARIDADE>ALTERAR', 'FLUXO', '/Escolaridade/alterar/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 13:42:34', 100),
+	(76, 1, 0, 'ESCOLARIDADE>EXCLUIR', 'FLUXO', '/Escolaridade/excluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 13:42:58', 100),
+	(77, 1, 7, 'Grupo de Acessos', 'FILHO', '/GrupoAcesso/admin_listar/', '0.2', 'account_tree', '#543499', 1, '2020-01-21 13:46:08', 99),
+	(78, 1, 0, 'GRUPO_ACESSO>INCLUIR', 'FLUXO', '/GrupoAcesso/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 13:46:53', 100),
+	(79, 1, 0, 'GRUPO_ACESSO>ALTERAR', 'FLUXO', '/GrupoAcesso/alterar/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 13:47:19', 100),
+	(80, 1, 0, 'GRUPO_ACESSO>EXCLUIR', 'FLUXO', '/GrupoAcesso/excluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 13:47:41', 100),
+	(81, 1, 7, 'Grupo', 'FILHO', '/Grupo/admin_listar/', '0.2', 'view_module', '#543499', 1, '2020-01-21 13:50:08', 99),
+	(82, 1, 0, 'GRUPO>INCLUIR', 'FLUXO', '/Grupo/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 13:50:33', 100),
+	(83, 1, 0, 'GRUPO>ALTERAR', 'FLUXO', '/Grupo/alterar/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 13:50:57', 100),
+	(84, 1, 0, 'GRUPO>EXCLUIR', 'FLUXO', '/Grupo/excluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 13:51:20', 100),
+	(85, 1, 0, 'Histórico Cliente', 'FLUXO', '/HistóricoCliente/admin_listar/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 19:24:44', 100),
+	(86, 1, 0, 'HISTORICO_CLIENTE>INCLUIR', 'FLUXO', '/HistóricoCliente/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 19:26:41', 100),
+	(87, 1, 0, 'HISTORICO_CLIENTE>ALTERAR', 'FLUXO', '/HistóricoCliente/alterar/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 19:28:01', 100),
+	(88, 1, 0, 'HISTORICO_CLIENTE>EXCLUIR', 'FLUXO', '/HistóricoCliente/excluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 19:29:18', 100),
+	(89, 1, 0, 'ITENS_ACESSO>ADMIN_LISTAR', 'FLUXO', '/ItensAcessos/admin_listar/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 19:32:25', 100),
+	(90, 1, 0, 'ITENS_ACESSOS>INCLUIR', 'FLUXO', '/ItensAcessos/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 19:34:09', 100),
+	(91, 1, 0, 'ITENS_ACESSOS>ALTERAR', 'FLUXO', '/ItensAcessos/alterar', '0.2', 'NOT', '#04616a', 1, '2020-01-21 19:35:05', 100),
+	(92, 1, 0, 'ITENS_ACESSOS>EXCLUIR', 'FLUXO', '/ItensAcessos/excluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 19:35:56', 100),
+	(93, 1, 0, 'ITENS>ADMIN_LISTAR', 'FLUXO', '/Itens/admin_listar/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 19:39:29', 100),
+	(94, 1, 0, 'ITENS>DESPESA_INCLUIR', 'FLUXO', '/Itens/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 19:40:27', 100),
+	(95, 1, 0, 'ITENS>DESPESA_EXCLUIR', 'FLUXO', '/Itens/excluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 19:41:57', 100),
+	(96, 1, 0, 'ITENS>INCLUIR', 'FLUXO', '/Itens/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 19:43:09', 100),
+	(97, 1, 0, 'ITENS>ALTERAR', 'FLUXO', '/Itens/alterar/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 19:44:15', 100),
+	(98, 1, 0, 'ITENS>EXCLUIR', 'FLUXO', '/Itens/excluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 19:45:23', 100),
+	(99, 1, 0, 'ITENS>INCLUIR_PDV', 'FLUXO', '/Itens/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 19:46:20', 100),
+	(100, 1, 0, 'ITENS>EXCLUIR_PDV', 'FLUXO', '/Itens/excluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 19:47:26', 100),
+	(101, 1, 2, 'Logs', 'FILHO', '/Logs/admin_listar/', '0.2', 'receipt', '#543499', 1, '2020-01-21 19:55:19', 99),
+	(102, 1, 0, 'LOGS>VISUALIZAR', 'FLUXO', '/Logs/visualizar/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 19:57:26', 100),
+	(103, 1, 13, 'Marca', 'FILHO', '/Marca/admin_listar/', '0.2', 'format_list_bulleted', NULL, 1, '2020-01-21 20:00:25', 99),
+	(104, 1, 0, 'MARCA>INCLUIR', 'FLUXO', '/Marca/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 20:03:25', 100),
+	(105, 1, 0, 'MARCA>ALTERAR', 'FLUXO', '/Marca/alterar/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 20:05:25', 100),
+	(106, 1, 0, 'MARCA>EXCLUIR', 'FLUXO', '/Marca/excluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 20:06:23', 100),
+	(107, 1, 13, 'Modelo', 'FILHO', '/Modelo/admin_listar/', '0.2', 'loyalty', '#543499', 1, '2020-01-21 20:11:03', 99),
+	(108, 1, 0, 'MODELO>INCLUIR', 'FLUXO', '/Modelo/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 20:14:06', 100),
+	(109, 1, 0, 'MODELO>ALTERAR', 'FLUXO', '/Modelo/alterar/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 20:15:28', 100),
+	(110, 1, 0, 'MODELO>EXCLUIR', 'FLUXO', '/Modelo/excluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 20:16:13', 100),
+	(111, 1, 111, 'Pessoa', 'PAI', '/Pessoa/admin_listar/', '0.2', 'group', '#04616a', 1, '2020-01-21 20:37:50', 2),
+	(112, 1, 0, 'PESSOA>VISUALIZAR', 'FLUXO', '/Pessoa/visualizar/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 20:40:31', 100),
+	(113, 1, 0, 'PESSOA>INCLUIR', 'FLUXO', '/Pessoa/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 20:41:29', 100),
+	(114, 1, 0, 'PESSOA>ALTERAR', 'FLUXO', '/Pessoa/alterar/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 20:42:25', 100),
+	(115, 1, 0, 'PESSOA>EXCLUIR', 'FLUXO', '/Pessoa/excluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 20:43:24', 100),
+	(116, 1, 0, 'Restaurante', 'PAI', '/Menu/Restaurante/', '0.2', 'storefront', '#04616a', 1, '2020-01-21 20:48:04', 99),
+	(117, 1, 116, 'Mesa', 'FILHO', '/Mesa/admin_listar/', '0.2', 'table_chart', '#543499', 1, '2020-01-21 20:49:21', 99),
+	(118, 1, 0, 'MESA>INCLUIR', 'FLUXO', '/Mesa/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 20:50:30', 100),
+	(119, 1, 0, 'MESA>ALTERAR', 'FLUXO', '/Mesa/alterar/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 20:52:08', 100),
+	(120, 1, 0, 'MESA>EXCLUIR', 'FLUXO', '/Mesa/excluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 20:53:17', 100),
+	(121, 1, 0, 'MESA>VISUALIZAR', 'FLUXO', '/Mesa/visualizar/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 20:55:46', 100),
+	(122, 1, 0, 'MESA>PEDIDO_MESA', 'FLUXO', '/Mesa/pedido_mesa/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 20:56:31', 100),
+	(123, 1, 0, 'MESA>PEDIDO_MESA_COMPOSICAO', 'FLUXO', '/Mesa/pedido_mesa/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 20:57:37', 100),
+	(124, 1, 116, 'Composição do Pedido', 'FILHO', '/PedidoComposicao/admin_listar/', '0.2', 'playlist_add_check', '#543499', 1, '2020-01-21 21:05:24', 99),
+	(125, 1, 0, 'PEDIDO_COMPOSICAO>INCLUIR', 'FLUXO', '/PedidoComposicao/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 21:08:14', 100),
+	(126, 1, 0, 'PEDIDO_COMPOSICAO>ALTERAR', 'FLUXO', '/PedidoComposicao/alterar/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 21:09:30', 100),
+	(127, 1, 0, 'PEDIDO_COMPOSICAO>EXCLUIR', 'FLUXO', '/PedidoComposicao/excluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 21:10:28', 100),
+	(128, 1, 116, 'Pedido', 'FILHO', '/Pedido/admin_listar/', '0.2', 'airport_shuttle', '#543499', 1, '2020-01-21 21:12:21', 99),
+	(129, 1, 0, 'PEDIDO>INCLUIR', 'FLUXO', '/Pedido/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 21:13:34', 100),
+	(130, 1, 0, 'PEDIDO>ALTERAR', 'FLUXO', '/Pedido/alterar/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 21:14:19', 100),
+	(131, 1, 0, 'PEDIDO>EXCLUIR', 'FLUXO', '/Pedido/excluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 21:15:01', 100),
+	(137, 1, 0, 'RH', 'PAI', '/Menu/RH/', '0.2', 'group_add', '#04616a', 99, '2020-01-21 21:25:56', 99),
+	(138, 1, 137, 'Ponto', 'FILHO', '/Ponto/admin_listar/', '0.2', 'fingerprint', '#543499', 1, '2020-01-21 21:27:52', 99),
+	(139, 1, 0, 'PONTO>INCLUIR', 'FLUXO', '/Ponto/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 21:29:18', 100),
+	(140, 1, 0, 'PONTO>EXCLUIR', 'FLUXO', '/Ponto/excluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 21:30:19', 100),
+	(141, 1, 0, 'PONTO>ALTERAR', 'FLUXO', '/Ponto/alterar/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 21:31:11', 100),
+	(142, 1, 13, 'Produto', 'FILHO', '/Produto/admin_listar/', '0.2', 'shopping_basket', '#543499', 1, '2020-01-21 21:33:31', 99),
+	(143, 1, 0, 'PRODUTO>INCLUIR', 'FLUXO', '/Produto/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-21 21:35:37', 100),
+	(144, 1, 0, 'PRODUTO>ALTERAR', 'FLUXO', '/Produto/alterar/', '0.2', 'NOT', '#04616a', 1, '2020-01-22 15:25:44', 100),
+	(145, 1, 0, 'PRODUTO>EXCLUIR', 'FLUXO', '/Produto/excluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-22 15:27:23', 100),
+	(146, 1, 13, 'Promoção', 'FILHO', '/Promocao/admin_listar/', '0.2', 'new_releases', '#543499', 1, '2020-01-22 15:33:41', 99),
+	(147, 1, 0, 'PROMOCAO>INCLUIR', 'FLUXO', '/Promocao/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-22 15:34:38', 100),
+	(148, 1, 0, 'PROMOCAO>ALTERAR', 'FLUXO', '/Promocao/alterar/', '0.2', 'NOT', '#04616a', 1, '2020-01-22 15:37:30', 100),
+	(149, 1, 0, 'PROMOCAO>EXCLUIR', 'FLUXO', '/Promocao/excluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-22 15:41:41', 100),
+	(150, 1, 150, 'Relatório', 'PAI', '/Relatorio/admin_listar/', '0.2', 'pie_chart', '#04616a', 1, '2020-01-22 15:44:57', 99),
+	(151, 1, 0, 'RELATORIO>GERAR', 'FLUXO', '/Relatorio/gerar/', '0.2', 'NOT', '#04616a', 1, '2020-01-22 15:46:35', 100),
+	(152, 1, 0, 'RELATORIO>INCLUIR', 'FLUXO', '/Relatorio/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-22 15:47:36', 100),
+	(153, 1, 0, 'RELATORIO>ALTERAR', 'FLUXO', '/Relatorio/alterar/', '0.2', 'NOT', '#04616a', 1, '2020-01-22 15:48:21', 100),
+	(154, 1, 0, 'RELATORIO>EXCLUIR', 'FLUXO', '/Relatorio/excluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-22 15:49:23', 100),
+	(155, 1, 137, 'Renda', 'FILHO', '/Renda/admin_listar/', '0.2', 'monetization_on', '#543499', 1, '2020-01-22 15:50:15', 99),
+	(156, 1, 0, 'RENDA>INCLUIR', 'FLUXO', '/Renda/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-22 15:51:15', 100),
+	(157, 1, 0, 'RENDA>ALTERAR', 'FLUXO', '/Renda/alterar/', '0.2', 'NOT', '#04616a', 1, '2020-01-22 15:52:04', 100),
+	(158, 1, 0, 'RENDA>EXCLUIR', 'FLUXO', '/Renda/excluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-22 15:52:55', 100),
+	(159, 1, 12, 'Tipo de Documento', 'FILHO', '/TipoDocumento/admin_listar/', '0.2', 'article', '#543499', 1, '2020-01-22 15:57:26', 99),
+	(160, 1, 0, 'TIPO_DE_DOCUMENTO>INCLUIR', 'FLUXO', '/TipoDocumento/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-22 16:00:20', 100),
+	(161, 1, 0, 'TIPO_DE_DOCUMENTO>ALTERAR', 'FLUXO', '/TipoDocumento/alterar/', '0.2', 'NOT', '#04616a', 1, '2020-01-22 16:01:24', 100),
+	(162, 1, 0, 'TIPO_DE_DOCUMENTO>EXCLUIR', 'FLUXO', '/TipoDocumento/excluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-22 16:02:17', 100),
+	(163, 1, 163, 'Inicio', 'PAI', '/Admin/Index/', '0.2', 'home', '#04616a', 1, '2020-01-22 13:42:07', 1),
+	(164, 1, 12, 'Forma de Pagamento', 'FILHO', '/TipoPagamento/admin_listar/', '0.2', 'payment', '#543499', 1, '2020-01-22 20:31:55', 100),
+	(165, 1, 0, 'TIPO_DE_PAGAMENTO>INCLUIR', 'FLUXO', '/TipoPagamento/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-22 20:33:25', 100),
+	(166, 1, 0, 'TIPO_DE_PAGAMENTO>ALTERAR', 'FLUXO', '/TipoPagamento/alterar/', '0.2', 'NOT', '#04616a', 1, '2020-01-22 20:34:24', 100),
+	(167, 1, 0, 'TIPO_DE_PAGAMENTO>EXCLUIR', 'FLUXO', '/TipoPagamento/excluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-22 20:37:13', 100),
+	(168, 1, 2, 'Status', 'FILHO', '/Status/admin_listar/', '0.2', 'loyalty', '#543499', 1, '2020-01-22 20:39:24', 99),
+	(169, 1, 0, 'STATUS>INCLUIR', 'FLUXO', '/Status/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-22 20:40:58', 100),
+	(170, 1, 0, 'STATUS>ALTERAR', 'FLUXO', '/Status/alterar/', '0.2', 'NOT', '#04616a', 1, '2020-01-22 20:42:08', 100),
+	(171, 1, 0, 'STATUS>EXCLUIR', 'FLUXO', '/Status/excluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-22 20:43:04', 100),
+	(172, 1, 190, 'Tutorial', 'FILHO', '/Tutorial/admin_listar/', '0.2', 'important_devices', '#543499', 1, '2020-01-22 20:45:00', 99),
+	(173, 1, 0, 'TUTORIAL>VISUALIZAR', 'FLUXO', '/Tutorial/visualizar/', '0.2', 'NOT', '#04616a', 1, '2020-01-22 20:46:16', 100),
+	(174, 1, 0, 'TUTORIAL>INCLUIR', 'FLUXO', '/Tutorial/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-22 20:48:01', 100),
+	(175, 1, 0, 'TUTORIAL>ALTERAR', 'FLUXO', '/Tutorial/alterar/', '0.2', 'NOT', '#04616a', 1, '2020-01-22 20:49:04', 100),
+	(176, 1, 0, 'TUTORIAL>EXCLUIR', 'FLUXO', '/Tutorial/excluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-22 20:50:16', 100),
+	(177, 1, 0, 'UPLOAD>ADMIN_LISTAR', 'FLUXO', '/Upload/admin_listar/', '0.2', 'NOT', '#04616a', 1, '2020-01-22 20:55:15', 100),
+	(178, 1, 0, 'UPLOAD>INCLUIR', 'FLUXO', '/Upload/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-22 21:01:48', 0),
+	(179, 1, 0, 'UPLOAD>INDEX_ACTION', 'FLUXO', '/Index/', '0.2', 'NOT', '#04616a', 1, '2020-01-22 21:08:25', 100),
+	(180, 1, 0, 'UPLOAD>GALERIA', 'FLUXO', '/Noticia/listar/', '0.2', 'NOT', '#04616a', 1, '2020-01-22 21:17:50', 100),
+	(181, 1, 7, 'Usuários', 'FILHO', '/Usuario/admin_listar/', '0.2', 'people', '#543499', 1, '2020-01-22 21:36:08', 99),
+	(182, 1, 0, 'USUARIO>INCLUIR', 'FLUXO', '/Usuario/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-22 21:37:57', 100),
+	(183, 1, 0, 'USUARIO>ALTERAR', 'FLUXO', '/Usuario/alterar/', '0.2', 'NOT', '#04616a', 1, '2020-01-22 21:38:52', 100),
+	(184, 1, 0, 'USUARIO>EXCLUIR', 'FLUXO', '/Usuario/excluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-22 21:40:42', 100),
+	(185, 1, 0, 'VENDA>ORCAMENTO_LISTAR', 'FLUXO', '/Venda/orcamento_listar/', '0.2', 'NOT', '#04616a', 1, '2020-01-22 21:46:18', 100),
+	(186, 1, 0, 'VENDA>VISUALIZAR', 'FLUXO', '/Venda/visualizar/', '0.2', 'NOT', '#04616a', 1, '2020-01-22 21:47:49', 100),
+	(187, 1, 0, 'VENDA>INCLUIR', 'FLUXO', '/Venda/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-22 21:48:54', 100),
+	(188, 1, 0, 'VENDA>ALTERAR', 'FLUXO', '/Venda/alterar/', '0.2', 'NOT', '#04616a', 1, '2020-01-22 21:50:33', 100),
+	(189, 1, 0, 'VENDA>EXCLUIR', 'FLUXO', '/Venda/excluir/', '0.2', 'NOT', '#04616a', 1, '2020-01-22 21:52:32', 100),
+	(190, 1, 0, 'Suporte', 'PAI', '/MENU/SUPORTE/', '0.2', 'contact_support', '#04616a', 1, '2020-01-24 13:30:58', 99),
+	(191, 1, 2, 'Configuração', 'FILHO', '/Configuracao/admin_listar/', '0.1', 'settings_application', '#543499', 1, '2020-02-08 09:06:56', 0),
+	(192, 1, 0, 'CONFIGURACAO>EXCLUIR', 'FLUXO', '/Configuracao/excluir/', '0.1', 'timeline', '#04616a', 1, '2020-02-08 09:45:49', 0),
+	(193, 1, 7, 'Grupo de Filiais', 'FILHO', '/GrupoFilial/admin_listar/', '0.2', 'group', '#543499', 1, '2020-02-12 23:26:05', 0),
+	(194, 1, 7, 'Vincular Filial/Usuário', 'FILHO', '/VinculaFilial/admin_listar/', '0.2', 'insert_link', '#543499', 1, '2020-02-12 23:21:58', 0),
+	(195, 1, 0, 'VINCULA_FILIAL>INCLUIR', 'FLUXO', '/VinculaFilial/incluir/', '0.2', 'key', '#04616a', 1, '2020-02-11 17:54:55', 0),
+	(198, 1, 12, 'Plano de Contas', 'FILHO', '/PlanoContas/admin_listar/', '0.2', 'list_alt', '#543499', 1, '2020-02-12 14:01:21', 0),
+	(199, 1, 0, 'PLANO_CONTAS>INCLUIR', 'FLUXO', '/PlanoContas/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-02-12 14:02:02', 0),
+	(200, 1, 0, 'PLANO_CONTAS>ALTERAR', 'FLUXO', '/PlanoContas/alterar/', '0.2', 'NOT', '#04616a', 1, '2020-02-12 16:54:01', 0),
+	(201, 1, 0, 'PLANO_CONTAS>EXCLUIR', 'FLUXO', '/PlanoContas/excluir/', '0.2', 'NOT', '#04616a', 1, '2020-02-12 16:56:02', 0),
+	(202, 2, 150, 'Análise de Produto', 'FILHO', '/Pareto/admin_listar', '1', 'chart', '#543499', 1, '2020-02-20 13:37:12', 0),
+	(203, 1, 12, 'Controle de Cheques', 'FILHO', '/Cheque/admin_listar/', '0.2', 'receipt', '#543499', 1, '2020-02-22 17:16:32', 0),
+	(204, 1, 0, 'CHEQUE>INCLUIR', 'FLUXO', '/Cheque/incluir/', '0.2', 'not', '#04616a', 1, '2020-02-22 17:17:40', 0),
+	(205, 1, 0, 'CHEQUE>ALTERAR', 'FLUXO', '/Cheque/alterar/', '0.2', 'not', '#04616a', 1, '2020-02-22 17:18:33', 0),
+	(206, 1, 0, 'CHEQUE>EXCLUIR', 'FLUXO', '/Cheque/excluir/', '0.2', 'not', '#04616a', 1, '2020-02-22 17:19:19', 0),
+	(207, 1, 0, 'CHEQUE>VISUALIZAR', 'FLUXO', '/Cheque/visualizar/', '0.2', 'not', '#04616a', 1, '2020-02-22 17:20:38', 0),
+	(208, 1, 0, 'EBD', 'PAI', '/MENU/ebd/', '0.2', 'menu_book', '#04616a', 1, '2020-02-26 22:22:56', 5),
+	(209, 1, 208, 'Trimestre', 'FILHO', '/Trimestre/admin_listar/', '0.2', 'account_tree', '#543499', 1, '2020-02-26 22:28:10', 0),
+	(210, 1, 208, 'Classe', 'FILHO', '/Classe/admin_listar/', '0.2', 'playlist_add', '#543499', 1, '2020-02-27 16:15:09', 0),
+	(211, 1, 0, 'TRIMESTRE>INCLUIR', 'FLUXO', '/Trimestre/incluir/', '0.2', 'not', '#04616a', 1, '2020-02-26 22:44:36', 0),
+	(212, 1, 0, 'TRIMESTRE>ALTERAR', 'FLUXO', '/Trimestre/alterar/', '0.2', 'not', '#04616a', 1, '2020-02-26 22:44:03', 0),
+	(213, 1, 0, 'TRIMESTRE>EXCLUIR', 'FLUXO', '/Trimestre/excluir/', '0.2', 'not', '#04616a', 1, '2020-02-26 23:16:36', 0),
+	(214, 1, 0, 'ITENSTRIMESTRE>INCLUIR', 'FLUXO', '/ItenTrimestre/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-02-27 13:23:40', 0),
+	(215, 1, 0, 'CLASSE>INCLUIR', 'FLUXO', '/Classe/incluir/', '0.2', 'NOT', '#04616a', 1, '2020-02-27 16:23:42', 0),
+	(216, 1, 0, 'CLASSE>ALTERAR', 'FLUXO', '/Classe/alterar/', '0.2', 'NOT', '#04616a', 1, '2020-02-27 17:54:48', 0),
+	(217, 1, 0, 'CLASSE>EXCLUIR', 'FLUXO', '/Classe/excluir/', '0.2', 'NOT', '#04616a', 1, '2020-02-27 16:25:49', 0),
+	(218, 1, 0, 'FAMILIA>INCLUIR', 'FLUXO', '/Familia/incluir/', '0.1', 'not', '#04616a', 1, '2020-02-29 01:11:48', 0),
+	(219, 1, 0, 'FAMILIA>EDITAR', 'FLUXO', '/Familia/alterar/', '0.1', 'NOT', '#04616a', 1, '2020-02-29 01:13:37', 0),
+	(220, 1, 0, 'FAMILIA>EXCLUIR', 'FLUXO', '/Familia/excluir/', '0.1', 'NOT', '#04616a', 1, '2020-02-29 01:14:13', 0),
+	(221, 1, 0, 'VINCULA_FILIAL>ALTERAR', 'FLUXO', '/VinculaFilial/alterar/', '0.2', 'not', '#04616a', 1, '2020-02-29 01:26:09', 0),
+	(222, 1, 0, 'VINCULA_FILIAL>EXCLUIR', 'FLUXO', '/VinculaFilial/excluir/', '0.2', 'not', '#04616a', 1, '2020-02-29 01:27:07', 0),
+	(223, 1, 12, 'Abrir/Fechar Caixa', 'FILHO', '/CaixaP/admin_listar/', '0.3', 'lock_open', '#543499', 1, '2020-05-08 10:15:18', 0),
+	(224, 1, 0, 'Caixa -> Excluir', 'FLUXO', '/CaixaP/excluir/', '0.3', 'attach_money', NULL, 1, '2020-05-08 10:17:20', 0),
+	(225, 1, 225, 'Agenda', 'PAI', '/Agenda/admin_listar/', '0.5', 'event', '#04616a', 1, '2020-05-12 16:13:07', 2),
+	(226, 1, 0, 'Agenda - > Inserir', 'FLUXO', '/Agenda/incluir/', '0.2', '3d_rotation', NULL, 1, '2020-05-13 20:35:37', 0),
+	(227, 1, 0, 'Agenda - > Alterar', 'FLUXO', '/Agenda/alterar/', '0.2', '3d_rotation', NULL, 1, '2020-05-13 20:27:23', 0),
+	(228, 1, 0, 'Agenda - > Excluir', 'FLUXO', '/Agenda/excluir/', '0.2', '3d_rotation', NULL, 1, '2020-05-13 20:34:41', 0),
+	(229, 1, 0, 'Intranet-> Inserir', 'FLUXO', '/Intranet/incluir/', '0.8', '3d_rotation', NULL, 1, '2020-06-30 23:39:52', 0),
+	(230, 2, 150, 'Análise de Produto', 'FILHO', '/Pareto/form/', '0.3', '3d_rotation', '#543499', 1, '2020-07-03 18:37:24', 0),
+	(231, 2, 150, 'Análise de Produto', 'FILHO', '/Pareto/form/', '', '3d_rotation', '#543499', 1, '2020-07-03 19:01:36', 0),
+	(232, 2, 0, 'Logs->form', 'FLUXO', '/Logs/form/', '0.8', '3d_rotation', NULL, 1, '2020-07-17 11:41:29', 0),
+	(233, 2, 0, 'Contas->admin_listar', 'FLUXO', '/Contas/admin_listar/', '0.8', '3d_rotation', NULL, 1, '2020-07-16 18:39:01', 0),
+	(234, 2, 150, 'Pessoa por Status', 'RELATORIO', '/Relatorio/relatorio_pessoa_status/', '0.1', 'access_alarm', '#543499', 1, '2020-07-25 01:15:40', 0),
+	(235, 1, 150, 'Contas Por Cliente', 'RELATORIO', '/Relatorio/relatorio_conta_cliente/', '0.1', 'people', NULL, 1, NULL, 0),
+	(236, 1, 150, 'Contas Por Colaborador', 'RELATORIO', '/Relatorio/relatorio_conta_colaborador/', '0.1', 'people', NULL, 1, NULL, 0),
+	(237, 1, 150, 'Contas Por Data', 'RELATORIO', '/Relatorio/relatorio_conta_data/', '0.1', 'people', NULL, 1, NULL, 0),
+	(238, 1, 150, 'Contas Por Vencimento', 'RELATORIO', '/Relatorio/relatorio_conta_vencimento/', '0.1', 'people', NULL, 1, NULL, 0),
+	(239, 1, 150, 'Contas Por Status', 'RELATORIO', '/Relatorio/relatorio_conta_status/', '0.1', 'people', NULL, 1, NULL, 0),
+	(240, 1, 150, 'Caixa Por Data', 'RELATORIO', '/Relatorio/relatorio_caixa_data/', '0.1', 'people', NULL, 1, NULL, 0),
+	(241, 1, 150, 'Caixa Por Documento', 'RELATORIO', '/Relatorio/relatorio_caixa_documento/', '0.1', 'people', NULL, 1, NULL, 0),
+	(242, 1, 150, 'Caixa Por Pagamento', 'RELATORIO', '/Relatorio/relatorio_caixa_pagamento/', '0.1', 'people', NULL, 1, NULL, 0),
+	(243, 1, 150, 'Produto Por Status', 'RELATORIO', '/Relatorio/relatorio_produto_status/', '0.1', 'people', NULL, 1, NULL, 0),
+	(244, 1, 150, 'Produto Por Estoque', 'RELATORIO', '/Relatorio/relatorio_produto_estoque/', '0.1', 'people', NULL, 1, NULL, 0),
+	(245, 1, 150, 'Produto Por Valor', 'RELATORIO', '/Relatorio/relatorio_produto_valor/', '0.1', 'people', NULL, 1, NULL, 0),
+	(246, 1, 150, 'Produto Por data Lancamento', 'RELATORIO', '/Relatorio/relatorio_produto_data/', '0.1', 'people', NULL, 1, NULL, 0),
+	(247, 1, 150, 'Produto Por Venda', 'RELATORIO', '/Relatorio/relatorio_produto_venda/', '0.1', 'people', NULL, 1, NULL, 0),
+	(248, 1, 150, 'Venda Por Cliente', 'RELATORIO', '/Relatorio/relatorio_venda_cliente/', '0.1', 'people', NULL, 1, NULL, 0),
+	(249, 1, 150, 'Venda Por Colaborador', 'RELATORIO', '/Relatorio/relatorio_venda_colaborador/', '0.1', 'people', NULL, 1, NULL, 0),
+	(250, 1, 150, 'Venda Por Data', 'RELATORIO', '/Relatorio/relatorio_venda_data/', '0.1', 'people', NULL, 1, NULL, 0),
+	(251, 1, 150, 'Venda por Plano de Conta', 'FILHO', '/Relatorio/relatorio_venda_planoconta/', '0.1', 'people', NULL, 1, NULL, 0),
+	(252, 1, 150, 'Acesso Por Programa', 'FILHO', '/Relatorio/relatorio_acesso_programa/', '0.1', 'people', NULL, 1, NULL, 0),
+	(253, 1, 150, 'Acesso Por Usuario', 'FILHO', '/Relatorio/relatorio_acesso_usuario/', '0.1', 'people', NULL, 1, NULL, 0),
+	(254, 1, 150, 'Acesso Por Grupo', 'FILHO', '/Relatorio/relatorio_acesso_grupo/', '0.1', 'people', NULL, 1, NULL, 0),
+	(255, 2, 2, 'Sql Query', 'FILHO', '/Admin/comando/', '0.5', 'data_usage', NULL, 1, '2020-12-28 10:06:38', 0),
+	(256, 2, 0, 'Relatório EBD', 'RELATORIO', '/Relatorio/relatorio_geral_ebd/', '0.1', 'school', '', 1, '2020-12-31 13:46:43', 0),
+	(257, 2, 0, 'Relatorio Aniverssariantes', 'Relatorio', '/Relatorio/relatorio_pessoa_aniverssariantes/', '0.2', 'list', NULL, 1, '2021-01-03 19:05:56', 0),
+	(258, 2, 0, 'Relatorio de Ausente & Presentes EBD', 'Relatorio', '/Relatorio/relatorio_presentes_ausentes_ebd/', '0.1', '3d_rotation', NULL, 1, '2021-01-03 20:55:23', 0),
+	(259, 2, 259, 'Chat', 'PAI', '/Chat/admin_listar', '0.5', 'chat', '#04616a', 1, '2021-01-18 14:22:04', 2),
+	(260, 2, 260, 'Arquivo', 'PAI', '/Upload/visualizar/', '0.6', 'folder_special', '#04616a', 1, '2021-01-22 13:06:47', 5),
+	(261, 1, 12, 'Cobrança', 'FILHO', '/Cobranca/admin_listar/', '', 'monetization_on', '#543499', 1, '2021-01-24 18:50:05', 5),
+	(262, 4, 0, 'GRUPO_FILIAL_EXCLUIR', 'FLUXO', '/GrupoFilial/excluir/', '', '3d_rotation', NULL, 1, '2021-01-26 00:31:34', 0),
+	(263, 1, 190, 'Intranet', 'FILHO', '/Intranet/admin_listar/', '', 'notifications_active', NULL, 1, '2021-01-29 16:45:25', 0),
+	(264, 2, 264, 'Chamado Interno', 'PAI', '/ChamadoInterno/admin_listar/', '1', 'atm', '#04616a', 1, '2021-03-23 13:25:55', 0);
+
+-- Copiando estrutura para tabela db_develop.Promocao
+CREATE TABLE IF NOT EXISTS Promocao (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  id_filial int(10) NOT NULL,
+  descricao varchar(30) COLLATE latin1_general_ci DEFAULT NULL,
+  data_inicio date DEFAULT NULL,
+  data_fim date DEFAULT NULL,
+  id_status int(3) DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Promocao: ~4 rows (aproximadamente)
+INSERT INTO Promocao (id, id_filial, descricao, data_inicio, data_fim, id_status, data_lancamento) VALUES
+	(1, 1, 'QUEIMA ESTOQUE ', '2020-11-25', '2020-11-20', 1, '2020-11-20 16:30:44'),
+	(2, 1, 'Promoção 2', '2020-11-20', '2020-11-20', 1, '2020-11-20 16:30:33'),
+	(3, 1, 'tetste', '0000-00-00', '0000-00-00', 99, '2020-11-28 23:26:16'),
+	(4, 1, '', '0000-00-00', '0000-00-00', 99, '2020-11-28 23:36:58'),
+	(5, 1, 'Promoção XYZ', '2020-11-28', '2020-11-28', 1, '2020-11-28 23:37:48'),
+	(6, 1, 'QUEIMA ESTOQUE FINAL DE ANO', '2021-01-25', '2021-01-31', 1, '2021-01-25 22:19:58'),
+	(7, 1, 'Teste de promção - Cezar 321', '2021-01-26', '2021-01-27', 99, '2021-01-26 11:35:31');
+
+-- Copiando estrutura para tabela db_develop.Receituario
+CREATE TABLE IF NOT EXISTS Receituario (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  id_cliente int(11) DEFAULT NULL,
+  id_colaborador int(11) DEFAULT NULL,
+  id_status int(11) DEFAULT NULL,
+  texto text,
+  data_receita date DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Receituario: ~0 rows (aproximadamente)
+INSERT INTO Receituario (id, id_cliente, id_colaborador, id_status, texto, data_receita, data_lancamento) VALUES
+	(1, 5, 1, 1, '<p>123</p>\r\n', '2020-11-20', '2020-11-20 16:28:24'),
+	(2, 15, 1, 1, '<p>te</p>\r\n', '2021-01-01', '2021-01-08 10:36:11'),
+	(3, 16, 1, 1, '<p>teste</p>\r\n', '2021-01-19', '2021-01-19 17:47:00'),
+	(4, 23, 22, 1, '<p>123213</p>\r\n', '2021-01-26', '2021-01-26 08:58:46'),
+	(5, 2, 18, 1, '<p>123</p>\r\n', '2021-01-30', '2021-01-30 00:23:43'),
+	(6, 20, 18, 1, '<p>testetetestetetestetetestetetestete</p>\r\n\r\n<p>testetetestetetestetetestete</p>\r\n\r\n<p>testetetestete</p>\r\n\r\n<ol>\r\n	<li>testete</li>\r\n	<li>testete</li>\r\n	<li>testete</li>\r\n	<li>testete</li>\r\n</ol>\r\n', '2021-01-30', '2021-01-30 09:40:30');
+
+-- Copiando estrutura para tabela db_develop.Renda
+CREATE TABLE IF NOT EXISTS Renda (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  id_filial int(10) NOT NULL,
+  id_tabela int(10) NOT NULL,
+  tabela varchar(20) COLLATE latin1_general_ci DEFAULT NULL,
+  valor varchar(14) COLLATE latin1_general_ci DEFAULT NULL,
+  comissao varchar(3) COLLATE latin1_general_ci DEFAULT NULL,
+  id_status int(3) DEFAULT NULL,
+  data_cargo date DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Renda: ~0 rows (aproximadamente)
+
+-- Copiando estrutura para tabela db_develop.Status
+CREATE TABLE IF NOT EXISTS Status (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  id_filial int(10) NOT NULL,
+  id_tabela int(10) NOT NULL,
+  tabela varchar(20) COLLATE latin1_general_ci DEFAULT NULL,
+  cor varchar(10) COLLATE latin1_general_ci DEFAULT NULL,
+  descricao varchar(20) COLLATE latin1_general_ci DEFAULT NULL,
+  id_status int(3) DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Status: ~26 rows (aproximadamente)
+INSERT INTO Status (id, id_filial, id_tabela, tabela, cor, descricao, id_status, data_lancamento) VALUES
+	(1, 1, 0, 'Geral', '#72B5A4', 'Ativo', 1, '2019-09-09 15:27:32'),
+	(2, 1, 0, 'Geral', '#98956C', 'Inativo', 1, '2019-09-10 13:59:53'),
+	(3, 1, 0, 'Venda', '#72B5A4', 'Realizado', 1, '2019-09-15 02:22:14'),
+	(4, 1, 0, 'Venda', '#3CB371', 'Recebido', 1, '2021-01-08 11:51:22'),
+	(7, 1, 0, 'Liberacao', '#595757', 'Bloqueado', 1, '2019-10-01 16:37:13'),
+	(10, 1, 0, 'Caixa', '#72B5A4', 'Aberto', 1, '2020-02-17 10:01:29'),
+	(11, 1, 0, 'Caixa', '#F15E5E', 'Fechado', 1, '2020-02-17 10:01:46'),
+	(12, 1, 0, 'Intranet', '#e2725b', 'Erro', 1, '2020-05-14 14:31:36'),
+	(13, 1, 0, 'Intranet', '#e08b4b', 'Instabilidade', 1, '2020-05-14 14:31:36'),
+	(14, 1, 0, 'Intranet', '#3CB371', 'Regularizado', 1, '2020-05-14 14:31:36'),
+	(99, 1, 0, 'Geral', '#e2725b', 'Excluido', 1, '2021-03-13 17:59:12'),
+	(100, 1, 0, 'Chamado', '#e85156', 'Aguardando Tecnico', 1, '2019-09-19 15:22:21'),
+	(101, 1, 0, 'Prioridade', '#72B5A4', 'Baixa', 1, '2019-09-19 15:22:46'),
+	(102, 1, 0, 'Prioridade', '#E8B835', 'Media', 1, '2019-09-19 15:23:51'),
+	(103, 1, 0, 'Prioridade', '#e85156', 'Alta', 1, '2019-09-19 15:24:25'),
+	(104, 1, 0, 'Chamado', '#3CB371', 'Em Atendimento', 1, '2019-09-19 15:24:58'),
+	(105, 1, 0, 'Chamado', '#7eb723', 'Finalizado', 1, '2019-09-19 23:36:56'),
+	(106, 1, 0, 'Restaurante', '#F15E5E', 'Ocupado', 1, '2019-09-24 01:30:50'),
+	(107, 1, 0, 'Chamado', '#595757', 'Aguardando Reunião', 1, '2019-09-24 14:15:22'),
+	(108, 1, 0, 'Cheque', '#602161', 'A Compensar', 1, '2021-01-26 12:15:35'),
+	(109, 1, 0, 'Cheque', '#72B5A4', 'Depositado', 1, '2020-03-05 23:42:52'),
+	(110, 1, 0, 'Agenda', '#1eb6b1', 'Confirmado', 1, '2020-04-17 21:09:48'),
+	(111, 1, 0, 'Agenda', '#e42d4b', 'Cancelado', 1, '2020-04-17 21:10:13'),
+	(112, 1, 0, 'Agenda', '#b69507', 'Reagendado', 1, '2020-04-17 21:10:35'),
+	(113, 1, 0, 'Agenda', '#602161', 'Encaixe', 1, '2020-04-17 21:11:00'),
+	(114, 1, 0, 'Agenda', '#494949', 'Atendido', 1, '2020-04-17 22:06:13'),
+	(115, 1, 0, 'Pessoa', '#e08b4b', 'Diciplina', 1, '2021-01-03 20:10:18'),
+	(116, 1, 0, 'AgendaTipo', '', 'Novo Atendimento', 1, '2021-01-20 13:24:32'),
+	(117, 1, 0, 'AgendaTipo', '', 'Orçamento', 1, '2021-01-20 13:25:00'),
+	(118, 1, 0, 'AgendaTipo', '', 'Reunião', 1, '2021-01-20 13:25:09'),
+	(119, 1, 0, 'Cobranca', '#e08b4b', 'Cobrança via Telefon', 1, '2021-01-24 18:24:24'),
+	(120, 1, 0, 'Cobranca', '#72B5A4', 'Anotação Serasa', 1, '2021-01-24 18:24:53'),
+	(121, 1, 0, 'Venda', '#e42d4b', 'Pago', 1, '2021-03-13 17:52:06');
+
+-- Copiando estrutura para tabela db_develop.TipoDocumento
+CREATE TABLE IF NOT EXISTS TipoDocumento (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  id_filial int(10) NOT NULL,
+  descricao varchar(30) COLLATE latin1_general_ci DEFAULT NULL,
+  tipo varchar(20) COLLATE latin1_general_ci DEFAULT NULL,
+  id_status int(3) DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.TipoDocumento: ~5 rows (aproximadamente)
+INSERT INTO TipoDocumento (id, id_filial, descricao, tipo, id_status, data_lancamento) VALUES
+	(1, 1, 'Dinheiro', 'Din', 1, '2020-11-20 11:33:23'),
+	(2, 1, 'Boleto', 'Bol', 1, '2020-11-20 11:33:35'),
+	(3, 1, 'Promissoria', 'Promi', 1, '2020-11-20 11:33:57'),
+	(4, 1, 'Cheque', '', 1, '2020-11-20 11:34:03'),
+	(5, 1, 'Cartão Crédito', 'Cart C', 1, '2020-11-20 11:34:17'),
+	(6, 1, 'Cartão Débito', 'Cart D', 1, '2020-11-20 11:34:33'),
+	(7, 1, '1', '1', 99, '2021-01-26 12:16:47');
+
+-- Copiando estrutura para tabela db_develop.TipoPagamento
+CREATE TABLE IF NOT EXISTS TipoPagamento (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  id_filial int(10) NOT NULL,
+  descricao varchar(30) COLLATE latin1_general_ci DEFAULT NULL,
+  entrada tinyint(1) DEFAULT NULL,
+  quantidade int(3) DEFAULT NULL,
+  id_status int(3) DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  juros double(10,10) DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.TipoPagamento: ~11 rows (aproximadamente)
+INSERT INTO TipoPagamento (id, id_filial, descricao, entrada, quantidade, id_status, data_lancamento, juros) VALUES
+	(1, 1, 'A vista', 1, 1, 1, '2021-03-14 15:22:25', 0.0000000000),
+	(2, 1, '1 + 1X', 1, 2, 1, '2021-03-14 15:22:30', 0.0000000000),
+	(3, 1, '1 + 2X', 1, 3, 1, '2021-03-14 15:22:36', 0.0000000000),
+	(4, 1, '1 + 3X', 1, 4, 1, '2021-03-14 15:22:41', 0.0000000000),
+	(5, 1, '1 + 5X', 1, 6, 1, '2021-03-14 15:22:48', 0.0000000000),
+	(6, 1, '1X', 0, 1, 1, '2021-03-14 15:22:52', 0.0000000000),
+	(7, 1, '2X', 0, 2, 1, '2021-03-14 14:55:39', 0.0005333333),
+	(8, 1, '3X', 0, 3, 1, '2021-03-14 15:22:19', 0.0000000000),
+	(9, 1, '4X', 0, 4, 1, '2021-03-14 15:22:15', 0.0000000000),
+	(10, 1, '5X', 0, 5, 1, '2021-03-14 15:22:10', 0.0000000000),
+	(11, 1, '1', 1, 1, 99, '2021-01-26 12:17:05', NULL);
+
+-- Copiando estrutura para tabela db_develop.Trimestre
+CREATE TABLE IF NOT EXISTS Trimestre (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  descricao varchar(50) COLLATE latin1_general_ci DEFAULT NULL,
+  data_inicial datetime DEFAULT NULL,
+  data_final datetime DEFAULT NULL,
+  id_status int(11) DEFAULT NULL,
+  id_filial int(11) DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Trimestre: ~2 rows (aproximadamente)
+INSERT INTO Trimestre (id, descricao, data_inicial, data_final, id_status, id_filial, data_lancamento) VALUES
+	(1, '1-2020', '2020-11-01 00:00:00', '2020-11-30 00:00:00', 1, 1, '2020-11-20 13:52:44'),
+	(2, '2-2020', '2020-12-01 00:00:00', '2020-12-31 00:00:00', 1, 1, '2020-11-20 13:55:10'),
+	(3, '1º Trimestre de 2021', '2021-01-01 00:00:00', '2021-03-31 00:00:00', 1, 1, '2021-01-17 19:22:05');
+
+-- Copiando estrutura para tabela db_develop.Tutorial
+CREATE TABLE IF NOT EXISTS Tutorial (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  id_programa int(11) DEFAULT NULL,
+  observacao varchar(250) COLLATE latin1_general_ci DEFAULT NULL,
+  menu varchar(50) COLLATE latin1_general_ci DEFAULT NULL,
+  id_status varchar(10) COLLATE latin1_general_ci DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Tutorial: ~3 rows (aproximadamente)
+INSERT INTO Tutorial (id, id_programa, observacao, menu, id_status, data_lancamento) VALUES
+	(1, 0, 'Modulo Venda', 'FINANCEIRO->RECEITA', '1', '2020-12-28 11:11:44'),
+	(2, 225, 'Modulo Agenda', 'AGENDA', '1', '2020-12-28 11:10:48'),
+	(3, 111, 'Modulo Pessoa', 'PESSOA', '1', '2020-12-28 11:11:30');
+
+-- Copiando estrutura para tabela db_develop.Upload
+CREATE TABLE IF NOT EXISTS Upload (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  id_tabela int(10) NOT NULL,
+  id_filial int(10) NOT NULL,
+  tabela varchar(20) COLLATE latin1_general_ci DEFAULT NULL,
+  tipo varchar(20) COLLATE latin1_general_ci DEFAULT NULL,
+  src varchar(255) COLLATE latin1_general_ci DEFAULT NULL,
+  id_status int(3) DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  descricao varchar(50) COLLATE latin1_general_ci DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Upload: ~27 rows (aproximadamente)
+INSERT INTO Upload (id, id_tabela, id_filial, tabela, tipo, src, id_status, data_lancamento, descricao) VALUES
+	(1, 1, 1, 'Usuario', 'IMG', '/web-files/sistema/imagens/Admin.jpg', 1, '0000-00-00 00:00:00', 'Login Manoel'),
+	(2, 1, 1, 'Login', 'SM', '/web-files/sistema/imagens/bb.png', 1, '2020-11-19 16:46:15', NULL),
+	(3, 1, 1, 'Login', 'MD', '/web-files/sistema/imagens/bb.png', 1, '2020-11-19 16:46:16', NULL),
+	(4, 1, 1, 'Login', 'BACKGROUND', '/web-files/sistema/imagens/backgrond_login_dark.jpg', 1, '2020-11-19 16:46:17', NULL),
+	(5, 5, 2, 'Pessoa', 'IMG', '/web-files/sistema/imagens/Admin.jpg', 1, '2020-11-20 16:27:55', '123'),
+	(6, 1, 1, 'Usuarios', 'IMG', '/develop/web-files/develop/filial1/c0_sbdevelop_f1_tUsuario_it1_d19122020163750.jpg', 1, '2020-12-19 16:37:50', ''),
+	(7, 2, 1, 'Tutorial', 'IMG', '/develop/web-files/sistema/videos/TUTO - AGENDA.mp4', 1, '2020-12-20 19:18:03', 'Cadastro de Agendamento'),
+	(9, 3, 1, 'Tutorial', 'IMG', '/develop/web-files/sistema/videos/TUTO - PESSOA.mp4', 1, '2020-12-28 11:04:12', 'Cadastro de Pessoa'),
+	(10, 1, 1, 'Tutorial', 'IMG', '	/develop/web-files/sistema/videos/TUTO - VENDA.mp4', 1, '2020-12-28 11:08:33', 'Cadastro de Venda'),
+	(11, 14, 0, 'Chamado', 'IMG', '/web-files/sistema/imagens/bb.png', 1, '2021-01-05 12:23:55', 'teste'),
+	(12, 14, 1, 'Chamado', 'IMG', '/develop/web-files/develop/filial/c0_sbdevelop_f_t_it_d05012021122705.jpg', 1, '2021-01-05 12:27:05', 'teste - 1'),
+	(13, 15, 2, 'Pessoa', 'IMG', '/develop/web-files/develop/filial2/c0_sbdevelop_f2_tPessoa_it15_d05012021123422.jpg', 1, '2021-01-05 12:34:22', '1'),
+	(14, 14, 1, 'Chamado', 'IMG', '/develop/web-files/develop/filial1/c0_sbdevelop_f1_tChamado_it14_d05012021123448.jpg', 1, '2021-01-05 12:34:48', '1'),
+	(15, 1, 2, 'Pessoa', 'IMG', '/develop/web-files/develop/filial2/c0_sbdevelop_f2_tPessoa_it1_d05012021172251.jpg', 1, '2021-01-05 17:22:51', ''),
+	(16, 3, 2, 'Pessoa', 'IMG', '/develop/web-files/develop/filial2/c0_sbdevelop_f2_tPessoa_it3_d07012021172005.jpg', 1, '2021-01-07 17:20:05', ''),
+	(17, 0, 0, '', 'IMG', '/develop/web-files/develop/filial/c0_sbdevelop_f_t_it_d09012021163953.jpg', 1, '2021-01-09 16:39:53', ''),
+	(18, 0, 0, '', 'IMG', '/develop/web-files/develop/filial/c0_sbdevelop_f_t_it_d09012021164104.jpg', 1, '2021-01-09 16:41:04', '1'),
+	(19, 0, 0, '', 'IMG', '/develop/web-files/develop/filial/c0_sbdevelop_f_t_ittabela_d09012021164158.jpg', 1, '2021-01-09 16:41:58', 'teste'),
+	(20, 4, 1, 'Usuario', 'IMG', '/develop/web-files/develop/filial1/c0_sbdevelop_f1_tUsuario_it4_d09012021164400.jpg', 1, '2021-01-09 16:44:00', '1'),
+	(21, 5, 1, 'Usuario', 'IMG', '/develop/web-files/develop/filial1/c0_sbdevelop_f1_tUsuario_it5_d18012021120044.png', 1, '2021-01-18 12:00:44', ''),
+	(22, 1, 1, 'Upload', 'IMG', '/develop/web-files/develop/filial/c0_sbdevelop_f_t_it_d22012021124940.png', 1, '2021-01-22 12:49:40', ''),
+	(23, 1, 1, 'Upload', 'IMG', '/develop/web-files/develop/filial1/c0_sbdevelop_f1_tUpload_it1_d22012021125224.png', 1, '2021-01-22 12:52:24', '100'),
+	(24, 1, 1, 'Upload', 'DOC', '/develop/web-files/develop/filial1/c0_sbdevelop_f1_tUpload_it1_d22012021125511.pdf', 1, '2021-01-22 12:55:11', ''),
+	(25, 5, 2, 'Upload', 'IMG', '/develop/web-files/develop/filial2/c0_sbdevelop_f2_tUpload_it5_d22012021130041jpeg', 1, '2021-01-22 13:00:41', ''),
+	(26, 5, 2, 'Upload', 'IMG', '/develop/web-files/develop/filial2/c0_sbdevelop_f2_tUpload_it5_d22012021131057.png', 1, '2021-01-22 13:10:57', ''),
+	(27, 0, 2, 'Upload', 'IMG', '/develop/web-files/develop/filial2/c0_sbdevelop_f2_tUpload_it0_d22012021131206.png', 1, '2021-01-22 13:12:06', ''),
+	(28, 5, 2, 'Upload', 'IMG', '/develop/web-files/develop/filial2/c0_sbdevelop_f2_tUpload_it5_d22012021131223.png', 1, '2021-01-22 13:12:23', ''),
+	(29, 6, 1, 'Usuario', 'IMG', '/web-files/sistema/imagens/sem_imagem.png', 1, '2021-01-24 13:36:58', 'Perfil Primeiro Acesso'),
+	(30, 0, 0, '', 'IMG', '/develop/web-files/develop/filial/c0_sbdevelop_f_t_it_d25012021215705.jpg', 1, '2021-01-25 21:57:05', 'aasdasdsad'),
+	(31, 0, 0, '', 'IMG', '/develop/web-files/develop/filial/c0_sbdevelop_f_t_it_d25012021215747.jpg', 1, '2021-01-25 21:57:47', '123'),
+	(32, 0, 0, '', 'IMG', '/develop/web-files/develop/filial/c0_sbdevelop_f_t_it_d25012021224807.jpg', 1, '2021-01-25 22:48:07', '123'),
+	(33, 16, 2, 'Pessoa', 'IMG', '/develop/web-files/develop/filial2/c0_sbdevelop_f2_tCliente_it16_d25012021225108.jpg', 1, '2021-01-25 22:51:08', '123'),
+	(34, 23, 4, 'Cliente', 'IMG', '', 1, '2021-01-26 00:41:43', '123'),
+	(35, 23, 4, 'Cliente', 'IMG', '/develop/web-files/develop/filial4/c0_sbdevelop_f4_tCliente_it23_d26012021004204.jpg', 1, '2021-01-26 00:42:04', '123'),
+	(36, 23, 4, 'Cliente', 'IMG', '/develop/web-files/develop/filial4/c0_sbdevelop_f4_tCliente_it23_d26012021004430.jpg', 1, '2021-01-26 00:44:30', 'teste tp'),
+	(37, 7, 1, 'Usuario', 'IMG', '/develop/web-files/develop/filial1/c0_sbdevelop_f1_tUsuario_it7_d26012021103747.png', 1, '2021-01-26 10:37:47', ''),
+	(38, 14, 2, 'Cliente', 'IMG', '/develop/web-files/develop/filial2/c0_sbdevelop_f2_tCliente_it14_d28012021120350.jpg', 1, '2021-01-28 12:03:50', ''),
+	(39, 2, 2, 'Cliente', 'IMG', '/develop/web-files/develop/filial2/c0_sbdevelop_f2_tCliente_it2_d30012021002041.jpg', 1, '2021-01-30 00:20:41', 'paciente'),
+	(40, 21, 2, 'Cliente', 'IMG', '/develop/web-files/develop/filial2/c0_sbdevelop_f2_tCliente_it21_d30012021092911.jpg', 1, '2021-01-30 09:29:11', ''),
+	(41, 23, 2, 'Cliente', 'IMG', '/develop/web-files/develop/filial2/c0_sbdevelop_f2_tCliente_it23_d30012021092923.jpg', 1, '2021-01-30 09:29:23', ''),
+	(42, 22, 2, 'Cliente', 'IMG', '', 1, '2021-01-30 09:29:37', ''),
+	(43, 20, 2, 'Cliente', 'IMG', '/develop/web-files/develop/filial2/c0_sbdevelop_f2_tCliente_it20_d30012021092938.png', 1, '2021-01-30 09:29:38', 'f oto p'),
+	(44, 7, 2, 'Cliente', 'IMG', '/develop/web-files/develop/filial2/c0_sbdevelop_f2_tCliente_it7_d17022021142739.jpg', 1, '2021-02-17 14:27:39', '132'),
+	(45, 33, 2, 'Cliente', 'IMG', '', 1, '2021-02-19 21:35:40', 'teste'),
+	(46, 33, 2, 'Cliente', 'IMG', '', 1, '2021-02-19 21:37:13', ''),
+	(47, 1, 1, 'Upload', 'IMG', '/develop/web-files/develop/filial1/c0_sbdevelop_f1_tUpload_it1_d19022021213902.png', 1, '2021-02-19 21:39:02', ''),
+	(48, 33, 2, 'Cliente', 'IMG', '/develop/web-files/develop/filial2/c0_sbdevelop_f2_tCliente_it33_d19022021213934.png', 1, '2021-02-19 21:39:34', '');
+
+-- Copiando estrutura para tabela db_develop.Usuario
+CREATE TABLE IF NOT EXISTS Usuario (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  id_filial int(10) NOT NULL,
+  id_colaborador int(10) NOT NULL,
+  usuario varchar(32) COLLATE latin1_general_ci DEFAULT NULL,
+  senha varchar(32) COLLATE latin1_general_ci DEFAULT NULL,
+  id_status int(11) DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  inicio_funcionamento time DEFAULT '07:00:00',
+  online datetime DEFAULT NULL,
+  fim_funcionamento time DEFAULT '18:00:00',
+  administrador varchar(3) COLLATE latin1_general_ci DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Usuario: ~2 rows (aproximadamente)
+INSERT INTO Usuario (id, id_filial, id_colaborador, usuario, senha, id_status, data_lancamento, inicio_funcionamento, online, fim_funcionamento, administrador) VALUES
+	(1, 1, 1, 'manoel', '1e2a796539042ca860c3091662aa4346', 1, '2020-05-11 17:10:04', '00:00:00', '2021-01-24 12:11:08', '23:59:00', 'SIM'),
+	(5, 2, 17, 'doutor', '5a07aee174132b812b9c02622f0c6385', 1, '2021-01-09 16:47:15', '00:00:00', '2021-01-22 21:11:18', '23:54:00', 'NAO');
+
+-- Copiando estrutura para tabela db_develop.Venda
+CREATE TABLE IF NOT EXISTS Venda (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  id_filial int(10) NOT NULL,
+  id_tipo_documento int(10) NOT NULL,
+  id_tipo_pagamento int(10) NOT NULL,
+  id_cliente int(10) NOT NULL,
+  id_conta_bancaria int(10) NOT NULL,
+  id_colaborador int(10) NOT NULL,
+  tipo varchar(20) COLLATE latin1_general_ci DEFAULT NULL,
+  id_status int(3) DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  id_fornecedor int(11) DEFAULT NULL,
+  id_plano_contas int(10) DEFAULT NULL,
+  codigo varchar(50) COLLATE latin1_general_ci DEFAULT NULL,
+  valor_entrada varchar(50) COLLATE latin1_general_ci DEFAULT NULL,
+  data_vencimento date DEFAULT NULL,
+  valor_desconto double(10,2) DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.Venda: ~39 rows (aproximadamente)
+INSERT INTO Venda (id, id_filial, id_tipo_documento, id_tipo_pagamento, id_cliente, id_conta_bancaria, id_colaborador, tipo, id_status, data_lancamento, id_fornecedor, id_plano_contas, codigo, valor_entrada, data_vencimento, valor_desconto) VALUES
+	(1, 2, 1, 1, 2, 1, 17, 'Receita', 3, '2021-01-29 23:27:52', 0, 4, '1', '200', '2021-01-29', 0.00),
+	(2, 2, 2, 5, 3, 1, 18, 'Receita', 3, '2021-01-29 23:29:23', 0, 4, '1', '2000', '2021-01-29', 0.00),
+	(3, 2, 4, 10, 4, 1, 17, 'Receita', 3, '2021-01-29 23:30:39', 0, 4, '2', '0', '2020-08-01', 0.00),
+	(4, 2, 1, 2, 0, 1, 17, 'Despesa', 3, '2021-01-29 23:32:35', 18, 5, '2', '500', '2021-01-29', 0.00),
+	(5, 2, 1, 7, 16, 1, 17, 'Receita', 3, '2021-01-29 23:43:32', 0, 4, '1', '0', '2021-01-30', 0.00),
+	(6, 2, 3, 4, 13, 1, 17, 'Receita', 3, '2021-01-29 23:54:53', 0, 4, '4', '200', '2020-12-10', 0.00),
+	(7, 2, 5, 6, 7, 1, 17, 'Receita', 3, '2021-01-30 00:06:14', 0, 1, '1', '0', '2021-01-30', 0.00),
+	(8, 2, 1, 5, 2, 1, 17, 'Receita', 3, '2021-01-30 09:51:31', 0, 1, '14', '200', '2021-01-30', 10.00),
+	(9, 2, 1, 1, 2, 0, 1, 'Receita', 1, '2021-01-30 11:54:01', 0, 1, '10', NULL, NULL, NULL),
+	(10, 0, 0, 0, 0, 1, 1, 'Venda', 1, '2021-01-30 12:13:49', NULL, NULL, NULL, NULL, NULL, NULL),
+	(11, 2, 3, 6, 2, 1, 17, 'Receita', 3, '2021-02-02 23:27:41', 0, 4, '1', '0', '2021-02-03', 0.00),
+	(12, 2, 1, 1, 2, 1, 18, 'Receita', 3, '2021-02-03 11:15:56', 0, 1, '1', '0', '2021-02-10', 0.00),
+	(13, 2, 1, 1, 33, 1, 18, 'Receita', 3, '2021-02-13 11:06:02', 0, 1, '1', '100', '2021-02-13', 0.00),
+	(14, 2, 1, 1, 33, 1, 18, 'Receita', 3, '2021-02-13 11:22:17', 0, 1, '1', '200', '2021-02-13', 0.00),
+	(15, 2, 1, 4, 33, 1, 18, 'Receita', 3, '2021-02-13 11:24:30', 0, 1, '1', '200', '2021-02-13', 0.00),
+	(16, 2, 1, 1, 32, 1, 18, 'Receita', 3, '2021-02-13 11:30:50', 0, 1, '1', '375', '2021-02-13', 0.00),
+	(17, 2, 1, 1, 33, 1, 16, 'Receita', 3, '2021-02-13 11:49:34', 0, 1, '1', '150', '2021-02-13', 0.00),
+	(18, 2, 1, 1, 2, 1, 18, 'Receita', 3, '2021-03-07 01:16:06', 0, 1, '1', '35', '2021-03-13', 0.00),
+	(19, 2, 1, 1, 0, 1, 18, 'Despesa', 3, '2021-03-13 09:32:53', 16, 1, '1', '1000', '2021-03-13', 0.00),
+	(20, 2, 1, 1, 0, 1, 17, 'Despesa', 3, '2021-03-13 09:40:14', 18, 1, '1', '200', '2021-03-13', 0.00),
+	(21, 2, 1, 1, 27, 0, 1, 'Receita', 1, '2021-03-13 12:26:24', 0, 1, '15', NULL, NULL, NULL),
+	(22, 2, 1, 1, 0, 1, 17, 'Despesa', 3, '2021-03-13 17:59:39', 18, 1, '=', '200', '2021-03-13', 0.00),
+	(23, 2, 1, 1, 0, 1, 18, 'Despesa', 3, '2021-03-13 18:03:44', 18, 1, '1', '300', '2021-03-13', 0.00),
+	(24, 2, 1, 1, 0, 1, 17, 'Despesa', 3, '2021-03-14 12:15:03', 17, 1, '1', '100', '2021-03-15', 0.00),
+	(25, 2, 1, 7, 33, 1, 18, 'Receita', 3, '2021-03-14 12:54:52', 0, 1, '0', '0', '2020-11-01', 0.00),
+	(26, 2, 1, 7, 30, 1, 17, 'Receita', 3, '2021-03-14 15:02:33', 0, 1, '1', '0', '2021-03-14', 0.00),
+	(27, 2, 1, 1, 0, 1, 18, 'Despesa', 3, '2021-03-15 18:06:10', 18, 1, '0', '200', '2021-03-15', 0.00),
+	(28, 2, 1, 1, 33, 1, 18, 'Receita', 3, '2021-03-15 18:06:43', 0, 1, '1', '200', '2021-03-15', 0.00),
+	(29, 2, 1, 7, 33, 1, 18, 'Receita', 3, '2021-03-15 18:07:18', 0, 1, '1', '150', '2021-03-15', 0.00),
+	(30, 2, 1, 1, 0, 1, 18, 'Despesa', 3, '2021-03-15 18:10:46', 18, 1, '1', '250', '2021-03-15', 0.00),
+	(31, 2, 1, 1, 33, 1, 18, 'Receita', 3, '2021-03-15 18:13:09', 0, 1, '1', '150', '2021-03-15', 0.00),
+	(32, 2, 1, 1, 33, 1, 18, 'Receita', 3, '2021-03-15 18:19:09', 0, 1, '1', '200', '2021-03-15', 0.00),
+	(33, 2, 1, 1, 33, 1, 18, 'Receita', 3, '2021-03-15 18:20:20', 0, 1, '1', '0', '2021-03-15', 0.00),
+	(34, 2, 1, 1, 33, 1, 18, 'Receita', 3, '2021-03-15 18:21:39', 0, 2, '1', '20', '2021-03-15', 0.00),
+	(35, 2, 1, 1, 0, 1, 18, 'Despesa', 3, '2021-03-15 18:26:09', 18, 1, '1', '205', '2021-03-15', 0.00),
+	(36, 2, 1, 1, 0, 1, 18, 'Despesa', 3, '2021-03-15 18:28:03', 18, 1, '1', '203', '2021-03-15', 0.00),
+	(37, 2, 1, 1, 32, 1, 18, 'Receita', 1, '2021-03-15 18:30:49', 0, 1, '1', '0', '2021-03-19', 0.00),
+	(38, 2, 1, 1, 0, 1, 18, 'Despesa', 3, '2021-03-15 18:31:07', 31, 5, '1', '0100', '2021-03-15', 0.00),
+	(39, 2, 1, 1, 0, 1, 18, 'Despesa', 3, '2021-03-15 18:35:12', 18, 5, '1', '100', '2021-03-15', 0.00),
+	(40, 2, 2, 7, 8, 1, 18, 'Receita', 3, '2021-03-19 09:42:00', 0, 1, '1', '0', '2021-01-01', 0.00),
+	(41, 2, 1, 1, 3, 0, 1, 'Receita', 1, '2021-03-26 20:28:15', 0, 1, '22', NULL, NULL, NULL),
+	(42, 2, 1, 1, 33, 2, 18, 'Receita', 1, '2021-03-26 21:08:04', 0, 1, '877', NULL, NULL, NULL),
+	(43, 2, 1, 7, 33, 2, 17, 'Receita', 1, '2021-03-29 12:19:18', 0, 1, '1', NULL, NULL, NULL);
+
+-- Copiando estrutura para tabela db_develop.VinculaFilial
+CREATE TABLE IF NOT EXISTS VinculaFilial (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  id_grupo int(11) DEFAULT NULL,
+  id_filial int(11) DEFAULT NULL,
+  id_status int(11) DEFAULT NULL,
+  data_lancamento datetime DEFAULT NULL,
+  id_usuario int(11) DEFAULT NULL,
+  PRIMARY KEY (id)
+) 
+
+-- Copiando dados para a tabela db_develop.VinculaFilial: ~4 rows (aproximadamente)
+INSERT INTO VinculaFilial (id, id_grupo, id_filial, id_status, data_lancamento, id_usuario) VALUES
+	(1, 10, 1, 1, '2020-11-20 17:16:54', 1),
+	(2, 10, 2, 1, '2020-11-20 17:17:05', 1),
+	(3, 10, 1, 1, '2020-12-22 02:07:30', 1);
+

@@ -1,0 +1,33 @@
+<?php
+    require_once 'inicio.phtml';
+?>
+
+<div class='content'>
+    <div class='container-fluid'>
+        <div class='row'>                        
+            <?php    foreach ($view_listar_composicao as $listar_composicao): ?>
+            <div class='col-md-2'>
+                <div class='card ' >                                
+                    <div class='card-header col-md-12 'style="background: #F15E5E" >
+                        <h3 class='card-title'><?php echo $listar_composicao["descricao_composicao"] ?></h3>
+                    </div>
+                    
+                        <div class='card-body '>
+                            <div class='row'>
+                                <div class='col-md-2'> 
+                                    <div class='form-group '>
+                                       <img class="img" width="200px" src="<?php echo $listar_composicao["src"] ?>">
+                                    </div> 
+                                </div>
+                            </div>
+                                    <form action="/Mesa/pedido_mesa_composicao/"><button type='submit' name='' class='btn btn-rose col-md-12 ' required=''>Selecionar</button></form>
+                                    
+                             
+                        </div>
+                    
+                </div>
+            </div>       
+            <?php endforeach; ?>
+        </div>
+    </div>
+</div>

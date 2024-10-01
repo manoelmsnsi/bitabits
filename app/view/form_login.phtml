@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport'/>      
+        <link href="/web-files/sistema/css/material-dashboard.css" rel="stylesheet"/>
+        <!--<link href="/web-files/sistema/css/material-dashboard.css?v=2.1.0" rel="stylesheet"/>-->        
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
+        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">-->
+
+
+        <link rel="icon" type="image/png" href="images/icons/favicon.ico"/> 
+        <link rel="stylesheet" type="text/css" href="/web-files/sistema/css/bootstrap.min.css">       
+        <link rel="stylesheet" type="text/css" href="/web-files/sistema/css/main.css"> 
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat&display=swap">        
+
+        <title> Acesso ao Sistema </title>
+    </head>
+     <body class="off-canvas-sidebar header-filter">
+        <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top text-white">
+            <div class="container">
+                <div class="navbar-wrapper">
+                    <a class="navbar-brand" href="#"></a>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="navbar-toggler-icon icon-bar"></span>
+                    <span class="navbar-toggler-icon icon-bar"></span>
+                    <span class="navbar-toggler-icon icon-bar"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end">
+               <ul class="navbar-nav">
+               
+                 <li class="nav-item   ">
+                   <a href="/Admin/recuperar_senha/" class="nav-link">
+                     <i class="material-icons">person_</i> Recuperar
+                   </a>
+                 </li>
+                 <li class="nav-item active">
+                   <a href="/Index/" class="nav-link">
+                     <i class="material-icons">fingerprint</i> Login
+                   </a>
+                 </li>
+                 
+               </ul>
+               </div>
+            </div>
+        </nav>
+        <div class="wrapper " style="background-image:url('/web-files/sistema/imagens/backgrond_login.jpg');background-repeat: no-repeat;background-size: cover;">                
+           <div class="register-page "  >                        
+               <div class="container">
+                   <div class="row">
+                       <div class="col-md-10 ml-auto mr-auto">
+                           <div class="card card-signup">                               
+                               <div class="card-body">
+                                   <div class="row">
+                                       <div class="col-md-5 ml-auto">
+                                           <div class="info info-horizontal">          
+                                               <div class="text-center">
+                                                 
+                                                  <img src="<?php echo $view_login_md ?>" width="280em" alt="IMG"> 
+                                               </div>
+                                           </div> 
+                                       </div>
+                                       <div class="col-md-5 mr-auto ">
+                                           <div class="social text-center">
+                                               
+                                           </div>
+                                          <form class="form" method="POST" action="/Admin/login/acao/logar">
+                                               <div class="form-group has-default">
+                                                   <div class="wrap-input100 validate-input">
+                                                        <input class="input100" type="text" name="usuario" placeholder="Usuário"> 
+                                                        <span class="focus-input100"></span> 
+                                                        <span class="symbol-input100"> <i class="fa-user-circle fas"></i> </span> 
+                                                   </div>
+                                               </div>
+                                               
+                                                <div class="form-group has-default">                                                   
+                                                    <div class="input-group">
+                                                       <input class="input100" type="password" name="senha" placeholder="Senha"> 
+                                                        <span class="focus-input100"></span> 
+                                                        <span class="symbol-input100"> <i class="fa-lock fas"></i> </span> 
+                                                    </div>            
+                                                </div>                                                                                          
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                           <span class="input-group-text"> <i class="material-icons">history</i> </span>
+                                                        </div>
+                                                    <a href="/Admin/recuperar_senha/">RECUPERAR <strong style="color: #9124a3">SENHA</strong></a> 
+                                                    </div>                                                  
+                                                                                    
+                                                                                          
+                                               <div class="text-center">
+                                                    <input type="submit" style="color : white"class="btn login100-form-btn" value="Entrar">
+                                                </div>
+                                            </form>
+                                       </div>
+                                     
+                                   </div>
+                                   
+                                </div>
+                               
+                               <div class="container d-flex justify-content-center">
+                                                <div class="flex-row footer-pic"> 
+                                                    <br>
+                               <br>
+                                                    <h6 class="flex-row-reverse" style="font-size: 13px;">&nbsp;<img src="/web-files/sistema/imagens/bb.png" alt="IMG" width="20">&nbsp; <a href="http://www.bitabits.com.br">Bitabits Software</a> <strong style="color: #9124a3">0.8-stable</strong></h6> 
+                                                </div>
+                                            </div>
+                               
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>     
+        <script src="/web-files/sistema/js/core/jquery.min.js"></script>            
+        <script src="/web-filesv/sistema/js/core/bootstrap-material-design.min.js"></script>         
+        <script src="/web-files/sistema/js/plugins/perfect-scrollbar.jquery.min.js"></script>              
+        <script src="/web-files/sistema/js/material-dashboard.js?v=2.1.0" type="text/javascript"></script>       
+ </body>
+</html>
+
+
+
+                            
+

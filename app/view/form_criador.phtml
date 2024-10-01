@@ -1,0 +1,52 @@
+<?php 
+//require_once "inicio.phtml";
+?>
+
+ <div class=" content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card ">
+                    <div class="card-header card-header-rose card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">work_outline</i>
+                        </div>
+                        <h4 class="card-title">Criar Formulário</h4>
+                    </div>
+                   <form form enctype="multipart/form-data" method="post" action="/Criador/salvar_form/"> 
+                        <div class="card-body ">
+                            
+                            <div class="row">
+                                <div class="col-md-3"> 
+                                    <label for="exampleEmail" class="bmd-label-floating">Tipo</label>
+                                      <div class="form-group ">                                          
+                                          <select id="1" type="text" class="form-control"required="true" name="tipo">
+                                              <option value=""></option> 
+                                              <option value="Model">Model</option> 
+                                              <option value="Controller">Controller</option>
+                                          </select>
+                                    </div>
+                                </div>
+                                    
+                                <div class='col-md-9'> 
+                                    <label  class='bmd-label-floating'>Tabela</label>
+                                    <div class='form-group '>                                           
+                                       <select id='tabela select ' name='tabela' class='form-control' required='true' autocorrect='off' autocomplete='off'>
+                                           <option value=""></option> 
+                                           <?php foreach ($view_listar_tabela AS $listar_tabela):  ?>
+                                                <option value=' <?php echo $listar_tabela['TABLE_NAME'] ; ?> '><?php echo $listar_tabela['TABLE_NAME'] ; ?></option>  <!-- PRECISA MEXER -->
+                                            <?php endforeach; ?>
+                                       </select> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       <div class="col-md-12 card-footer text-right">
+                           <button type="submit" name="" class=" btn btn-rose" required="">Gerar</button>
+                       </div>
+                   </form>
+               </div>
+           </div>
+       </div>
+    </div>
+ </div>

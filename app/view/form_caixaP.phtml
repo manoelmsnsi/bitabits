@@ -1,0 +1,146 @@
+<?php 
+    require_once 'inicio.phtml';          
+    if(empty($view_id)){ 
+?>
+    <div class='content'>
+        <div class='container-fluid'>
+            <div class='row'>
+                <div class='col-md-12'>
+                    <div class='card '>
+                        <div class='card-header card-header-rose card-header-icon'>
+                            <div class='card-icon'>
+                                <i class='material-icons'>shopping_cart</i>
+                            </div>
+                            <h4 class='card-title'>Abertura de Caixa</h4>
+                        </div>
+                    <form form enctype='multipart/form-data' method='post' action='/CaixaP/abrir_caixa/'> <!-- PRECISA MEXER -->
+                        <div class='card-body '>
+                                <div class='row'>
+                                    <input id='' type='hidden'name='id'  required='true'value='<?php echo $listar_caixa['id'] ?>'>
+                                    <div class='col-md-4'> 
+                                        <div class='form-group '>
+                                          <label  class='bmd-label-floating'>Filial</label>
+                                          <select id='id_filial' name='id_filial' class='form-control select ' required='true' autocorrect='off' autocomplete='off'>
+                                               <?php foreach ($view_listar_filial AS $listar_filial):  
+                                                   if( $listar_filial['id'] == $listar_caixa['id_filial']){ ?>
+                                                        <option selected='true' value=' <?php echo $listar_filial['id'] ; ?>' ><?php echo $listar_filial['nome_fantasia'] ; ?></option>  <!--  PRECISA MEXER -->
+                                                    <?php }else{ ?>
+                                                        <option value=' <?php echo $listar_filial['id'] ; ?> '><?php echo $listar_filial['nome_fantasia'] ; ?></option>  <!-- PRECISA MEXER -->
+                                               <?php } endforeach; ?>
+                                          </select> 
+                                        </div>
+                                    </div>
+                                    <div class='col-md-4'> 
+                                        <div class='form-group '>
+                                           <label  class='bmd-label-floating'>Caixa</label>
+                                           <select id='id_conta_bancaria' name='id_caixa' class='form-control select ' required='true' autocorrect='off' autocomplete='off'>
+                                                <?php foreach ($view_listar_conta_bancaria AS $listar_conta_bancaria):                        
+                                                    if( $listar_conta_bancaria['id'] == $listar_venda['id_conta_bancaria']){ ?>
+                                                          <option selected='true' value=' <?php echo $listar_conta_bancaria['id'] ; ?>' ><?php echo $listar_conta_bancaria['descricao'] ; ?></option>  <!--  PRECISA MEXER -->
+                                                      <?php }else{ ?>
+                                                          <option value=' <?php echo $listar_conta_bancaria['id'] ; ?> '><?php echo $listar_conta_bancaria['descricao'] ; ?></option>  <!-- PRECISA MEXER -->
+                                                <?php  } endforeach; ?>
+                                           </select> 
+                                        </div>
+                                    </div>
+                                    <div class='col-md-4'> 
+                                        <div class='form-group '>
+                                           <label  class='bmd-label-floating'>Valor Inicial</label>
+                                           <input id='' type='number'name='valor_abertura' class='form-control' required='true' value='<?php echo $listar_caixa['id_tabela'] ?>'>
+                                       </div>
+                                    </div>
+                                    <div class='card-footer text-right'>
+                                      <button type='submit' name='' class='btn btn-rose' required=''>Salvar</button>
+                                    </div>
+                                </div>
+                            </div>
+                       </form>
+                   </div>
+               </div>
+            </div>
+        </div>
+    </div>
+<br><br>                                      
+    <?php
+        }else{
+            foreach ($view_listar_caixa AS $listar_caixa):
+     ?>
+    
+        <div class='content'>
+                <div class='container-fluid'>
+                    <div class='row'>
+                        <div class='col-md-12'>
+                            <div class='card '>
+                                <div class='card-header card-header-rose card-header-icon'>
+                                    <div class='card-icon'>
+                                        <i class='material-icons'>shopping_cart</i>
+                                    </div>
+                                    <h4 class='card-title'>Cadastro Caixa</h4>
+                                </div>
+                               <form form enctype='multipart/form-data' method='post' action='/Caixa/alterar/'> <!-- PRECISA MEXER -->
+                                    <div class='card-body '>
+                                                 <div class='row'>
+                                                  <input id='' type='hidden'name='id'  required='true'value='<?php echo $listar_caixa['id'] ?>'>
+                                                     <div class='col-md-4'> 
+                                                            <div class='form-group '>
+                                                               <label  class='bmd-label-floating'>Filial</label>
+                                                               <select id='id_filial' name='id_filial' class='form-control select ' required='true' autocorrect='off' autocomplete='off'>
+                                                                    <?php foreach ($view_listar_filial AS $listar_filial):                        
+                                                                        if( $listar_filial['id'] == $listar_caixa['id_filial']){ ?>
+                                                                              <option selected='true' value=' <?php echo $listar_filial['id'] ; ?>' ><?php echo $listar_filial['nome_fantasia'] ; ?></option>  <!--  PRECISA MEXER -->
+                                                                          <?php }else{ ?>
+                                                                              <option value=' <?php echo $listar_filial['id'] ; ?> '><?php echo $listar_filial['nome_fantasia'] ; ?></option>  <!-- PRECISA MEXER -->
+                                                                    <?php  } endforeach; ?>
+                                                               </select> 
+                                                            </div>
+                                                         </div>
+                                                        <div class='col-md-4'> 
+                                                            <div class='form-group '>
+                                                                <label  class='bmd-label-floating'>Descrição</label>
+                                                                <input id='' type='text'name='descricao' class='form-control' required='true' value='<?php echo $listar_caixa['descricao'] ?>'>
+                                                            </div>
+                                                        </div>
+                                                        <div class='col-md-4'> 
+                                                            <div class='form-group '>
+                                                                <label  class='bmd-label-floating'>Tabelas</label>
+                                                                <input id='' type='text'name='id_tabela' class='form-control' required='true' value='<?php echo $listar_caixa['id_tabela'] ?>'>
+                                                            </div>
+                                                        </div>
+                                                  </div>
+                                                 <div class="row">
+                                                        <div class='col-md-6'> 
+                                                            <div class='form-group '>
+                                                                <label  class='bmd-label-floating'>Tipo</label>
+                                                                <input id='' type='text'name='tipo' class='form-control' required='true' value='<?php echo $listar_caixa['tipo'] ?>'>
+                                                            </div>
+                                                        </div><div class='col-md-6'> 
+                                                            <div class='form-group '>
+                                                               <label  class='bmd-label-floating'>Status</label>
+                                                               <select id='id_status' name='id_status' class='form-control select ' required='true' autocorrect='off' autocomplete='off'>
+                                                                    <?php foreach ($view_listar_status AS $listar_status):                        
+                                                                        if( $listar_status['id'] == $listar_caixa['id_status']){ ?>
+                                                                              <option selected='true' value=' <?php echo $listar_status['id'] ; ?>' ><?php echo $listar_status['descricao'] ; ?></option>  <!--  PRECISA MEXER -->
+                                                                          <?php }else{ ?>
+                                                                              <option value=' <?php echo $listar_status['id'] ; ?> '><?php echo $listar_status['descricao'] ; ?></option>  <!-- PRECISA MEXER -->
+                                                                    <?php  } endforeach; ?>
+                                                               </select> 
+                                                            </div>
+                                                         </div>
+<!--                                                        <div class='col-md-6'> 
+                                                            <div class='form-group '>
+                                                                <label  class='bmd-label-floating'>data_lancamento</label>
+                                                                <input id='' type='date'name='data_lancamento' class='form-control' required='true'value='< ?php echo $listar_caixa['data_lancamento'] ?>'>
+                                                            </div>
+                                                       </div>-->
+                                                       <div class='card-footer text-right'>
+                                           <button type='submit' name='' class='btn btn-rose' required=''>Salvar</button>
+                                       </div>
+                                    </div>
+                                </div>
+                           </form>
+                       </div>
+                   </div>
+                </div>
+            </div>
+        </div>
+<br><br> <?php endforeach; } ?>

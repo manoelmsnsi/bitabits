@@ -1,0 +1,613 @@
+<?php 
+
+    require_once "inicio.phtml";
+
+?>
+<?php                                                                                                                      
+
+    foreach ($view_listar_agenda AS $listar_agenda): ?>  
+
+
+
+<div class="content">
+
+    <div class="container-fluid">
+
+        <div class="row">          
+
+         <div class="col-md-10 col-12 mr-auto ml-auto">    
+
+            <div class="card ">
+
+               <div class="card-header card-header-rose card-header-icon">
+
+                   <div class="card-icon">
+
+                       <i class="material-icons">today</i>
+
+                   </div>
+
+                   <h4 class="card-title">Dados do Agendamento</h4> 
+
+               </div>
+
+               <div class="card-body ">
+
+                   <div class="form-group">
+
+                       <label for="exampleEmail" class="bmd-label-floating">Cliente *</label>
+
+                       <input type="hidden" class="form-control"  id="id_filial" name="id_filial" value="<?php echo $view_user_dados["id_filial"]; ?>">
+
+                       <input type="hidden" class="form-control"  id="id_colaborador" name="id_colaborador" value="<?php echo $view_user_dados["id_colaborador"]; ?>">
+
+                       <input type="hidden" class="form-control"  id="id_cliente" name="id_cliente" value="<?php echo $listar_agenda["id_cliente"]; ?>">
+
+                       <input type="hidden"  disabled="true"class="form-control"required="true" id="id_agenda" name="id_agenda" value="<?php echo $listar_agenda["id"] ; ?>" >
+
+                       <input type="text"  disabled="true"class="form-control"required="true" name="nome_cliente" value="<?php echo $listar_agenda["nome_cliente"] ; ?>" >
+
+                   </div>
+
+                   <div class="row">
+
+                       <div class="form-group col-md-6">
+
+                           <label for="examplePassword" class="bmd-label-floating">Inicio</label>
+
+                           <input type="text"  disabled="true"class="form-control"required="true" name="data_inicio" value="<?php echo $listar_agenda["data_inicio"] ; ?>" >
+
+                       </div>
+
+
+
+                       <div class="form-group col-md-6">
+
+                           <label for="examplePassword" class="bmd-label-floating">Fim*</label>
+
+                           <input type="text"  disabled="true"class="form-control"required="true" name="data_fim" value="<?php echo $listar_agenda["data_fim"] ; ?>" >
+
+                       </div>
+
+                   </div>
+
+
+
+                   <div class="form-group">
+
+                       <label for="examplePassword" class="bmd-label-floating">Observação *</label>
+
+                       <textarea type="text"  disabled="true"class="form-control"><?php echo $listar_agenda["observacao"]  ; ?></textarea>
+
+                   </div>                          
+
+               </div>
+
+            </div>
+
+             
+
+             
+
+             
+
+             
+
+             <div class="row">
+
+              <div class="col-md-12">   
+
+               <div class="card " data-color="rose" >
+
+                            <div class="card-body">
+
+                                <div class="tab-content">
+
+                                    <div class="row justify-content-center">
+
+                                                    <div class="col-md-8">
+
+                                                        <label class="bmd-label-floating">Tratamento</label>
+
+                                                        
+
+                                                        <input type="text" class="form-control"  id="descricao"name="descricao">
+
+                                                    </div>
+
+                                               
+
+                                           
+
+                                                    <div class="col-sm-2">
+
+                                                
+
+                                                        <label for="exampleInput1" class="bmd-label-floating">Valor</label>
+
+                                                        <input type="number" class="form-control" id="valor_total" name="valor_total" >
+
+                                                    </div>
+
+                                                
+
+                                            <div class="col-sm-1">
+
+                                                <label for="exampleInput1" class="bmd-label-floating">.</label><br>
+
+                                                <!--<a  name="gravar" id="gravar"class="btn btn-sm btn-warning btn-just-icon"><i class='material-icons'>done_outline</i></a>-->
+
+                                                <input type="button"name="gravar" id="gravar"class="btn btn-sm btn-info gravar material-icons" value="add">
+
+                                                <!--<input  type="button" name="gravar" id="gravar"class="btn btn-sm btn-warning btn-just-icon" value="v">-->
+
+                                            </div>
+
+                                        </div>
+
+                                </div>
+
+                                
+
+                                 <!-- ======== INÍCIO BLOCOS ========-->
+
+                                 <div class="row">
+
+              <div class="col-md-6">   
+
+               <div class="card " data-color="rose" >
+
+                            <div class="card-body">
+
+                                <div class="tab-content">
+
+                                    <div class="tab-pane active">                                        
+
+                                        <h5 class="info-text">Tratamentos a fazer</h5>                                                                          
+
+                                        
+
+                                        <div class="row justify-content-center "id="t_teste" >
+
+                                            <div class="col-md-10">
+
+                                                <div class="card">
+
+                                                    <div class="card-body">
+
+                                                        <div class="table-responsive">
+
+                                                            <table class="table">
+
+                                                                <thead>
+
+                                                                    <tr>
+
+                                                                        <th class="text-center">#</th>
+
+                                                                        <th>Descricão</th>
+
+                                                                        <th>valor</th>
+
+                                                                        <th class="text-right">Actions</th>
+
+                                                                    </tr>
+
+                                                                </thead>
+
+                                                                <tbody >
+
+                                                                     <?php $total=0;foreach ($view_listar_itens AS $listar_itens):      ?>
+
+                                                                    <tr>
+
+                                                                        <td class="text-center"><?php echo $listar_itens["id"]; ?></td>
+
+                                                                        <td><?php echo $listar_itens["descricao"]; ?></td>
+
+                                                                        <td class="text-right">R$ <?php $total=$total+ $listar_itens["valor_venda"]; echo $listar_itens["valor_venda"]; ?></td>
+
+                                                                        <td class="td-actions text-right" style="float: right;">
+
+                                                                            <input type="button" id="<?php echo $listar_itens["id"] ?>"class="btn btn-sm btn-danger excluir_itens material-icons" value="clear"/> &nbsp;&nbsp;
+
+                                                                            <input type="button" id="<?php echo $listar_itens["id"] ?>"class="btn btn-sm btn-rose status_realizado material-icons" value="keyboard_arrow_right"/>
+
+                                                                        </td>
+
+                                                                    </tr>
+
+                                                                    <?php endforeach; ?>
+
+                                                                </tbody>
+
+                                                            </table>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <h5 class="info-text"><?php echo "Total R$ ".$total ?></h5>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            
+
+                    
+
+                    </div>
+
+              </div>
+
+                 
+
+
+
+                 
+
+            <div class="col-md-6">   
+
+               <div class="card " data-color="rose" >
+
+                            <div class="card-body">
+
+                                <div class="tab-content">
+
+                                    <div class="tab-pane active">                                        
+
+                                        <h5 class="info-text">Tratamentos Realizados</h5>                                                                          
+
+                                       
+
+                                        <div class="row justify-content-center "id="t_teste" >
+
+                                            <div class="col-md-10">
+
+                                                <div class="card">
+
+                                                    <div class="card-body">
+
+                                                        <div class="table-responsive">
+
+                                                            <table class="table">
+
+                                                                <thead>
+
+                                                                    <tr>
+
+                                                                        <th class="text-center">#</th>
+
+                                                                        <th>Descricão</th>
+
+                                                                        <th>valor</th>
+
+                                                                        <th class="text-right">Actions</th>
+
+                                                                    </tr>
+
+                                                                </thead>
+
+                                                                <tbody >
+
+                                                                     <?php $total=0;foreach ($view_listar_itens_realizada AS $listar_itens_realizada):      ?>
+
+                                                                    <tr>
+
+                                                                        <td class="text-center"><?php echo $listar_itens_realizada["id"]; ?></td>
+
+                                                                        <td><?php echo $listar_itens_realizada["descricao"]; ?></td>
+
+                                                                        <td class="text-right">R$ <?php $total=$total+ $listar_itens_realizada["valor_venda"]; echo $listar_itens_realizada["valor_venda"]; ?></td>
+
+                                                                        <td class="td-actions text-right" style="float: right;">
+
+                                                                        <input type="button" id="<?php echo $listar_itens_realizada["id"] ?>"class="btn btn-sm btn-danger excluir_itens material-icons" value="clear"/>     &nbsp;&nbsp; 
+
+                                                                        <input type="button" id="<?php echo $listar_itens_realizada["id"] ?>"class="btn btn-sm btn-rose status_nao_realizado material-icons" value="keyboard_arrow_left"/> 
+
+                                                                         
+
+                                                                         
+
+                                                                        </td>
+
+                                                                    </tr>
+
+                                                                    <?php endforeach; ?>
+
+                                                                </tbody>
+
+                                                            </table>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <h5 class="info-text"><?php echo "Total R$ ".$total ?></h5>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                    </div>
+
+              </div>                 
+
+             </div>
+
+                                
+
+                            </div>
+
+                   
+
+                   
+
+                  
+
+                            
+
+                   
+
+                   
+
+                    
+
+                    </div>
+
+              </div>                            
+
+             </div>
+
+             
+
+             
+
+             <!-- ======FIM======-->
+
+             
+
+            
+
+            </div> 
+
+        </div>  
+
+    </div>  
+
+</div>  
+<?php
+
+   endforeach;
+
+?>  
+
+<script>
+
+    $(document).ready(function(){
+
+      $(".status_nao_realizado").click(function(){
+
+        var acao="status_nao_realizado";
+
+        var id = $(this).attr("id");
+
+	var id_cliente = $("#id_cliente").val();
+
+	var id_agenda = $("#id_agenda").val();
+
+	var descricao = $("#descricao").val();
+
+	var valor_total = $("#valor_total").val();
+
+		 $.ajax({
+
+		          type: "POST",
+
+			  url: "/app/model/inc_tratamento.php",
+
+			  data: "acao="+acao+"&id="+id,                          
+
+                 }).done(function(e){   
+
+                  //  $("#t_teste").load("form_visualizar_agenda.phtml) #t_teste")
+
+                  
+
+                   document.getElementById('#t_teste').innerHTML = location.reload();
+
+
+
+		  });
+
+                 return false;
+
+                   
+
+	  });
+
+          
+
+        
+
+});
+
+   
+
+</script>
+
+<script>
+
+    $(document).ready(function(){
+
+      $(".status_realizado").click(function(){
+
+        var acao="status_realizado";
+
+        var id = $(this).attr("id");
+
+	var id_cliente = $("#id_cliente").val();
+
+	var id_agenda = $("#id_agenda").val();
+
+	var descricao = $("#descricao").val();
+
+	var valor_total = $("#valor_total").val();  
+
+		 $.ajax({
+
+		          type: "POST",
+
+			  url: "/app/model/inc_tratamento.php",
+
+			  data: "acao="+acao+"&id="+id,                          
+
+                 }).done(function(e){   
+
+                  //  $("#t_teste").load("form_visualizar_agenda.phtml) #t_teste")
+
+                  
+
+                   document.getElementById('#t_teste').innerHTML = location.reload();
+
+
+
+		  });
+
+                 return false;
+
+                   
+
+	  });
+
+          
+
+        
+
+});
+
+   
+
+</script>
+
+<script>
+
+    $(document).ready(function(){
+
+      $("#gravar").click(function(){
+
+        var acao="incluir";
+
+	var id_cliente = $("#id_cliente").val();
+
+        alert("erro"+id_cliente);
+
+	var id_agenda = $("#id_agenda").val();
+
+	var id_colaborador = $("#id_colaborador").val();
+
+	var id_filial = $("#id_filial").val();
+
+	var descricao = $("#descricao").val();
+
+	var valor_total = $("#valor_total").val();
+
+		 $.ajax({
+
+		          type: "POST",
+
+			  url: "/app/model/inc_tratamento.php",
+
+			  data: "id_cliente="+id_cliente+"&id_agenda="+id_agenda+"&descricao="+descricao+"&valor_total="+valor_total+"&acao="+acao+"&id_colaborador="+id_colaborador+"$id_filial="+id_filial,                          
+
+                 }).done(function(e){   
+
+                  //  $("#t_teste").load("form_visualizar_agenda.phtml) #t_teste")
+
+                  
+
+                   document.getElementById('#t_teste').innerHTML = location.reload();
+
+
+
+		  });
+
+                 return false;
+
+                   
+
+	  });
+
+          
+
+        
+
+});
+
+   
+
+</script>
+
+<script>
+
+    $(document).ready(function(){
+
+      $(".excluir_itens").click(function(){
+
+	     var acao="excluir";
+
+             var id = $(this).attr("id");
+
+		 $.ajax({
+
+		          type: "POST",
+
+			  url: "/app/model/inc_tratamento.php",
+
+			  data: "acao="+acao+"&id="+id,                          
+
+                 }).done(function(e){   
+
+                   //  $('#funcionario').append(e);
+
+                     //$('#funcionario').children().append(e);// Tentei também
+
+                 //  $("#t_teste").load("form_visualizar_agenda.phtml) #t_teste")
+
+                    document.getElementById('#t_teste').innerHTML = location.reload();
+
+
+
+		  });
+
+                 return false;
+
+	  });
+
+          
+
+        
+
+});
+
+   
+
+</script>

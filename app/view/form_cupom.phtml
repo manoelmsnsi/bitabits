@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>Cupom</title>
+        <link href="/web-files/sistema/css/bootstrap.css" rel="stylesheet">
+        <link href="/web-files/sistema/css/cupom.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    </head>
+    <script>
+  
+    </script>
+    <?php  echo "<script>window.print();</script>"; ?>
+
+    <body>
+         <section class="sessao">
+            <div class="container">
+          
+                <div class="row"> 
+                    <div class="col-md-6"></div>
+                    <div class="    " onload="self.print();self.close()" style="width: 80mm">
+                        <div class="card text-center">
+                            <div class="center">
+                                <img src="/web-files/sistema/imagens/bb.png" width="50"/> 
+                            </div>
+                            <div class="card-"><?php echo $view_listar_filial[0]["nome_fantasia"]; ?></div>
+                            <small><?php echo $view_listar_filial[0]["endereco"]; ?></small>
+                            <small><?php echo $view_listar_filial[0]["cidade"]; ?></small>
+                            <hr>
+                            <h6 class="card-"><strong>CUPOM SEM VALOR FISCAL</strong></h6>
+                            <div class="row">
+                                <div class="col-md-6"> 
+                                    <p>Referência N.: <?php echo $view_listar_venda[0]["id"]; ?></p>
+                                    <p>CNPJ: <?php echo $view_listar_filial[0]["cnpj"]; ?></p>
+                                    <p>Cliente: <?php echo $view_listar_cliente[0]["nome"]; ?></p> 
+                                </div>
+                                <div class="col-md-6"> 
+                                    <p style="text-align: right;">Tel. (69) 0000-0000</p>
+                                    <p style="text-align: right;">IE: <?php echo $view_listar_filial[0]["inscricao"]; ?></p>
+                                    <p style="text-align: right;">Data: <?php echo date("d/m/Y H:m"); ?></p> 
+                                </div>
+                            </div>
+                            <table class="table tbl"> 
+                                <thead> 
+                                    <tr> 
+                                        <th>Descrição</th> 
+                                        <th>Qtd.</th> 
+                                        <th>Preço</th>
+                                        <th>Total</th> 
+                                    </tr>                                     
+                                </thead>                                 
+                                <tbody> 
+                                    <?php  foreach ($view_listar_itens AS $listar_itens): ?>
+                                    <tr> 
+                                    <td><?php echo $listar_itens["descricao"]; ?></td>
+                                    <td ><?php echo $listar_itens["quantidade"]; ?></td>       
+                                    <td><?php echo $listar_itens['valor_venda']; $total_venda=$total_venda+($listar_itens['valor_venda']*$listar_itens['quantidade']);?></td>
+                                    <td><?php echo $listar_itens["quantidade"]*$listar_itens["valor_venda"]; ?></td>                                     
+                                    </tr>
+                                <?php endforeach; ?>  
+                                    <?php  foreach ($view_listar_servico AS $listar_servico): ?>
+                                    <tr> 
+                                    <td><?php echo $listar_servico["descricao"]; ?></td>
+                                    <td ><?php echo $listar_servico["quantidade"]; ?></td>       
+                                    <td><?php echo $listar_servico['valor_venda']; $total_venda=$total_venda+($listar_servico['valor_venda']*$listar_servico['quantidade']);?></td>
+                                    <td><?php echo $listar_servico["quantidade"]*$listar_servico["valor_venda"]; ?></td>                                     
+                                    </tr>
+                                <?php endforeach; ?>  
+                                
+                                <?php  foreach ($view_listar_outros AS $listar_outros): ?>
+                                    <tr> 
+                                    <td><?php echo $listar_outros["descricao"]; ?></td>
+                                    <td ><?php echo $listar_outros["quantidade"]; ?></td>       
+                                    <td><?php echo $listar_outros['valor_venda']; $total_venda=$total_venda+($listar_outros['valor_venda']*$listar_outros['quantidade']);?></td>
+                                    <td><?php echo $listar_outros["quantidade"]*$listar_outros["valor_venda"]; ?></td>                                     
+                                    </tr>
+                                <?php endforeach; ?> 
+                                </tbody>                                 
+                            </table>
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <p><strong>Total de Itens: 1</strong></p>
+                                    <p><strong>Desconto:&nbsp;</strong></p> 
+                                </div>
+                                <div class="col-md-5"> 
+                                    <div class="direita"> 
+                                        <p><strong>Total: <?php echo $total_venda; ?> </strong></p>
+                                        <p style="text-align: right;"><strong>R$ 0,00</strong></p> 
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <p><strong>A Pagar:</strong></p>
+                                    <p><strong>Pago:&nbsp;</strong></p>
+                                    <p><strong>Troco:</strong></p>
+                                </div>
+                                <div class="col-md-5"> 
+                                    <div class="direita">
+                                        <p><strong style="text-align: right;"><?php   echo $total_venda;?></strong></p>
+                                        <p><strong style="text-align: right;"><?php 
+                                        if($view_total_pago==""){
+                                            $view_total_pago=$view_total_pago;
+                                        }else{
+                                            $view_total_pago=$total_venda;                                        
+                                        };
+                                        echo $view_total_pago; ?></strong></p>
+                                        <p style="text-align: right;"><strong style="text-align: right;"><?php echo $view_total_pago-$total_venda; ?></strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+<!--                            <hr><div class="row">
+                                <div class="col-md-12">
+                                    <div class="text-rodade position-relative float-none d-flex flex-column align-items-center">
+                                        <p>Biabits Gestão Comercial</p>
+                                        <p>www.bitabits.com.br</p>
+                                        <p>(69) 3461-1960</p> 
+                                    </div>
+                                </div>
+                            </div>-->
+                        </div>                         
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- JavaScript-->
+        <script src="/web-files/sistema/js/jquery.min.js"></script>
+        <script src="/web-files/sistema/js/popper.js"></script>
+        <script src="/web-files/sistema/js/bootstrap.min.js"></script>
+    </body>
+</html>

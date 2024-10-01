@@ -1,0 +1,24 @@
+<?php
+    $menu = new MenuHelper("Bit a Bits", $Class, $AcaoForm, $MetodoDeEnvio);   
+    echo $menu->Menu()
+?>
+<!DOCTYPE html>
+<html lang="pt_br">    
+    <body class="off-canvas-sidebar">
+        <div class="wrapper wrapper-full-page">
+            <div class="page-header error-page header-filter" style="background-image: url('/web-files/sistema/imagens/backgrond_login.jpg'); background-position: center center; background-repeat: repeat; background-size: auto;">
+                <!--   you can change the color of the filter page using: data-color="blue | green | orange | red | purple" -->
+                <div class="content-center">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="title"> <i class="material-icons" style="font-size:8rem;">lock</i> </h1> 
+                            <h2>NÃO AUTORIZADO</h2>
+                            <h6>Usuário sem permissão para executar ação requisitada.</h6>                            
+                            <a href="javascript:history.back()" style="color:white"> <i class="material-icons">keyboard_arrow_left</i> Voltar </a>                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

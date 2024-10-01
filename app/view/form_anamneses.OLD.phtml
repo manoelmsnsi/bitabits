@@ -1,0 +1,256 @@
+<div class='content'>
+    <div class='container-fluid'>
+        <div class='row'>
+            <div class='col-md-12'>
+                <div class='card '>
+                    <div class='card-header card-header-rose card-header-icon'>
+                        <div class='card-icon'>
+                            <i class='material-icons'>work_outline</i>
+                        </div>
+                        <h4 class='card-title'>Cadastro Anamnese</h4>
+                    </div>
+                     <form method="POST" action="\Anamneses\incluir"> 
+                        <div class='card-body '>
+                            <div class='row '>                                                  
+                                <div class="col-md-7 ml-auto mr-auto">     
+                                    <input type="hidden" name="id_cliente" class="form-control" value="<?php echo $view_id_cliente?>">
+                                        <div class="form-group">
+                                            <label for="exampleEmail" class="bmd-label-floating">Queixa Principal</label>
+                                             <input type="text" name="queixa" class="form-control" id="exampleEmail">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="examplePass" class="bmd-label-floating">História do Problema Atual</label>
+                                            <input type="text" name="historia" class="form-control" id="examplePass">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="examplePass" class="bmd-label-floating">Medicamentos em uso</label>
+                                            <input type="text"name="medicamentos" class="form-control">
+                                        </div>
+                                        <h4 style="margin-top: 2rem; margin-bottom: 2rem;" class="card-title">História Social</h4>
+                                        <div class="form-group">
+                                            <label for="examplePass" class="bmd-label-floating">Etilismo</label>
+                                            <input type="text" name="etilismo" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="examplePass" class="bmd-label-floating">Tabagismo</label>
+                                            <input type="text"name="tabagismo" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="examplePass" class="bmd-label-floating">Uso de Sustâncias Ilícitas</label>
+                                            <input type="text" name="substancias_ilicitas" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="examplePass" class="bmd-label-floating">Prática de Atividades Físicas</label>
+                                            <input type="text" name="pratica_atividade_fisica" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="examplePass" class="bmd-label-floating">DST</label>
+                                            <input type="text" name="dst" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="examplePass" class="bmd-label-floating">Exame Físico</label>
+                                            <input type="text" name="exame_fisico" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="examplePass" class="bmd-label-floating">Conduta</label>
+                                            <input type="text" name="conduta" class="form-control">
+                                        </div>
+
+                                </div>
+                                <div class="col-md-5 ml-auto mr-auto">
+                                        <div class="togglebutton">
+                                            <label style="color:black;">
+                                                <input type="checkbox" name="depressao_anciedade" value="SIM">
+                                                <span class="toggle"></span>
+                                                Depressão/Anciedade
+                                            </label>
+                                        </div>
+                                        <div class="togglebutton">
+                                            <label style="color:black;">
+                                                <input type="checkbox"  name="coronariopatia" value="SIM">
+                                                <span class="toggle"></span>
+                                                Coronariopatia
+                                            </label>
+                                        </div>
+                                        <div class="togglebutton">
+                                            <label style="color:black;">
+                                                <input type="checkbox"name="valvopatia"value="SIM">
+                                                <span class="toggle"></span>
+                                                Valvopatia
+                                            </label>
+                                        </div>
+                                        <div class="togglebutton">
+                                            <label style="color:black;">
+                                                <input type="checkbox" value="SIM" name="diabetes">
+                                                <span class="toggle"></span>
+                                                Diabetes
+                                            </label>
+                                        </div>
+                                        <div class="togglebutton">
+                                            <label style="color:black;">
+                                                <input type="checkbox" name="has"value="SIM">
+                                                <span class="toggle"></span>
+                                                HAS
+                                            </label>
+                                        </div>
+                                        <div class="togglebutton">
+                                            <label style="color:black;">
+                                                <input type="checkbox" name="alergias"value="SIM">
+                                                <span class="toggle"></span>
+                                                Alergias
+                                            </label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="examplePass" class="bmd-label-floating">Tipos de Alergias</label>
+                                            <input type="text"  class="form-control">
+                                        </div>
+                                        <div class="togglebutton">
+                                            <label style="color:black;">
+                                                <input type="checkbox" name="convulsoes"value="SIM">
+                                                <span class="toggle"></span>
+                                                Convulsões
+                                            </label>
+                                        </div>
+                                        <div class="togglebutton">
+                                            <label style="color:black;">
+                                                <input type="checkbox"name="cirurgias_previas"value="SIM">
+                                                <span class="toggle"></span>
+                                                Cirurgias Prévias
+                                            </label>
+                                        </div>
+                                        <div class="togglebutton">
+                                            <label style="color:black;">
+                                                <input type="checkbox"name="doenca_congenitas"value="SIM">
+                                                <span class="toggle"></span>
+                                                Doenças Congênitas
+                                            </label>
+                                        </div>
+                                        <div class="togglebutton">
+                                            <label style="color:black;">
+                                                <input type="checkbox"name="hipo"value="SIM">
+                                                <span class="toggle"></span>
+                                                Hipo / Hipertiroidismo
+                                            </label>
+                                        </div>
+                                        <div class="togglebutton">
+                                            <label style="color:black;">
+                                                <input type="checkbox" name="internacoes"value="SIM">
+                                                <span class="toggle"></span>
+                                                Internações Prévias
+                                            </label>
+                                        </div>
+                                        <div class="togglebutton">
+                                            <label style="color:black;">
+                                                <input type="checkbox"name="neoplasias"value="SIM">
+                                                <span class="toggle"></span>
+                                                Neoplasias
+                                            </label>
+                                        </div>
+                                        <div class="togglebutton">
+                                            <label style="color:black;">
+                                                <input type="checkbox"name="neuropatias"value="SIM">
+                                                <span class="toggle"></span>
+                                                Neuropatias
+                                            </label>
+                                        </div>
+                                        <div class="togglebutton">
+                                            <label style="color:black;">
+                                                <input type="checkbox"name="osteopatias"value="SIM">
+                                                <span class="toggle"></span>
+                                                Nefropatias
+                                            </label>
+                                        </div>
+                                        <div class="togglebutton">
+                                            <label style="color:black;">
+                                                <input type="checkbox"name="pneumopatias"value="SIM">
+                                                <span class="toggle"></span>
+                                                Osteopatias
+                                            </label>
+                                        </div>
+                                        <div class="togglebutton">
+                                            <label style="color:black;">
+                                                <input type="checkbox"name="outros"value="SIM">
+                                                <span class="toggle"></span>
+                                                Pneumopatias
+                                            </label>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="examplePass" class="bmd-label-floating">Outros não específicados</label>
+                                            <input type="text" name="outros_nao_especificados" class="form-control">
+                                        </div>
+
+                                    <h4 style="margin-top: 2rem; margin-bottom: 2rem;" class="card-title">História Familiar - Antecedentes</h4>
+                                    <div class="togglebutton">
+                                        <label style="color:black;">
+                                            <input type="checkbox" name="avc"value="SIM">
+                                            <span class="toggle"></span>
+                                            AVC
+                                        </label>
+                                    </div>
+                                    <div class="togglebutton">
+                                        <label style="color:black;">
+                                            <input type="checkbox"name="dac"value="SIM">
+                                            <span class="toggle"></span>
+                                            DAC
+                                        </label>
+                                    </div>
+                                    <div class="togglebutton">
+                                        <label style="color:black;">
+                                            <input type="checkbox"name="dm" value="SIM">
+                                            <span class="toggle"></span>
+                                            DM
+                                        </label>
+                                    </div>
+                                    <div class="togglebutton">
+                                        <label style="color:black;">
+                                            <input type="checkbox"name="doencas_geneticas" value="SIM">
+                                            <span class="toggle"></span>
+                                            Doenças Genéticas
+                                        </label>
+                                    </div>
+<!--                                                                                            <div class="togglebutton">
+                                        <label style="color:black;">
+                                            <input type="checkbox">
+                                            <span class="toggle"></span>
+                                            HAS
+                                        </label>
+                                    </div>
+                                    <div class="togglebutton">
+                                        <label style="color:black;">
+                                            <input type="checkbox">
+                                            <span class="toggle"></span>
+                                            Neoplasia
+                                        </label>
+                                    </div>
+                                    <div class="togglebutton">
+                                        <label style="color:black;">
+                                            <input type="checkbox">
+                                            <span class="toggle"></span>
+                                            Obesidade
+                                        </label>
+                                    </div>
+                                    <div class="togglebutton">
+                                        <label style="color:black;">
+                                            <input type="checkbox">
+                                            <span class="toggle"></span>
+                                            Outros
+                                        </label>
+                                    </div>-->
+<!--                                                                                            <div class="form-group">
+                                        <label for="examplePass" class="bmd-label-floating">Outros não específicados</label>
+                                        <input type="text" class="form-control">
+                                    </div>-->
+                                </div>
+                            </div>  
+                        </div>
+                        <button type="submit" class="btn btn-info">Salvar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+          
+ 
+

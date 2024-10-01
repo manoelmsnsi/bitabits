@@ -1,0 +1,55 @@
+<!DOCTYPE html> 
+<html lang="pt_br"> 
+    <head> 
+        <title>Bit a Bits Desenvolvimento</title>         
+        <meta charset="UTF-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        <link rel="icon" type="image/png" href="images/icons/favicon.ico"/> 
+        <link rel="stylesheet" type="text/css" href="/web-files/sistema/css/bootstrap.min.css">       
+        <link rel="stylesheet" type="text/css" href="/web-files/sistema/css/main.css"> 
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat&display=swap">
+    </head>     
+    <body> 
+        <div class="limiter"> 
+            <div class="container-login100 header-filter" filter-color="black"  style="background-image: url('<?php echo $view_login_background; ?>'); background-repeat: no-repeat; background-position: center top; background-size: cover;"> 
+           
+                <div class="bg-white wrap-login100">                      
+                    <div class="align-items-start d-inline-flex js-tilt justify-content-between login100-pic" data-tilt> 
+                        <img src="<?php echo $view_login_md ?>" width="200px" alt="IMG"> 
+                    </div>                     
+                    <form class="login100-form validate-form" method="POST" action="/Admin/login/acao/logar/"> 
+                        <div class="col-md-12"></div> 
+                        <!--<span class="login100-form-title"><img src="/web-files/sistema/imagens/bb.png" width="72" alt="IMG">BIT A BITS SISTEMA</span>-->
+                        <div class="wrap-input100 validate-input"> 
+                            <input class="input100" type="text" name="usuario" placeholder="Usuário"> 
+                            <span class="focus-input100"></span> 
+                            <span class="symbol-input100"> <i class="fa-user-circle fas"></i> </span> 
+                        </div>                         
+                        <div class="wrap-input100 validate-input" data-validate="Password is required"> 
+                            <input class="input100" type="password" name="senha" placeholder="Senha"> 
+                            <span class="focus-input100"></span> 
+                            <span class="symbol-input100"> <i class="fa-lock fas"></i> </span> 
+                        </div>                         
+                        <div class="container-login100-form-btn"> 
+                            <button class="login100-form-btn">Entrar</button>                             
+                        </div>                         
+                        <div class="text-center p-t-12"> 
+                            <span class="txt1"> Esqueceu </span> 
+                            <a class="txt2" href="/Admin/recuperar_senha/"> a senha? </a>  
+                        </div>                         
+                        <div class="text-center p-t-136"> 
+</div>                         
+                    </form>
+                    <div class="container d-flex justify-content-center">
+                        <div class="flex-row footer-pic"> 
+                            <h6 class="flex-row-reverse" style="font-size: 13px;">&nbsp;<img src="/web-files/sistema/imagens/bb.png" alt="IMG" width="20">&nbsp; <a href="http://www.bitabits.com.br">Bitabits Software</a> <strong style="color: #9124a3">0.8-stable</strong></h6> 
+                        </div>
+                    </div> 
+                    
+                </div>                 
+            </div>             
+        </div>         
+    </body>     
+</html>

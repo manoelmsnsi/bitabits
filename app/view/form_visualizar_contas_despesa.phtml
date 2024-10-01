@@ -1,0 +1,89 @@
+<?php 
+            require_once 'inicio.phtml';          
+            if(empty($view_id)){ ?>
+                          
+    <?php
+        }else{
+            foreach ($view_listar_contas AS $listar_contas):
+     ?>
+    
+        <div class='content'>
+                <div class='container-fluid'>
+                    <div class='row'>
+                        <div class=' col-md-8'>
+                            <div class='card '>
+                                <div class='card-header card-header-rose card-header-icon'>
+                                    <div class='card-icon'>
+                                        <i class='material-icons'>work_outline</i>
+                                    </div>
+                                    <h4 class='card-title'>Receber Parcela</h4>
+                                </div>
+                               <form form enctype='multipart/form-data' method='post' action='/Despesa/despesa_pagar/'> <!-- PRECISA MEXER -->
+                                    <div class='card-body '>
+                                        <div class='row'> 
+                                            <input id='' type='hidden'name='id'  required='true'value='<?php echo $listar_contas['id'] ?>'>
+                                                 
+                                                                <input id='' type='hidden'name='id_tabela' class='form-control' required='true' value='<?php echo $listar_contas['id_tabela'] ?>'>
+                                                                <input id='' type='hidden'name='id_filial' class='form-control' required='true' value='<?php echo $listar_contas['id_filial'] ?>'>
+                                                                <input id='' type='hidden'name='parcela' class='form-control' required='true' value='<?php echo $listar_contas['parcela'] ?>'>
+                                                                <input id='' type='hidden'name='valor_total' class='form-control' required='true' value='<?php echo $listar_contas['valor_total'] ?>'>
+                                                           
+                                                         
+                                                         
+                                                        <div class='col-md-3'> 
+                                                            <div class='form-group '>
+                                                                <label  class='bmd-label-floating'>Valor Pago</label>
+                                                                <input id='valor_pago' type='text'name='valor_pago' class='form-control' required='true' value='<?php echo $listar_contas['valor_pago'] ?>'>
+                                                            </div>
+                                                        </div>
+                                                        <div class='col-md-3'> 
+                                                            <div class='form-group '>
+                                                                <label  class='bmd-label-floating'>Valor Parcela</label>
+                                                                <input id='' type='text' disabled class='form-control' required='true' value='<?php echo $listar_contas['valor_parcela'] ?>'>
+                                                                <input id='valor_parcela' type='hidden'name='valor_parcela' class='form-control' required='true' value='<?php echo $listar_contas['valor_parcela'] ?>'>
+                                                            </div>
+                                                            </div>
+                                                        
+                                                        <div class='col-md-3'> 
+                                                            <div class='form-group '>
+                                                                <label  class='bmd-label-floating'>Valor Troco</label>
+                                                                <input id='valor_troco' type='hidden'name='valor_troco' class='form-control' required='true' value='<?php echo $listar_contas['valor_troco'] ?>'>
+                                                                <input id='valor_troco_falso' type='text' disabled name='valor_troco_falso' class='form-control' required='true' value='<?php echo $listar_contas['valor_troco'] ?>'>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                                 <div class='col-md-3'>  
+                                                            <div class='form-group '>
+                                                                <label  class='bmd-label-floating'>data_vencimento</label>
+                                                                <input id='' type='date'name='data_vencimento' class='form-control' required='true'value='<?php echo date("Y-m-d") ?>'>
+                                                            </div>
+                                                       </div> 
+                                                        
+                                                        <div class='card-footer text-right'>
+                                           <button type='submit' name='' class='btn btn-rose' required=''>Salvar</button>
+                                       </div>
+                                    </div>
+                                </div>
+                           </form>
+                       </div>
+                   </div>
+                </div>
+            </div> 
+        </div>
+<br><br> <?php endforeach; } ?> 
+
+  
+<script>  
+     
+        $("#valor_pago").keyup(function(){
+        var valor_pago = $("#valor_pago").val();
+        var valor_parcela = $("#valor_parcela").val();
+        var valor_troco = valor_pago-valor_parcela;
+        //valor_troco=valor_desconto-valor_troco;
+      //  $("#ValorTroco").val(valor_troco);
+        $("#valor_troco_falso").val(valor_troco.toLocaleString('us', {minimumFractionDigits: 2, maximumFractionDigits: 2}));
+        $("#valor_troco").val(valor_troco.toLocaleString('us', {minimumFractionDigits: 2, maximumFractionDigits: 2}));
+      });
+     
+</script>
+
